@@ -3,62 +3,82 @@
     name : "inputPanen"
 
     # BackgroundLayer:
-
-    MDCard:
-    # BoxLayout:
+    # MDToolbar:
+    #     id: toolbar
+    #     title: app.title
+    #     md_bg_color: app.theme_cls.primary_color
+    #     background_palette: "Primary"
+    #     elevation: 100
+    #     left_action_items: [["menu", lambda x: None]]
+    # MDCard:
+    MDLabel:
+        pos_hint: {"center_y": 0.9}
+        text: "Input Hasil Panen"
+        font_size: 24
+        bold: True
+        halign: "center"
+        valign: "top"
+    BoxLayout:
         orientation: "vertical"
         # size_hint: [0.8, 0.5]
         pos_hint: {"center_x": 0.5, "center_y": 0.5}
         padding: 0, 0, 0, 150
-        MDLabel:
-            pos_hint: {"center_x": 0.5, "center_y": 0.93}
-            text: "Input Hasil Panen"
-            font_size: 24
-            bold: True
-            halign: "center"
-            valign: "top"
         BoxLayout:
+            id: satu
             orientation: "vertical"
             size_hint_y: None
-            height: self.minimum_height
-            padding: dp(48)
-            spacing: 10
+            height: 200
+            padding: 0,0,0,0
+            spacing: 50
             halign: "center"
-            valign: "top"
-            MDTextField:
-                hint_text: "Jenis Kopi"
-                color: self.theme_cls.opposite_bg_normal
-            MDTextField:
-                hint_text: "Berat (Kg)"
-            MDTextField:
-                hint_text: "Berat"
-            MDCard:
-            # BoxLayout:
-                orientation: "horizontal"
-                pos_hint: {"center_y": 0.5}
-                # margin: 0,50,0,0
+            BoxLayout:
+                orientation: "vertical"
+                padding: 40,0,40,0
+                MDLabel:
+                    text: "Jenis Kopi"
                 MDTextField:
-                    # text: "Tanggal"
+                    id: jenis
+                    color: self.theme_cls.opposite_bg_normal
+            BoxLayout:
+                orientation: "vertical"
+                padding: 40,0,40,0
+                MDLabel:
+                    text: "Berat (Kg)"
+                MDTextField:
+                    id: berat
+            BoxLayout:
+                orientation: "vertical"
+                padding: 40,0,40,0
+                MDLabel:
+                    text: "Tanggal (yyyy-mm-dd)"
+                # GridLayout:
+                MDTextField:
                     id: date_picker_label
-                    theme_text_color: "normal"
-                    # color: self.theme_cls.opposite_bg_normal
-                    halign: "center"
-                MDRaisedButton:
-                    text: "Open date picker"
-                    pos_hint: {"center_x": .5}
-                    opposite_colors: True
-                    on_release: app.show_date_picker()
-            # MDTextField:
-            #     hint_text: "Penginput Data"
+                    helper_text: "Double tap to open calender"
+                    helper_text_mode: "persistent"
+                    on_double_tap: app.show_date_picker()
+            BoxLayout:
+                orientation: "vertical"
+                # pos_hint: {"center_y": 1}
+                padding: 40,0,40,0
+                MDLabel:
+                    text: "Waktu (yyyy-mm-dd)"
+                # GridLayout:
+                MDTextField:
+                    id: time_picker_label
+                    helper_text: "Double tap to open clock"
+                    helper_text_mode: "persistent"
+                    on_double_tap: app.show_time_picker()
 
-    # BoxLayout:
-    #     size_hint: [0.275, 0.3]
-    #     pos_hint: {"center_x": 0.5, "center_y": 0.3}
-    #     halign: "center"
-            MDFillRoundFlatButton:
-                text: "Submit"
-                font_size: 20
-                halign: "center"
+        # BoxLayout:
+        #     size_hint: [0.275, 0.3]
+        #     pos_hint: {"center_x": 0.5, "center_y": 0.3}
+        #     halign: "center"
+        MDFillRoundFlatButton:
+            text: "Submit"
+            pos_hint: {"center_x": 0.7, "center_y": 1}
+            font_size: 20
+            halign: "center"
             
 
 

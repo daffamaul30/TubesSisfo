@@ -4,6 +4,7 @@ from kivy.uix.screenmanager import ScreenManager
 from kivy.factory import Factory
 from kivy.core.window import Window
 from kivymd.uix.picker import MDDatePicker
+from kivymd.uix.picker import MDTimePicker
 
 Window.size = (350, 550)
 
@@ -29,9 +30,17 @@ class Panen(MDApp):
 
     def set_date(self, date_obj):
         self.previous_date = date_obj
-        print(self.previous_date)
-        print(self.root.ids)
+        # print(self.root.ids)
         self.root.ids.date_picker_label.text = str(date_obj)
+    
+    def show_time_picker(self):
+        time_dialog = MDTimePicker()
+        time_dialog.bind(time=self.get_time)
+
+        time_dialog.open()
+
+    def get_time(self, instance, time):
+        self.root.ids.time_picker_label.text = str(time)
     
 if __name__ == "__main__":
     Panen().run()
