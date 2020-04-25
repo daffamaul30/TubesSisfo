@@ -43,7 +43,7 @@ class App(MDApp):
         self.title = "Frinsa"
         self.theme_cls.theme_style = "Light"
         self.theme_cls.primary_palette = "Blue"
-        self.sm = ScreenManager()
+        # self.sm = ScreenManager()
         super().__init__(**kwargs)
         
     def build(self):
