@@ -87,10 +87,10 @@ class App(MDApp):
     def panen(self):
         jenis = self.root.ids.jenis.text
         berat = self.root.ids.berat.text
-        waktu = self.root.ids.time_picker_label.text
-        tanggal = self.root.ids.date_picker_label.text
+        #waktu = self.root.ids.time_picker_label.text
+        #tanggal = self.root.ids.date_picker_label.text
         try:
-            connection.inputPanen(jenis,berat,waktu,tanggal)
+            connection.inputPanen(jenis,berat)
         except:
             print("ERROR : ",self.root.ids.jenis.text,self.root.ids.berat.text)
         
