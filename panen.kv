@@ -1,0 +1,93 @@
+#:kivy 1.11.1
+<InputPanen@Screen>:
+    name : "inputPanen"
+
+    # BackgroundLayer:
+
+    MDCard:
+    # BoxLayout:
+        orientation: "vertical"
+        # size_hint: [0.8, 0.5]
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        padding: 0, 0, 0, 150
+        MDLabel:
+            pos_hint: {"center_x": 0.5, "center_y": 0.93}
+            text: "Input Hasil Panen"
+            font_size: 24
+            bold: True
+            halign: "center"
+            valign: "top"
+        BoxLayout:
+            orientation: "vertical"
+            size_hint_y: None
+            height: self.minimum_height
+            padding: dp(48)
+            spacing: 10
+            halign: "center"
+            valign: "top"
+            MDTextField:
+                hint_text: "Jenis Kopi"
+                color: self.theme_cls.opposite_bg_normal
+            MDTextField:
+                hint_text: "Berat (Kg)"
+            MDTextField:
+                hint_text: "Berat"
+            MDCard:
+            # BoxLayout:
+                orientation: "horizontal"
+                pos_hint: {"center_y": 0.5}
+                # margin: 0,50,0,0
+                MDTextField:
+                    # text: "Tanggal"
+                    id: date_picker_label
+                    theme_text_color: "normal"
+                    # color: self.theme_cls.opposite_bg_normal
+                    halign: "center"
+                MDRaisedButton:
+                    text: "Open date picker"
+                    pos_hint: {"center_x": .5}
+                    opposite_colors: True
+                    on_release: app.show_date_picker()
+            # MDTextField:
+            #     hint_text: "Penginput Data"
+
+    # BoxLayout:
+    #     size_hint: [0.275, 0.3]
+    #     pos_hint: {"center_x": 0.5, "center_y": 0.3}
+    #     halign: "center"
+            MDFillRoundFlatButton:
+                text: "Submit"
+                font_size: 20
+                halign: "center"
+            
+
+
+# <BackgroundLayer@BoxLayout>:
+#     orientation: "vertical"
+    
+
+
+# <MyGrid>:
+#     GridLayout:
+#         cols:1
+#         pos: 0,0
+#         size: root.width, root.height
+
+#         GridLayout:
+#             cols:1
+
+#             Label:
+#                 text: "Name: "
+
+#             TextInput:
+#                 multinline:False
+
+#             Label:
+#                 text: "Email: "
+
+#             TextInput:
+#                 multiline:False
+
+#         Button:
+#             text:"Submit"
+#             # on_press: app.btn()
