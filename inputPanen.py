@@ -15,49 +15,6 @@ Window.size = (350, 550)
 
 Builder.load_file("panen.kv")
 
-class Panen(MDApp):
-    def __init__(self, **kwargs):
-        self.title = "Hasil Panen"
-        self.theme_cls.theme_style = "Light"
-        self.theme_cls.primary_palette = "Blue"
-        self.sm = ScreenManager()
-        super().__init__(**kwargs)
-    
-    def build(self):
-        self.root = Factory.InputPanen()
-        # self.sm.add_widget()
-        # return self.sm
-        
-    def on_start(self):
-        icons_item = {
-            "folder": "My files",
-            "account-multiple": "Shared with me",
-            "star": "Starred",
-            "history": "Recent",
-            "checkbox-marked": "Shared with me",
-            "upload": "Upload",
-        }
-        for icon_name in icons_item.keys():
-            self.root.ids.content_drawer.ids.md_list.add_widget(ItemDrawer(icon=icon_name, text=icons_item[icon_name]))
-    
-    def show_date_picker(self, *args):
-            # print('AAA')
-            MDDatePicker(self.set_date).open()
-
-    def set_date(self, date_obj):
-        self.previous_date = date_obj
-        # print(self.root.ids)
-        self.root.ids.date_picker_label.text = str(date_obj)
-    
-    def show_time_picker(self):
-        time_dialog = MDTimePicker()
-        time_dialog.bind(time=self.get_time)
-
-        time_dialog.open()
-
-    def get_time(self, instance, time):
-        self.root.ids.time_picker_label.text = str(time)
-    
 class ContentNavigationDrawer(BoxLayout):
     pass
 
@@ -78,22 +35,49 @@ class DrawerList(ThemableBehavior, MDList):
         instance_item.text_color = self.theme_cls.primary_color
 
 
-# class TestNavigationDrawer(MDApp):
-#     def build(self):
-#         return Builder.load_string(KV)
-
-#     def on_start(self):
-#         icons_item = {
-#             "folder": "My files",
-#             "account-multiple": "Shared with me",
-#             "star": "Starred",
-#             "history": "Recent",
-#             "checkbox-marked": "Shared with me",
-#             "upload": "Upload",
-#         }
-#         for icon_name in icons_item.keys():
-#             self.root.ids.content_drawer.ids.md_list.add_widget(
-#                 ItemDrawer(icon=icon_name, text=icons_item[icon_name]))
+class App(MDApp):
+    def __init__(self, **kwargs):
+        self.title = "Frinsa"
+        self.theme_cls.theme_style = "Light"
+        self.theme_cls.primary_palette = "Blue"
+        self.sm = ScreenManager()
+        super().__init__(**kwargs)
+        
+    def build(self):
+        self.root = Factory.InputPanen()
+        return self.root
     
-if __name__ == "__main__":
-    Panen().run()
+    def on_start(self):
+        icons_item = {
+            "folder": "My files",
+            "account-multiple": "Shared with me",
+            "star": "Starred",
+            "history": "Recent",
+            "checkbox-marked": "Shared with me",
+            "upload": "Upload",
+        }
+        for icon_name in icons_item.keys():
+            self.root.ids.content_drawer.ids.md_list.add_widget(
+                ItemDrawer(icon=icon_name, text=icons_item[icon_name])
+            )
+            
+    def show_date_picker(self, *args):
+        # print('AAA')
+        MDDatePicker(self.set_date).open()
+
+    def set_date(self, date_obj):
+        self.previous_date = date_obj
+        # print(self.root.ids)
+        self.root.ids.date_picker_label.text = str(date_obj)
+    
+    def show_time_picker(self):
+        time_dialog = MDTimePicker()
+        time_dialog.bind(time=self.get_time)
+
+        time_dialog.open()
+
+    def get_time(self, instance, time):
+        self.root.ids.time_picker_label.text = str(time)
+ 
+if __name__ == "__main__":    
+    App().run()

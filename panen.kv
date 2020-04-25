@@ -15,6 +15,29 @@
     padding: "8dp"
     spacing: "8dp"
 
+    # AnchorLayout:
+    #     anchor_x: "left"
+    #     size_hint_y: None
+    #     height: avatar.height
+
+    #     Image:
+    #         id: avatar
+    #         size_hint: None, None
+    #         size: "56dp", "56dp"
+    #         source: "data/logo/kivy-icon-256.png"
+
+    # MDLabel:
+    #     text: "KivyMD library"
+    #     font_style: "Button"
+    #     size_hint_y: None
+    #     height: self.texture_size[1]
+
+    # MDLabel:
+    #     text: "kivydevelopment@gmail.com"
+    #     font_style: "Caption"
+    #     size_hint_y: None
+    #     height: self.texture_size[1]
+
     ScrollView:
 
         DrawerList:
@@ -103,77 +126,3 @@
 
             ContentNavigationDrawer:
                 id: content_drawer
-    # BackgroundLayer:
-    # MDToolbar:
-    #     id: toolbar
-    #     title: app.title
-    #     md_bg_color: app.theme_cls.primary_color
-    #     background_palette: "Primary"
-    #     elevation: 1000
-    #     left_action_items: [["menu", lambda x: None]]
-    # MDCard:
-    # MDLabel:
-    #     pos_hint: {"center_y": 0.9}
-    #     text: "Input Hasil Panen"
-    #     font_size: 24
-    #     bold: True
-    #     halign: "center"
-    #     valign: "top"
-    # BoxLayout:
-    #     orientation: "vertical"
-    #     # size_hint: [0.8, 0.5]
-    #     pos_hint: {"center_x": 0.5, "center_y": 0.5}
-    #     padding: 0, 0, 0, 150
-    #     BoxLayout:
-    #         id: satu
-    #         orientation: "vertical"
-    #         size_hint_y: None
-    #         height: 200
-    #         padding: 0,0,0,0
-    #         spacing: 50
-    #         halign: "center"
-    #         BoxLayout:
-    #             orientation: "vertical"
-    #             padding: 40,0,40,0
-    #             MDLabel:
-    #                 text: "Jenis Kopi"
-    #             MDTextField:
-    #                 id: jenis
-    #                 color: self.theme_cls.opposite_bg_normal
-    #         BoxLayout:
-    #             orientation: "vertical"
-    #             padding: 40,0,40,0
-    #             MDLabel:
-    #                 text: "Berat (Kg)"
-    #             MDTextField:
-    #                 id: berat
-    #         BoxLayout:
-    #             orientation: "vertical"
-    #             padding: 40,0,40,0
-    #             MDLabel:
-    #                 text: "Tanggal (yyyy-mm-dd)"
-    #             # GridLayout:
-    #             MDTextField:
-    #                 id: date_picker_label
-    #                 helper_text: "Double tap to open calender"
-    #                 helper_text_mode: "persistent"
-    #                 on_double_tap: app.show_date_picker()
-    #         BoxLayout:
-    #             orientation: "vertical"
-    #             # pos_hint: {"center_y": 1}
-    #             padding: 40,0,40,0
-    #             MDLabel:
-    #                 text: "Waktu (yyyy-mm-dd)"
-    #             # GridLayout:
-    #             MDTextField:
-    #                 id: time_picker_label
-    #                 helper_text: "Double tap to open clock"
-    #                 helper_text_mode: "persistent"
-    #                 on_double_tap: app.show_time_picker()
-
-    #     MDFillRoundFlatButton:
-    #         text: "Submit"
-    #         pos_hint: {"center_x": 0.7, "center_y": 1}
-    #         font_size: 20
-    #         halign: "center"
-            
