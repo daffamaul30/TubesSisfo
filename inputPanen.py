@@ -44,17 +44,17 @@ class App(MDApp):
         super().__init__(**kwargs)
         
     def build(self):
-        self.root = Factory.InputPanen()
+        self.root = Factory.UI1()
         return self.root
     
     def on_start(self):
         icons_item = {
-            "folder": "My files",
-            "account-multiple": "Shared with me",
-            "star": "Starred",
-            "history": "Recent",
-            "checkbox-marked": "Shared with me",
-            "upload": "Upload",
+            "home": "Home",
+            "leaf": "Input Hasil Panen",
+            "factory": "Input Produksi",
+            # "history": "Recent",
+            # "checkbox-marked": "Shared with me",
+            # "upload": "Upload",
         }
         for icon_name in icons_item.keys():
             self.root.ids.content_drawer.ids.md_list.add_widget(
