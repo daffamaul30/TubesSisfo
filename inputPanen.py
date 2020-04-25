@@ -9,6 +9,9 @@ from kivy.uix.boxlayout import BoxLayout
 from kivymd.uix.list import OneLineIconListItem, MDList
 from kivy.properties import StringProperty
 from kivymd.theming import ThemableBehavior
+import connection
+
+
 
 Window.size = (350, 550)
 
@@ -77,7 +80,21 @@ class App(MDApp):
         time_dialog.open()
 
     def get_time(self, instance, time):
+        
         self.root.ids.time_picker_label.text = str(time)
- 
+        
+
+    def panen(self):
+        jenis = self.root.ids.jenis.text
+        berat = self.root.ids.berat.text
+        waktu = self.root.ids.time_picker_label.text
+        tanggal = self.root.ids.date_picker_label.text
+        try:
+            connection.inputPanen(jenis,berat,waktu,tanggal)
+        except:
+            print("ERROR : ",self.root.ids.jenis.text,self.root.ids.berat.text)
+        
+    
+
 if __name__ == "__main__":    
     App().run()
