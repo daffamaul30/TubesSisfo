@@ -42,7 +42,7 @@ class Main(MDApp):
         super().__init__(**kwargs)
         
     def build(self):
-        return Builder.load_file("Coba.kv")
+        return Builder.load_file("kv/Main.kv")
     
     def on_start(self):
         icons_item = {
@@ -64,6 +64,7 @@ class Main(MDApp):
 
     def set_date(self, date_obj):
         self.previous_date = date_obj
+        # self.root.ids.screen_manager.get_screen("s").get_screen("inputpanen").ids.date_picker_label.text = str(date_obj)
         self.root.ids.date_picker_label.text = str(date_obj)
     
     def show_time_picker(self):
