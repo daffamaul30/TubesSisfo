@@ -1,0 +1,43 @@
+#:include kv/Coba2.kv
+<ItemDrawer>:
+    theme_text_color: "Custom"
+    on_release: self.parent.set_color_item(self)
+
+    IconLeftWidget:
+        id: icon
+        icon: root.icon
+        theme_text_color: "Custom"
+        text_color: root.text_color
+
+
+<ContentNavigationDrawer>:
+    orientation: "vertical"
+    padding: "8dp"
+    spacing: "8dp"
+
+    ScrollView:
+
+        DrawerList:
+            id: md_list   
+
+
+NavigationLayout:
+
+    ScreenManager:
+        id: "screen_manager"
+        Screen:
+            BoxLayout:
+                orientation: 'vertical'
+
+                MDToolbar:
+                    title: "Input Hasil Panen"
+                    elevation: 10
+                    left_action_items: [['menu', lambda x: nav_drawer.toggle_nav_drawer()]]
+                # Screen:
+                InputPanen:
+                    id: "coba"      
+    MDNavigationDrawer:
+        id: nav_drawer
+
+        ContentNavigationDrawer:
+            id: content_drawer
