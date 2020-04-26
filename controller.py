@@ -8,16 +8,18 @@ from kivymd.uix.picker import MDTimePicker
 from kivy.uix.boxlayout import BoxLayout
 from kivymd.uix.list import OneLineIconListItem, MDList
 from kivy.properties import StringProperty
+from kivy.properties import ObjectProperty
 from kivymd.theming import ThemableBehavior
 import connection
 
-# Window.size = (350, 550)
+# # Window.size = (350, 550)
 
 class InputPanen(Screen):
     pass
 
 class ContentNavigationDrawer(BoxLayout):
-    pass
+    screen_manager = ObjectProperty()
+    nav_drawer = ObjectProperty()
 
 class ItemDrawer(OneLineIconListItem):
     icon = StringProperty()
@@ -64,8 +66,8 @@ class Main(MDApp):
 
     def set_date(self, date_obj):
         self.previous_date = date_obj
-        # self.root.ids.screen_manager.get_screen("s").get_screen("inputpanen").ids.date_picker_label.text = str(date_obj)
-        self.root.ids.date_picker_label.text = str(date_obj)
+        # print(self.root.ids.screen_manager)
+        self.root.ids.screen_manager.get_screen("inputpanen").ids.date_picker_label.text = str(date_obj)
     
     def show_time_picker(self):
         time_dialog = MDTimePicker()
@@ -74,7 +76,7 @@ class Main(MDApp):
         time_dialog.open()
 
     def get_time(self, instance, time):
-        self.ids.time_picker_label.text = str(time)
+        self.root.ids.time_picker_label.text = str(time)
         
     def panen(self):
         jenis = self.root.ids.jenis.text
@@ -86,5 +88,20 @@ class Main(MDApp):
         except:
             print("ERROR : ",self.root.ids.jenis.text,self.root.ids.berat.text)
         
+    def test(self):
+        print("hai")
+        
 if __name__ == "__main__":
     Main().run()
+
+# class ContentNavigationDrawer(BoxLayout):
+#     screen_manager = ObjectProperty()
+#     nav_drawer = ObjectProperty()
+
+
+# class TestNavigationDrawer(MDApp):
+#     def build(self):
+#         return Builder.load_file("kv/Main.kv")
+
+
+# TestNavigationDrawer().run()

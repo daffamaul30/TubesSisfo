@@ -1,5 +1,6 @@
 #:import MDToolbar kivymd.uix.toolbar.MDToolbar
 #:import utils kivy.utils
+# :include kv/Main.kv
 <InputPanen>
     name: "inputpanen"
     BoxLayout:
@@ -62,4 +63,5 @@
             pos_hint: {"center_x": 0.8, "center_y": 0.1}
             font_size: 20
             halign: "center"
-            on_release:app.panen()
+            # on_release:app.panen()
+            on_release: app.root.manager.current = 'test'

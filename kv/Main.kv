@@ -1,4 +1,5 @@
 #:include kv/InputPanen.kv
+
 <ItemDrawer>:
     theme_text_color: "Custom"
     on_release: self.parent.set_color_item(self)
@@ -18,86 +19,42 @@
     ScrollView:
 
         DrawerList:
-            id: md_list   
+            id: md_list 
+        # MDList:
+        #     OneLineIconListItem:
+        #         icon: "home"
+        #         text: "Home"
+        #         on_press:
+        #         # app.nav_drawer.set_state("close")
+        #         # app.screen_manager.current = "scr 1"
 
+        #     OneLineIconListItem:
+        #         icon: "leaf"
+        #         text: "Input Hasil Panen"
+        #         on_press:
+        #         # app.nav_drawer.set_state("close")
+        #         # app.screen_manager.current = "scr 2"
 
-NavigationLayout:
+Screen:
+    MDToolbar:
+        title: "Input Hasil Panen"
+        id: toolbar
+        pos_hint: {"top": 1}
+        elevation: 10
+        left_action_items: [['menu', lambda x: nav_drawer.set_state("open")]]
+    NavigationLayout:
+        x: toolbar.height
+        ScreenManager:
+            id: screen_manager
+            InputPanen:   
+                name: "inputpanen"
+            Screen:
+                Button:
+                    text:"tim"
+        MDNavigationDrawer:
+            id: nav_drawer
 
-    ScreenManager:
-        id: "screen_manager"
-        Screen:
-            name: "s"
-            BoxLayout:
-                orientation: 'vertical'
-
-                MDToolbar:
-                    title: "Input Hasil Panen"
-                    elevation: 10
-                    left_action_items: [['menu', lambda x: nav_drawer.toggle_nav_drawer()]]
-                InputPanen:   
-                # Screen:
-                #     BoxLayout:
-                #         pos_hint: {"center_x": 0.5, "center_y": 0.5}
-                #         height:500
-                #         width:300
-                #         orientation: "vertical"
-                #         # size_hint: self.width,self.height
-                #         padding: 40, 0, 40, 100
-                #         spacing: 50
-                #         BoxLayout:
-                #             orientation: "vertical"
-                #             size_hint_y: None
-                #             height: 200
-                #             padding: 0,0,0,0
-                #             spacing: 50
-                #             halign: "center"
-                #             BoxLayout:
-                #                 orientation: "vertical"
-                #                 # padding: 40,0,40,0
-                #                 MDLabel:
-                #                     text: "Jenis Kopi"
-                #                 MDTextField:
-                #                     id: jenis
-                #                     color: self.theme_cls.opposite_bg_normal
-                #             BoxLayout:
-                #                 orientation: "vertical"
-                #                 # padding: 40,0,40,0
-                #                 MDLabel:
-                #                     text: "Berat (Kg)"
-                #                 MDTextField:
-                #                     id: berat
-                #             BoxLayout:
-                #                 orientation: "vertical"
-                #                 # padding: 40,0,40,0
-                #                 MDLabel:
-                #                     text: "Tanggal (yyyy-mm-dd)"
-                #                 # GridLayout:
-                #                 MDTextField:
-                #                     id: date_picker_label
-                #                     helper_text: "Double tap to open calender"
-                #                     helper_text_mode: "persistent"
-                #                     on_double_tap: app.show_date_picker()
-                #             BoxLayout:
-                #                 orientation: "vertical"
-                #                 # pos_hint: {"center_y": 1}
-                #                 # padding: 40,0,40,0
-                #                 MDLabel:
-                #                     text: "Waktu (hh:mm:ss)"
-                #                 # GridLayout:
-                #                 MDTextField:
-                #                     id: time_picker_label
-                #                     helper_text: "Double tap to open clock"
-                #                     helper_text_mode: "persistent"
-                #                     on_double_tap: app.show_time_picker() 
-                #         MDFillRoundFlatButton:
-                #             text: "Submit"
-                #             # padding: 0,50,0,0
-                #             pos_hint: {"center_x": 0.8, "center_y": 0.1}
-                #             font_size: 20
-                #             halign: "center"
-                #             on_release:app.panen()  
-    MDNavigationDrawer:
-        id: nav_drawer
-
-        ContentNavigationDrawer:
-            id: content_drawer
+            ContentNavigationDrawer:
+                id: content_drawer
+                screen_manager: screen_manager
+                nav_drawer: nav_drawer            
