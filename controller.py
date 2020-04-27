@@ -115,7 +115,7 @@ class Main(MDApp):
         except:
             print("ERROR :")
     def test(self):
-        print("HAI")
+        print(self.root.ids.toolbar.title)
         
     # def show_dialog_submit_panen(self):
         

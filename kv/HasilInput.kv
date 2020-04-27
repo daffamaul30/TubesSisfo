@@ -60,7 +60,8 @@
             pos_hint: {"center_x": 0.8, "center_y": 0.1}
             font_size: 20
             halign: "center"
-            # on_release:app.panen()
+            specific_text_color: 1, 1, 1, 1
             on_release:
                 app.root.ids.screen_manager.current = "dashboard"
-                root.manager.transition.direction = "up"
+                root.manager.transition.direction = "down"
+                app.root.ids.toolbar.title = "Dashboard"
