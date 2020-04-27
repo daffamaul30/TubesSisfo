@@ -79,15 +79,20 @@ class Main(MDApp):
         self.root.ids.time_picker_label.text = str(time)
         
     def panen(self):
-        jenis = self.root.ids.jenis.text
-        berat = self.root.ids.berat.text
+        jenis = self.root.ids.screen_manager.get_screen("inputpanen").ids.jenis.text
+       
+        berat = self.root.ids.screen_manager.get_screen("inputpanen").ids.berat.text
         #waktu = self.root.ids.time_picker_label.text
         #tanggal = self.root.ids.date_picker_label.text
         try:
             connection.inputPanen(jenis,berat)
         except:
-            print("ERROR : ",self.root.ids.jenis.text,self.root.ids.berat.text)
-        
+            print("ERROR : ",jenis,berat)
+    def dataPanen(self):
+        try :
+            connection.getPanen()    
+        except:
+            print("ERROR :")
     def test(self):
         print("hai")
         
