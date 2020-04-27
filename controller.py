@@ -1,6 +1,8 @@
 from kivy.lang import Builder
 from kivymd.app import MDApp
 from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.uix.floatlayout import FloatLayout
+from kivy.uix.popup import Popup
 from kivy.factory import Factory
 from kivy.core.window import Window
 from kivymd.uix.picker import MDDatePicker, MDTimePicker
@@ -15,7 +17,19 @@ import m_panen
 # Window.size = (350, 550)
 
 class InputPanen(Screen):
+    def pop(self):
+        show_popup() 
+
+# show popup
+class layout_popup(FloatLayout):
     pass
+
+def show_popup():
+    popUp = layout_popup()
+    popup = Popup(title='DUARRR',
+        content=popUp,
+        size_hint=(None, None), size=(400, 400))
+    popup.open()
 
 class InputProduksi(Screen):
     pass
@@ -52,7 +66,7 @@ class Main(MDApp):
         self.title = "Frinsa"
         self.theme_cls.primary_palette = "LightGreen"
         super().__init__(**kwargs)
-        #print(self.root.ids.screen_manager.get_screen("inputpanen").ids.time_picker_label.text)
+        
         ##### DROPDOWN
         self.VARIABLE = ""
         self.menu_labels = [
