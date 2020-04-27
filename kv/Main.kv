@@ -3,17 +3,17 @@
 #:include kv/Dashboard.kv
 
 
-<ItemDrawer>:
-    theme_text_color: "Custom"
-    on_release: 
-        self.parent.set_color_item(self)
-        app.change_screen()
+# <ItemDrawer>:
+#     theme_text_color: "Custom"
+#     on_release: 
+#         self.parent.set_color_item(self)
+#         app.change_screen()
 
-    IconLeftWidget:
-        id: icon
-        icon: root.icon
-        theme_text_color: "Custom"
-        text_color: root.text_color
+#     IconLeftWidget:
+#         id: icon
+#         icon: root.icon
+#         theme_text_color: "Custom"
+#         text_color: root.text_color
 
 
 <ContentNavigationDrawer>:
@@ -30,15 +30,17 @@
                 icon: "home"
                 text: "Dashboard"
                 on_press:
-                    # nav_drawer.set_state("close")
+                    app.root.ids.nav_drawer.set_state("close")
                     app.root.ids.screen_manager.current = "dashboard"
+                    app.root.ids.toolbar.title = "Dashboard"
 
             OneLineIconListItem:
                 icon: "leaf"
                 text: "Input Hasil Panen"
                 on_press:
-                    # app.root.nav_drawer.set_state("close")
+                    app.root.ids.nav_drawer.set_state("close")
                     app.root.ids.screen_manager.current = "inputpanen"
+                    app.root.ids.toolbar.title = "Input Hasil Panen"
 
 Screen:
     MDToolbar:
@@ -47,7 +49,7 @@ Screen:
         pos_hint: {"top": 1}
         elevation: 10
         specific_text_color: 1, 1, 1, 1
-        left_action_items: [['menu', lambda x: nav_drawer.toggle_nav_drawer()]]
+        left_action_items: [['menu', lambda x: root.ids.nav_drawer.toggle_nav_drawer()]]
     NavigationLayout:
         id: navi 
         x: toolbar.height
@@ -55,6 +57,8 @@ Screen:
             id: screen_manager
             Dashboard:
             InputPanen:  
+            InputPanen:
+            InputProduksi:
             HasilInput:
         MDNavigationDrawer:
             id: nav_drawer
