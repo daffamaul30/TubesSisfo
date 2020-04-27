@@ -18,11 +18,11 @@ def koneksi():
         # if conn is not None and conn.is_connected():
         #     conn.close()
             
-def inputPanen(jenis,berat):
+def inputPanen(jenis,berat,waktu,tanggal):
     conn = koneksi()
     mycursor = conn.cursor()
-    query = "INSERT INTO biji_kopi (jenis_kopi,berat) VALUES (%s,%s)"
-    val = (jenis,berat)
+    query = "INSERT INTO biji_kopi (jenis_kopi,berat,waktu,tanggal) VALUES (%s,%s,%s,%s)"
+    val = (jenis,berat,waktu,tanggal)
     mycursor.execute(query,val)
     conn.commit()
     if mycursor.rowcount == 1:

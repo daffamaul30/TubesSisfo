@@ -88,6 +88,7 @@ class Main(MDApp):
     def set_date(self, date_obj):
         self.previous_date = date_obj
         # print(self.root.ids.screen_manager)
+        
         self.root.ids.screen_manager.get_screen("inputpanen").ids.date_picker_label.text = str(date_obj)
     
     def show_time_picker(self):
@@ -97,18 +98,19 @@ class Main(MDApp):
         time_dialog.open()
 
     def get_time(self, instance, time):
+        
         self.root.ids.screen_manager.get_screen("inputpanen").ids.time_picker_label.text = str(time)
         
     def panen(self):
         jenis = self.root.ids.screen_manager.get_screen("inputpanen").ids.jenis.text
-       
+        
         berat = self.root.ids.screen_manager.get_screen("inputpanen").ids.berat.text
-        #waktu = self.root.ids.time_picker_label.text
-        #tanggal = self.root.ids.date_picker_label.text
+        waktu = self.root.ids.screen_manager.get_screen("inputpanen").ids.time_picker_label.text
+        tanggal = self.root.ids.screen_manager.get_screen("inputpanen").ids.date_picker_label.text
         try:
-            connection.inputPanen(jenis,berat)
+            connection.inputPanen(jenis,berat,waktu,tanggal)
         except:
-            print("ERROR : ",jenis,berat)
+            print("ERROR : ",jenis,berat,waktu,tanggal)
     def dataPanen(self):
         try :
             connection.getPanen()    
