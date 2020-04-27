@@ -48,17 +48,7 @@ class Main(MDApp):
     def __init__(self, **kwargs):
         self.title = "Frinsa"
         self.theme_cls.primary_palette = "LightGreen"
-        # self.sm = ScreenManager()
         super().__init__(**kwargs)
-        # menu_items = [{"icon": "leaf", "text": "Arabica"},
-        #               {"icon": "leaf", "text": "Robusta"}]
-        # self.menu = MDDropdownMenu(
-        #     caller=self.root.ids.screen_manager.get_screen("inputpanen").ids.dropdown_item,
-        #     items=menu_items,
-        #     position="center",
-        #     callback=self.set_item,
-        #     width_mult=4,
-        # )
         
     def set_item(self, instance):
         self.screen.ids.dropdown_item.set_item(instance.text)
