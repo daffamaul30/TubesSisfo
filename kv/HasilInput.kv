@@ -1,0 +1,64 @@
+#:import MDToolbar kivymd.uix.toolbar.MDToolbar
+#:import utils kivy.utils
+# :include kv/Main.kv
+<HasilInput>
+    name: "inputpanen"
+    BoxLayout:
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        height:500
+        width:300
+        orientation: "vertical"
+        # size_hint: self.width,self.height
+        padding: 40, 0, 50, 150
+        spacing: 50
+        BoxLayout:
+            orientation: "vertical"
+            size_hint_y: None
+            height: 200
+            padding: 0,0,0,0
+            spacing: 50
+            halign: "center"
+            BoxLayout:
+                orientation: "horizontal"
+                # padding: 40,0,40,0
+                MDLabel:
+                    text: "Jenis Kopi"
+                MDLabel:
+                    id: hasilJenis
+                    halign: "right"
+            BoxLayout:
+                orientation: "horizontal"
+                # padding: 40,0,40,0
+                MDLabel:
+                    text: "Berat (Kg)"
+                MDLabel:
+                    id: hasilBerat
+                    halign: "right"
+            BoxLayout:
+                orientation: "horizontal"
+                # padding: 40,0,40,0
+                MDLabel:
+                    text: "Tanggal"
+                # GridLayout:
+                MDLabel:
+                    id: hasilTanggal
+                    halign: "right"
+            BoxLayout:
+                orientation: "horizontal"
+                # pos_hint: {"center_y": 1}
+                # padding: 40,0,40,0
+                MDLabel:
+                    text: "Waktu"
+                # GridLayout:
+                MDLabel:
+                    id: hasilWaktu
+                    halign: "right"
+
+        MDFillRoundFlatButton:
+            text: "Back To Home"
+            # padding: 0,50,0,0
+            pos_hint: {"center_x": 0.8, "center_y": 0.1}
+            font_size: 20
+            halign: "center"
+            # on_release:app.panen()
+            on_release: app.test()

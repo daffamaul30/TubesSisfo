@@ -1,8 +1,12 @@
 #:include kv/InputPanen.kv
+#:include kv/HasilInput.kv
+
 
 <ItemDrawer>:
     theme_text_color: "Custom"
-    on_release: self.parent.set_color_item(self)
+    on_release: 
+        self.parent.set_color_item(self)
+        app.change_screen()
 
     IconLeftWidget:
         id: icon
@@ -25,35 +29,36 @@
         #         icon: "home"
         #         text: "Home"
         #         on_press:
-        #         # app.nav_drawer.set_state("close")
-        #         # app.screen_manager.current = "scr 1"
+        #             nav_drawer.set_state("close")
+        #             app.root.screen_manager.current = "test"
 
         #     OneLineIconListItem:
         #         icon: "leaf"
         #         text: "Input Hasil Panen"
         #         on_press:
-        #         # app.nav_drawer.set_state("close")
-        #         # app.screen_manager.current = "scr 2"
+        #             app.root.nav_drawer.set_state("close")
+        #             app.root.screen_manager.current = "scr 2"
 
 Screen:
     MDToolbar:
-        title: "Input Hasil Panen"
         id: toolbar
+        title: "Input Hasil Panen"
         pos_hint: {"top": 1}
         elevation: 10
+        specific_text_color: 1, 1, 1, 1
         left_action_items: [['menu', lambda x: nav_drawer.set_state("open")]]
     NavigationLayout:
+        id: navi 
         x: toolbar.height
         ScreenManager:
             id: screen_manager
-            InputPanen:   
+            InputPanen:  
                 name: "inputpanen"
-            Screen:
-                Button:
-                    text:"tim"
+            HasilInput:
+                name: "hasilinputpanen"
         MDNavigationDrawer:
             id: nav_drawer
-
+            
             ContentNavigationDrawer:
                 id: content_drawer
                 screen_manager: screen_manager

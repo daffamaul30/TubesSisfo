@@ -3,18 +3,20 @@ from kivymd.app import MDApp
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.factory import Factory
 from kivy.core.window import Window
-from kivymd.uix.picker import MDDatePicker
-from kivymd.uix.picker import MDTimePicker
+from kivymd.uix.picker import MDDatePicker, MDTimePicker
 from kivy.uix.boxlayout import BoxLayout
 from kivymd.uix.list import OneLineIconListItem, MDList
-from kivy.properties import StringProperty
-from kivy.properties import ObjectProperty
+from kivy.properties import StringProperty, ObjectProperty
 from kivymd.theming import ThemableBehavior
+from kivymd.uix.menu import MDDropdownMenu
 import connection
 
 # # Window.size = (350, 550)
 
 class InputPanen(Screen):
+    pass
+
+class HasilInput(Screen):
     pass
 
 class ContentNavigationDrawer(BoxLayout):
@@ -36,12 +38,24 @@ class DrawerList(ThemableBehavior, MDList):
         instance_item.text_color = self.theme_cls.primary_color
 
 class Main(MDApp):
+    
     def __init__(self, **kwargs):
         self.title = "Frinsa"
-        self.theme_cls.theme_style = "Light"
-        self.theme_cls.primary_palette = "Blue"
+        self.theme_cls.primary_palette = "LightGreen"
         # self.sm = ScreenManager()
         super().__init__(**kwargs)
+        # menu_items = [{"icon": "leaf", "text": "Arabica"},
+        #               {"icon": "leaf", "text": "Robusta"}]
+        # self.menu = MDDropdownMenu(
+        #     caller=self.root.ids.screen_manager.get_screen("inputpanen").ids.dropdown_item,
+        #     items=menu_items,
+        #     position="center",
+        #     callback=self.set_item,
+        #     width_mult=4,
+        # )
+        
+    def set_item(self, instance):
+        self.screen.ids.dropdown_item.set_item(instance.text)
         
     def build(self):
         return Builder.load_file("kv/Main.kv")
@@ -63,6 +77,10 @@ class Main(MDApp):
     def show_date_picker(self, *args):
         # print('AAA')
         MDDatePicker(self.set_date).open()
+    
+    def change_screen(self):
+        # print(self.root.ids)
+        pass
 
     def set_date(self, date_obj):
         self.previous_date = date_obj
@@ -76,7 +94,7 @@ class Main(MDApp):
         time_dialog.open()
 
     def get_time(self, instance, time):
-        self.root.ids.time_picker_label.text = str(time)
+        self.root.ids.screen_manager.get_screen("inputpanen").ids.time_picker_label.text = str(time)
         
     def panen(self):
         jenis = self.root.ids.jenis.text
@@ -89,19 +107,10 @@ class Main(MDApp):
             print("ERROR : ",self.root.ids.jenis.text,self.root.ids.berat.text)
         
     def test(self):
-        print("hai")
+        print("HAI")
         
+    # def show_dialog_submit_panen(self):
+        
+    
 if __name__ == "__main__":
     Main().run()
-
-# class ContentNavigationDrawer(BoxLayout):
-#     screen_manager = ObjectProperty()
-#     nav_drawer = ObjectProperty()
-
-
-# class TestNavigationDrawer(MDApp):
-#     def build(self):
-#         return Builder.load_file("kv/Main.kv")
-
-
-# TestNavigationDrawer().run()
