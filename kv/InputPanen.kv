@@ -1,7 +1,10 @@
 #:import MDToolbar kivymd.uix.toolbar.MDToolbar
 #:import utils kivy.utils
+#:import MDDropdownMenu kivymd.uix.menu.MDDropdownMenu
+#:import MDRaisedButton kivymd.uix.button.MDRaisedButton
 # :include kv/Main.kv
-
+<MDMenuItem>:
+    on_release: app.change_variable(self.text)
 <InputPanen>
     name: "inputpanen"
     BoxLayout:
@@ -59,6 +62,19 @@
                     helper_text: "Double tap to open clock"
                     helper_text_mode: "persistent"
                     on_double_tap: app.show_time_picker()
+            BoxLayout:
+                orientation: "vertical"
+                # padding: 40,0,40,0
+                MDRaisedButton:
+                    id: select_warning_image_Button
+                    size_hint: None, None
+                    size: 3 * dp(48), dp(48)
+                    text: 'Menu labels'
+                    opposite_colors: True
+                    elevation_normal:    0
+                    pos_hint: {'center_x': 0.1, 'center_y': 0.9}
+                    on_release: MDDropdownMenu(items=app.menu_labels, width_mult=4).open(self)
+                
 
         MDFillRoundFlatButton:
             text: "Submit"

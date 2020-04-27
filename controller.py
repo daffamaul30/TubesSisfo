@@ -42,7 +42,10 @@ class ContentNavigationDrawer(BoxLayout):
 #                 item.text_color = self.theme_cls.text_color
 #                 break
 #         instance_item.text_color = self.theme_cls.primary_color
-
+def toast(text):
+    from kivymd.toast.kivytoast import toast
+    toast(text)
+    
 class Main(MDApp):
     icons = list(md_icons.keys())[15:30]
     def __init__(self, **kwargs):
@@ -50,15 +53,25 @@ class Main(MDApp):
         self.theme_cls.primary_palette = "LightGreen"
         # self.sm = ScreenManager()
         super().__init__(**kwargs)
-        # menu_items = [{"icon": "leaf", "text": "Arabica"},
-        #               {"icon": "leaf", "text": "Robusta"}]
-        # self.menu = MDDropdownMenu(
-        #     caller=self.root.ids.screen_manager.get_screen("inputpanen").ids.dropdown_item,
-        #     items=menu_items,
-        #     position="center",
-        #     callback=self.set_item,
-        #     width_mult=4,
-        # )
+        
+        ##### DROPDOWN
+        self.VARIABLE = ""
+        self.menu_labels = [
+            {"viewclass": "MDMenuItem",
+            "text": "Label1","callback": self.callback_for_menu_items,},
+            {"viewclass": "MDMenuItem",
+            "text": "Label2","callback": self.callback_for_menu_items,},
+        ]
+        
+    def callback_for_menu_items(self, *args):
+        toast(args[0])
+    def change_variable(self, value):
+        print("value=", value)
+        self.VARIABLE = value
+        print("self.VARIABLE=", self.VARIABLE)
+        #####
+        
+    
         
     def set_item(self, instance):
         self.screen.ids.dropdown_item.set_item(instance.text)
