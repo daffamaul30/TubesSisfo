@@ -9,6 +9,7 @@ from kivymd.uix.list import OneLineIconListItem, MDList
 from kivy.properties import StringProperty, ObjectProperty
 from kivymd.theming import ThemableBehavior
 from kivymd.uix.menu import MDDropdownMenu
+from kivymd.icon_definitions import md_icons
 import connection
 
 # # Window.size = (350, 550)
@@ -16,12 +17,14 @@ import connection
 class InputPanen(Screen):
     pass
 
+class Dashboard(Screen):
+    pass
+
 class HasilInput(Screen):
     pass
 
 class ContentNavigationDrawer(BoxLayout):
-    screen_manager = ObjectProperty()
-    nav_drawer = ObjectProperty()
+    pass
 
 class ItemDrawer(OneLineIconListItem):
     icon = StringProperty()
@@ -38,7 +41,7 @@ class DrawerList(ThemableBehavior, MDList):
         instance_item.text_color = self.theme_cls.primary_color
 
 class Main(MDApp):
-    
+    icons = list(md_icons.keys())[15:30]
     def __init__(self, **kwargs):
         self.title = "Frinsa"
         self.theme_cls.primary_palette = "LightGreen"
@@ -73,7 +76,7 @@ class Main(MDApp):
             self.root.ids.content_drawer.ids.md_list.add_widget(
                 ItemDrawer(icon=icon_name, text=icons_item[icon_name])
             )
-            
+
     def show_date_picker(self, *args):
         # print('AAA')
         MDDatePicker(self.set_date).open()

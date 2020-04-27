@@ -2,7 +2,7 @@
 #:import utils kivy.utils
 # :include kv/Main.kv
 <HasilInput>
-    name: "inputpanen"
+    name: "hasilinput"
     BoxLayout:
         pos_hint: {"center_x": 0.5, "center_y": 0.5}
         height:500
@@ -61,4 +61,6 @@
             font_size: 20
             halign: "center"
             # on_release:app.panen()
-            on_release: app.test()
+            on_release:
+                app.root.ids.screen_manager.current = "dashboard"
+                root.manager.transition.direction = "up"
