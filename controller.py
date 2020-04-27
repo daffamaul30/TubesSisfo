@@ -51,8 +51,8 @@ class Main(MDApp):
     def __init__(self, **kwargs):
         self.title = "Frinsa"
         self.theme_cls.primary_palette = "LightGreen"
-        # self.sm = ScreenManager()
         super().__init__(**kwargs)
+<<<<<<< HEAD
         
         ##### DROPDOWN
         self.VARIABLE = ""
@@ -72,6 +72,8 @@ class Main(MDApp):
         #####
         
     
+=======
+>>>>>>> 49626c994994b37e62569aff77dd6fa823a866ae
         
     def set_item(self, instance):
         self.screen.ids.dropdown_item.set_item(instance.text)

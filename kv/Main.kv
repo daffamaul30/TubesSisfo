@@ -1,6 +1,7 @@
 #:include kv/InputPanen.kv
 #:include kv/HasilInput.kv
-#:include kv/Dashboard.kv
+#:include kv/Dashboard.
+#:include kv/InputProduksi.kv
 
 
 # <ItemDrawer>:
@@ -33,7 +34,7 @@
                     app.root.ids.nav_drawer.set_state("close")
                     app.root.ids.screen_manager.current = "dashboard"
                     app.root.ids.toolbar.title = "Dashboard"
-
+                    app.root.ids.screen_manager.transition.direction = "right"
             OneLineIconListItem:
                 icon: "leaf"
                 text: "Input Hasil Panen"
@@ -41,11 +42,20 @@
                     app.root.ids.nav_drawer.set_state("close")
                     app.root.ids.screen_manager.current = "inputpanen"
                     app.root.ids.toolbar.title = "Input Hasil Panen"
+                    app.root.ids.screen_manager.transition.direction = "left"
+            OneLineIconListItem:
+                icon: "leaf"
+                text: "Input Produksi"
+                on_press:
+                    app.root.ids.nav_drawer.set_state("close")
+                    app.root.ids.screen_manager.current = "inputproduksi"
+                    app.root.ids.toolbar.title = "Input Produksi"
+                    app.root.ids.screen_manager.transition.direction = "left"
 
 Screen:
     MDToolbar:
         id: toolbar
-        title: "Input Hasil Panen"
+        title: "Dashboard"
         pos_hint: {"top": 1}
         elevation: 10
         specific_text_color: 1, 1, 1, 1
@@ -56,10 +66,13 @@ Screen:
         ScreenManager:
             id: screen_manager
             Dashboard:
-            InputPanen:  
+                name: "dashboard"
             InputPanen:
-            InputProduksi:
+                name: "inputpanen"
             HasilInput:
+                name: "hasilinput"
+            InputProduksi:
+                name: "inputproduksi"
         MDNavigationDrawer:
             id: nav_drawer
             ContentNavigationDrawer:
