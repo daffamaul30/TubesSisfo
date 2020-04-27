@@ -29,6 +29,7 @@
                     text: "Jenis Kopi"
                 MDTextField:
                     id: jenis 
+                    readonly : True
             BoxLayout:
                 orientation: "vertical"
                 # padding: 40,0,40,0
@@ -69,12 +70,18 @@
                     id: select_warning_image_Button
                     size_hint: None, None
                     size: 3 * dp(48), dp(48)
-                    text: 'Menu labels'
+                    text: 'Pilih Kopi'
                     opposite_colors: True
                     elevation_normal:    0
                     pos_hint: {'center_x': 0.1, 'center_y': 0.9}
                     on_release: MDDropdownMenu(items=app.menu_labels, width_mult=4).open(self)
+            BoxLayout:
+                orientation: "vertical"
+                # padding: 40,0,40,0
                 
+                MDTextField:
+                    id: chosen_dropdown
+                    required: True
 
         MDFillRoundFlatButton:
             text: "Submit"
@@ -84,6 +91,7 @@
             halign: "center"
             specific_text_color: 1, 1, 1, 1
             on_release:
+                #app.panen()
                 app.root.ids.screen_manager.current = "hasilinput"
                 root.manager.transition.direction = "left"
                 app.test()

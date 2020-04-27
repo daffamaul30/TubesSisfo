@@ -10,7 +10,7 @@ from kivy.properties import StringProperty, ObjectProperty
 from kivymd.theming import ThemableBehavior
 from kivymd.uix.menu import MDDropdownMenu
 from kivymd.icon_definitions import md_icons
-import connection
+import m_panen
 
 # Window.size = (350, 550)
 
@@ -52,15 +52,16 @@ class Main(MDApp):
         self.title = "Frinsa"
         self.theme_cls.primary_palette = "LightGreen"
         super().__init__(**kwargs)
-<<<<<<< HEAD
-        
+        #print(self.root.ids.screen_manager.get_screen("inputpanen").ids.time_picker_label.text)
         ##### DROPDOWN
         self.VARIABLE = ""
         self.menu_labels = [
             {"viewclass": "MDMenuItem",
-            "text": "Label1","callback": self.callback_for_menu_items,},
+            "text": "Kopi Robussa","callback": self.callback_for_menu_items,},
             {"viewclass": "MDMenuItem",
-            "text": "Label2","callback": self.callback_for_menu_items,},
+            "text": "Kopi Luwak","callback": self.callback_for_menu_items,},
+            {"viewclass": "MDMenuItem",
+            "text": "Kopi Sawit","callback": self.callback_for_menu_items,},
         ]
         
     def callback_for_menu_items(self, *args):
@@ -69,11 +70,10 @@ class Main(MDApp):
         print("value=", value)
         self.VARIABLE = value
         print("self.VARIABLE=", self.VARIABLE)
+        self.root.ids.screen_manager.get_screen("inputpanen").ids.jenis.text = value
         #####
         
     
-=======
->>>>>>> 49626c994994b37e62569aff77dd6fa823a866ae
         
     def set_item(self, instance):
         self.screen.ids.dropdown_item.set_item(instance.text)
@@ -126,12 +126,12 @@ class Main(MDApp):
         waktu = self.root.ids.screen_manager.get_screen("inputpanen").ids.time_picker_label.text
         tanggal = self.root.ids.screen_manager.get_screen("inputpanen").ids.date_picker_label.text
         try:
-            connection.inputPanen(jenis,berat,waktu,tanggal)
+            m_panen.inputPanen(jenis,berat,waktu,tanggal)
         except:
             print("ERROR : ",jenis,berat,waktu,tanggal)
     def dataPanen(self):
         try :
-            connection.getPanen()    
+            m_panen.getPanen()    
         except:
             print("ERROR :")
     def test(self):
