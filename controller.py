@@ -12,7 +12,7 @@ from kivymd.uix.menu import MDDropdownMenu
 from kivymd.icon_definitions import md_icons
 import connection
 
-# # Window.size = (350, 550)
+# Window.size = (350, 550)
 
 class InputPanen(Screen):
     pass
@@ -29,16 +29,16 @@ class ContentNavigationDrawer(BoxLayout):
 class ItemDrawer(OneLineIconListItem):
     icon = StringProperty()
 
-class DrawerList(ThemableBehavior, MDList):
-    def set_color_item(self, instance_item):
-        """Called when tap on a menu item."""
+# class DrawerList(ThemableBehavior, MDList):
+#     def set_color_item(self, instance_item):
+#         """Called when tap on a menu item."""
 
-        # Set the color of the icon and text for the menu item.
-        for item in self.children:
-            if item.text_color == self.theme_cls.primary_color:
-                item.text_color = self.theme_cls.text_color
-                break
-        instance_item.text_color = self.theme_cls.primary_color
+#         # Set the color of the icon and text for the menu item.
+#         for item in self.children:
+#             if item.text_color == self.theme_cls.primary_color:
+#                 item.text_color = self.theme_cls.text_color
+#                 break
+#         instance_item.text_color = self.theme_cls.primary_color
 
 class Main(MDApp):
     icons = list(md_icons.keys())[15:30]
@@ -63,19 +63,19 @@ class Main(MDApp):
     def build(self):
         return Builder.load_file("kv/Main.kv")
     
-    def on_start(self):
-        icons_item = {
-            "home": "Home",
-            "leaf": "Input Hasil Panen",
-            "factory": "Input Produksi",
-            # "history": "Recent",
-            # "checkbox-marked": "Shared with me",
-            # "upload": "Upload",
-        }
-        for icon_name in icons_item.keys():
-            self.root.ids.content_drawer.ids.md_list.add_widget(
-                ItemDrawer(icon=icon_name, text=icons_item[icon_name])
-            )
+    # def on_start(self):
+    #     icons_item = {
+    #         "home": "Home",
+    #         "leaf": "Input Hasil Panen",
+    #         "factory": "Input Produksi",
+    #         # "history": "Recent",
+    #         # "checkbox-marked": "Shared with me",
+    #         # "upload": "Upload",
+    #     }
+    #     for icon_name in icons_item.keys():
+    #         self.root.ids.content_drawer.ids.md_list.add_widget(
+    #             ItemDrawer(icon=icon_name, text=icons_item[icon_name])
+    #         )
 
     def show_date_picker(self, *args):
         # print('AAA')

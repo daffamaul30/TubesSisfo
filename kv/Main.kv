@@ -23,22 +23,22 @@
 
     ScrollView:
 
-        DrawerList:
-            id: md_list 
-        # MDList:
-        #     OneLineIconListItem:
-        #         icon: "home"
-        #         text: "Home"
-        #         on_press:
-        #             nav_drawer.set_state("close")
-        #             app.root.screen_manager.current = "test"
+        # DrawerList:
+        #     id: md_list 
+        MDList:
+            OneLineIconListItem:
+                icon: "home"
+                text: "Dashboard"
+                on_press:
+                    # nav_drawer.set_state("close")
+                    app.root.ids.screen_manager.current = "dashboard"
 
-        #     OneLineIconListItem:
-        #         icon: "leaf"
-        #         text: "Input Hasil Panen"
-        #         on_press:
-        #             app.root.nav_drawer.set_state("close")
-        #             app.root.screen_manager.current = "scr 2"
+            OneLineIconListItem:
+                icon: "leaf"
+                text: "Input Hasil Panen"
+                on_press:
+                    # app.root.nav_drawer.set_state("close")
+                    app.root.ids.screen_manager.current = "inputpanen"
 
 Screen:
     MDToolbar:
@@ -47,15 +47,15 @@ Screen:
         pos_hint: {"top": 1}
         elevation: 10
         specific_text_color: 1, 1, 1, 1
-        left_action_items: [['menu', lambda x: nav_drawer.set_state("open")]]
+        left_action_items: [['menu', lambda x: nav_drawer.toggle_nav_drawer()]]
     NavigationLayout:
         id: navi 
         x: toolbar.height
         ScreenManager:
             id: screen_manager
+            Dashboard:
             InputPanen:  
             HasilInput:
-            Dashboard:
         MDNavigationDrawer:
             id: nav_drawer
             ContentNavigationDrawer:
