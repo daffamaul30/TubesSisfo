@@ -17,6 +17,9 @@ import connection
 class InputPanen(Screen):
     pass
 
+class InputProduksi(Screen):
+    pass
+
 class Dashboard(Screen):
     pass
 

@@ -1,0 +1,74 @@
+#:import MDToolbar kivymd.uix.toolbar.MDToolbar
+#:import utils kivy.utils
+# :include kv/Main.kv
+
+<InputPanen>
+    name: "inputproduksi"
+    BoxLayout:
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        height:500
+        width:300
+        orientation: "vertical"
+        # size_hint: self.width,self.height
+        padding: 40, 0, 40, 100
+        spacing: 50
+        BoxLayout:
+            orientation: "vertical"
+            size_hint_y: None
+            height: 200
+            padding: 0,0,0,0
+            spacing: 50
+            halign: "center"
+            BoxLayout:
+                orientation: "vertical"
+                # padding: 40,0,40,0
+                MDLabel:
+                    text: "Bahan Produksi"
+                MDTextField:
+                    id: bahan_produksi
+
+            BoxLayout:
+                orientation: "vertical"
+                # padding: 40,0,40,0
+                MDLabel:
+                    text: "Berat (Kg)"
+                MDTextField:
+                    id: berat_produksi
+                    required: True
+            BoxLayout:
+                orientation: "vertical"
+                # padding: 40,0,40,0
+                MDLabel:
+                    text: "Tanggal (yyyy-mm-dd)"
+                # GridLayout:
+                MDTextField:
+                    id: date_picker_label_produksi
+                    # required: True
+                    helper_text: "Double tap to open calender"
+                    helper_text_mode: "persistent"
+                    on_double_tap: app.show_date_picker()
+            BoxLayout:
+                orientation: "vertical"
+                # pos_hint: {"center_y": 1}
+                # padding: 40,0,40,0
+                MDLabel:
+                    text: "Waktu (hh:mm:ss)"
+                # GridLayout:
+                MDTextField:
+                    id: time_picker_label_produksi
+                    # required: True
+                    helper_text: "Double tap to open clock"
+                    helper_text_mode: "persistent"
+                    on_double_tap: app.show_time_picker()
+
+        MDFillRoundFlatButton:
+            text: "Submit"
+            # padding: 0,50,0,0
+            pos_hint: {"center_x": 0.8, "center_y": 0.1}
+            font_size: 20
+            halign: "center"
+            specific_text_color: 1, 1, 1, 1
+            on_release:
+                app.root.ids.screen_manager.current = "hasilinput"
+                root.manager.transition.direction = "left"
+                app.root.ids.toolbar.title = "Dashboard"
