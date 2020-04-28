@@ -4,7 +4,8 @@
 #:import MDRaisedButton kivymd.uix.button.MDRaisedButton
 # :include kv/Main.kv
 <MDMenuItem>:
-    on_release: app.change_variable(self.text)
+    on_release: app.change_variable_varietas(self.text)
+
 <InputPanen>
     name: "inputpanen"
     BoxLayout:
@@ -49,7 +50,7 @@
                         disabled: True
                     MDRaisedButton:
                         id: pilihkopi
-                        text: 'Pilih Kopi'
+                        text: 'Pilih Varietas'
                         specific_text_color: 1, 1, 1, 1
                         elevation_normal: 0
                         on_release: MDDropdownMenu(items=app.varietas_labels, width_mult=3).open(self)
@@ -85,11 +86,11 @@
                     width: 70
 
                     MDTextField:
-                        id: varietas
+                        id: proses
                         disabled: True
                     MDRaisedButton:
                         id: pilihkopi
-                        text: 'Pilih Kopi'
+                        text: 'Pilih Proses'
                         specific_text_color: 1, 1, 1, 1
                         elevation_normal: 0
                         on_release: MDDropdownMenu(items=app.proses_labels, width_mult=3).open(self)
