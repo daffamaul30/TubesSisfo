@@ -1,8 +1,8 @@
 #:import MDToolbar kivymd.uix.toolbar.MDToolbar
 #:import utils kivy.utils
 # :include kv/Main.kv
-<HasilInput>
-    name: "hasilinput"
+<Hasilpanen>
+    name: "hasilpanen"
     BoxLayout:
         pos_hint: {"center_x": 0.5, "center_y": 0.5}
         height:500
@@ -20,38 +20,56 @@
             halign: "center"
             BoxLayout:
                 orientation: "horizontal"
-                # padding: 40,0,40,0
                 MDLabel:
-                    text: "Jenis Kopi"
+                    text: "Tanggal Panen"
                 MDLabel:
-                    id: hasilJenis
+                    id: hsl_tgl_panen
+                    halign: "right"
+            BoxLayout:
+                orientation: "horizontal"
+                MDLabel:
+                    text: "Varietas"
+                MDLabel:
+                    id: hsl_varietas
                     halign: "right"
             BoxLayout:
                 orientation: "horizontal"
                 # padding: 40,0,40,0
                 MDLabel:
-                    text: "Berat (Kg)"
-                MDLabel:
-                    id: hasilBerat
-                    halign: "right"
-            BoxLayout:
-                orientation: "horizontal"
-                # padding: 40,0,40,0
-                MDLabel:
-                    text: "Tanggal"
+                    text: "Blok"
                 # GridLayout:
                 MDLabel:
-                    id: hasilTanggal
+                    id: hsl_blok
                     halign: "right"
             BoxLayout:
                 orientation: "horizontal"
                 # pos_hint: {"center_y": 1}
                 # padding: 40,0,40,0
                 MDLabel:
-                    text: "Waktu"
+                    text: "Berat (Kg)"
                 # GridLayout:
                 MDLabel:
-                    id: hasilWaktu
+                    id: hsl_berat
+                    halign: "right"
+            BoxLayout:
+                orientation: "horizontal"
+                # pos_hint: {"center_y": 1}
+                # padding: 40,0,40,0
+                MDLabel:
+                    text: "Biaya"
+                # GridLayout:
+                MDLabel:
+                    id: hsl_biaya
+                    halign: "right"
+            BoxLayout:
+                orientation: "horizontal"
+                # pos_hint: {"center_y": 1}
+                # padding: 40,0,40,0
+                MDLabel:
+                    text: "Proses"
+                # GridLayout:
+                MDLabel:
+                    id: hsl_proses
                     halign: "right"
 
         MDFillRoundFlatButton:

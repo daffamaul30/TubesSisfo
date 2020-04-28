@@ -27,7 +27,7 @@
         # DrawerList:
         #     id: md_list 
         MDList:
-            OneLineIconListItem:
+            OneLineListItem:
                 icon: "home"
                 text: "Dashboard"
                 on_press:
@@ -35,22 +35,91 @@
                     app.root.ids.screen_manager.current = "dashboard"
                     app.root.ids.toolbar.title = "Dashboard"
                     app.root.ids.screen_manager.transition.direction = "right"
+            OneLineListItem:
+                text: "Produksi"
+                disabled: True
+                # on_press:
+                #     app.root.ids.nav_drawer.set_state("close")
+                #     app.root.ids.screen_manager.current = "inputpanen"
+                #     app.root.ids.toolbar.title = "Input Hasil Panen"
+                #     app.root.ids.screen_manager.transition.direction = "left"
             OneLineIconListItem:
-                icon: "leaf"
-                text: "Input Hasil Panen"
+                text: "Panen"
                 on_press:
                     app.root.ids.nav_drawer.set_state("close")
                     app.root.ids.screen_manager.current = "inputpanen"
-                    app.root.ids.toolbar.title = "Input Hasil Panen"
+                    app.root.ids.toolbar.title = "Input Panen"
                     app.root.ids.screen_manager.transition.direction = "left"
             OneLineIconListItem:
-                icon: "leaf"
-                text: "Input Produksi"
-                on_press:
-                    app.root.ids.nav_drawer.set_state("close")
-                    app.root.ids.screen_manager.current = "inputproduksi"
-                    app.root.ids.toolbar.title = "Input Produksi"
-                    app.root.ids.screen_manager.transition.direction = "left"
+                text: "Cherry-Wet Mill - Muat"
+                # on_press:
+                #     app.root.ids.nav_drawer.set_state("close")
+                #     app.root.ids.screen_manager.current = "inputproduksi"
+                #     app.root.ids.toolbar.title = "Input Produksi"
+                #     app.root.ids.screen_manager.transition.direction = "left"
+            OneLineIconListItem:
+                text: "Gabah Basah-Transport Ke Pabrik"
+                # on_press:
+                #     app.root.ids.nav_drawer.set_state("close")
+                #     app.root.ids.screen_manager.current = "inputproduksi"
+                #     app.root.ids.toolbar.title = "Input Produksi"
+                #     app.root.ids.screen_manager.transition.direction = "left"
+            OneLineIconListItem:
+                text: "Gabah Basah-Bongkar"
+                # on_press:
+                #     app.root.ids.nav_drawer.set_state("close")
+                #     app.root.ids.screen_manager.current = "inputproduksi"
+                #     app.root.ids.toolbar.title = "Input Produksi"
+                #     app.root.ids.screen_manager.transition.direction = "left"
+            OneLineIconListItem:
+                text: "Gabah basah-Jemur"
+                # on_press:
+                #     app.root.ids.nav_drawer.set_state("close")
+                #     app.root.ids.screen_manager.current = "inputproduksi"
+                #     app.root.ids.toolbar.title = "Input Produksi"
+                #     app.root.ids.screen_manager.transition.direction = "left"
+            OneLineIconListItem:
+                text: "Gabah Kering-Hull"
+                # on_press:
+                #     app.root.ids.nav_drawer.set_state("close")
+                #     app.root.ids.screen_manager.current = "inputproduksi"
+                #     app.root.ids.toolbar.title = "Input Produksi"
+                #     app.root.ids.screen_manager.transition.direction = "left"
+            OneLineIconListItem:
+                text: "Gabah Kering-Jemur"
+                # on_press:
+                #     app.root.ids.nav_drawer.set_state("close")
+                #     app.root.ids.screen_manager.current = "inputproduksi"
+                #     app.root.ids.toolbar.title = "Input Produksi"
+                #     app.root.ids.screen_manager.transition.direction = "left"
+            OneLineIconListItem:
+                text: "Greenbean-Suton"
+                # on_press:
+                #     app.root.ids.nav_drawer.set_state("close")
+                #     app.root.ids.screen_manager.current = "inputproduksi"
+                #     app.root.ids.toolbar.title = "Input Produksi"
+                #     app.root.ids.screen_manager.transition.direction = "left"
+            OneLineIconListItem:
+                text: "Greenbean-Grading"
+                # on_press:
+                #     app.root.ids.nav_drawer.set_state("close")
+                #     app.root.ids.screen_manager.current = "inputproduksi"
+                #     app.root.ids.toolbar.title = "Input Produksi"
+                #     app.root.ids.screen_manager.transition.direction = "left"
+            OneLineIconListItem:
+                text: "Greenbean-Color Sorter"
+                # on_press:
+                #     app.root.ids.nav_drawer.set_state("close")
+                #     app.root.ids.screen_manager.current = "inputproduksi"
+                #     app.root.ids.toolbar.title = "Input Produksi"
+                #     app.root.ids.screen_manager.transition.direction = "left"
+            OneLineIconListItem:
+                text: "Greenbean-Hand Pick"
+                # on_press:
+                #     app.root.ids.nav_drawer.set_state("close")
+                #     app.root.ids.screen_manager.current = "inputproduksi"
+                #     app.root.ids.toolbar.title = "Input Produksi"
+                #     app.root.ids.screen_manager.transition.direction = "left"
 
 Screen:
     MDToolbar:
@@ -69,8 +138,8 @@ Screen:
                 name: "dashboard"
             InputPanen:
                 name: "inputpanen"
-            HasilInput:
-                name: "hasilinput"
+            Hasilpanen:
+                name: "hasilpanen"
             InputProduksi:
                 name: "inputproduksi"
         MDNavigationDrawer:

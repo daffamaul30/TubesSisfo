@@ -14,7 +14,7 @@ from kivymd.uix.menu import MDDropdownMenu
 from kivymd.icon_definitions import md_icons
 import m_panen
 
-# Window.size = (350, 550)
+Window.size = (350, 650)
 
 class InputPanen(Screen):
     def pop(self):
@@ -37,7 +37,7 @@ class InputProduksi(Screen):
 class Dashboard(Screen):
     pass
 
-class HasilInput(Screen):
+class Hasilpanen(Screen):
     pass
 
 class ContentNavigationDrawer(BoxLayout):
@@ -69,13 +69,35 @@ class Main(MDApp):
         
         ##### DROPDOWN
         self.VARIABLE = ""
-        self.menu_labels = [
+        self.varietas_labels = [
             {"viewclass": "MDMenuItem",
             "text": "Kopi Robusta","callback": self.callback_for_menu_items,},
             {"viewclass": "MDMenuItem",
             "text": "Kopi Luwak","callback": self.callback_for_menu_items,},
             {"viewclass": "MDMenuItem",
             "text": "Kopi Arabica","callback": self.callback_for_menu_items,},
+        ]
+        # Dropdown Proses
+        self.Process = ""
+        self.proses_labels = [
+            {"viewclass": "MDMenuItem",
+            "text": "Full Wash","callback": self.callback_for_menu_items,},
+            {"viewclass": "MDMenuItem",
+            "text": "Wet Hull","callback": self.callback_for_menu_items,},
+            {"viewclass": "MDMenuItem",
+            "text": "Natural","callback": self.callback_for_menu_items,},
+            {"viewclass": "MDMenuItem",
+            "text": "Honey","callback": self.callback_for_menu_items,},
+            {"viewclass": "MDMenuItem",
+            "text": "Lactic Full Wash","callback": self.callback_for_menu_items,},
+            {"viewclass": "MDMenuItem",
+            "text": "Natural Wet Hull","callback": self.callback_for_menu_items,},
+            {"viewclass": "MDMenuItem",
+            "text": "Honey Wet Hull","callback": self.callback_for_menu_items,},
+            {"viewclass": "MDMenuItem",
+            "text": "Natural Lactic","callback": self.callback_for_menu_items,},
+            {"viewclass": "MDMenuItem",
+            "text": "Honey Lactic","callback": self.callback_for_menu_items,},
         ]
         
     def callback_for_menu_items(self, *args):
@@ -84,7 +106,7 @@ class Main(MDApp):
         print("value=", value)
         self.VARIABLE = value
         print("self.VARIABLE=", self.VARIABLE)
-        self.root.ids.screen_manager.get_screen("inputpanen").ids.jenis.text = value
+        self.root.ids.screen_manager.get_screen("inputpanen").ids.varietas.text = value
         #####
         
     

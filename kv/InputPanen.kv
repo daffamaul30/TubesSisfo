@@ -13,7 +13,7 @@
         width:300
         orientation: "vertical"
         # size_hint: self.width,self.height
-        padding: 40, 0, 40, 100
+        padding: 40, 0, 40, 50
         spacing: 50
         BoxLayout:
             orientation: "vertical"
@@ -24,35 +24,8 @@
             halign: "center"
             BoxLayout:
                 orientation: "vertical"
-                # padding: 40,0,40,0
-                MDLabel:
-                    text: "Jenis Kopi"
-            BoxLayout:
-                spacing: 30
-                MDTextField:
-                    id: jenis 
-                    disabled: True
-                MDRaisedButton:
-                    id: pilihkopi
-                    text: 'Pilih Kopi'
-                    specific_text_color: 1, 1, 1, 1
-                    elevation_normal: 0
-                    on_release: MDDropdownMenu(items=app.menu_labels, width_mult=4).open(self)
-                    readonly : True
-            BoxLayout:
-                orientation: "vertical"
-                # padding: 40,0,40,0
-                MDLabel:
-                    text: "Berat (Kg)"
-                MDTextField:
-                    id: berat
-                    required: True
-            BoxLayout:
-                orientation: "vertical"
-                # padding: 40,0,40,0
                 MDLabel:
                     text: "Tanggal (yyyy-mm-dd)"
-                # GridLayout:
                 MDTextField:
                     id: date_picker_label
                     # required: True
@@ -61,28 +34,86 @@
                     on_double_tap: app.show_date_picker()
             BoxLayout:
                 orientation: "vertical"
-                # pos_hint: {"center_y": 1}
-                # padding: 40,0,40,0
+                BoxLayout:
+                    orientation: "vertical"
+                    padding: 0,-110,0,0
+                    MDLabel:
+                        text: "Varietas"
+                BoxLayout:
+                    spacing: 30
+                    height: 10
+                    width: 70
+
+                    MDTextField:
+                        id: varietas
+                        disabled: True
+                    MDRaisedButton:
+                        id: pilihkopi
+                        text: 'Pilih Kopi'
+                        specific_text_color: 1, 1, 1, 1
+                        elevation_normal: 0
+                        on_release: MDDropdownMenu(items=app.varietas_labels, width_mult=3).open(self)
+                        readonly : True
+            BoxLayout:
+                orientation: "vertical"
                 MDLabel:
-                    text: "Waktu (hh:mm:ss)"
-                # GridLayout:
+                    text: "Blok"
                 MDTextField:
-                    id: time_picker_label
-                    # required: True
-                    helper_text: "Double tap to open clock"
-                    helper_text_mode: "persistent"
-                    on_double_tap: app.show_time_picker()
+                    id: blok
+            BoxLayout:
+                orientation: "vertical"
+                MDLabel:
+                    text: "Berat (Kg)"
+                MDTextField:
+                    id: berat
+            BoxLayout:
+                orientation: "vertical"
+                MDLabel:
+                    text: "Biaya"
+                MDTextField:
+                    id: biayacherry
+            BoxLayout:
+                orientation: "vertical"
+                BoxLayout:
+                    orientation: "vertical"
+                    padding: 0,-110,0,0
+                    MDLabel:
+                        text: "Proses"
+                BoxLayout:
+                    spacing: 30
+                    height: 10
+                    width: 70
+
+                    MDTextField:
+                        id: varietas
+                        disabled: True
+                    MDRaisedButton:
+                        id: pilihkopi
+                        text: 'Pilih Kopi'
+                        specific_text_color: 1, 1, 1, 1
+                        elevation_normal: 0
+                        on_release: MDDropdownMenu(items=app.proses_labels, width_mult=3).open(self)
+                        readonly : True
+            # BoxLayout:
+            #     orientation: "vertical"
+            #     MDLabel:
+            #         text: "Waktu (hh:mm:ss)"
+            #     MDTextField:
+            #         id: time_picker_label
+            #         # required: True
+            #         helper_text: "Double tap to open clock"
+            #         helper_text_mode: "persistent"
+            #         on_double_tap: app.show_time_picker()
 
         MDFillRoundFlatButton:
             text: "Submit"
-            # padding: 0,50,0,0
             pos_hint: {"center_x": 0.8, "center_y": 0.1}
             font_size: 20
             halign: "center"
             specific_text_color: 1, 1, 1, 1
             on_release:
                 # root.pop()
-                app.root.ids.screen_manager.current = "hasilinput"
+                app.root.ids.screen_manager.current = "hasilpanen"
                 root.manager.transition.direction = "left"
 
 <layout_popup>:
