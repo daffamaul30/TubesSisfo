@@ -71,11 +71,11 @@ class Main(MDApp):
         self.VARIABLE = ""
         self.menu_labels = [
             {"viewclass": "MDMenuItem",
-            "text": "Kopi Robussa","callback": self.callback_for_menu_items,},
+            "text": "Kopi Robusta","callback": self.callback_for_menu_items,},
             {"viewclass": "MDMenuItem",
             "text": "Kopi Luwak","callback": self.callback_for_menu_items,},
             {"viewclass": "MDMenuItem",
-            "text": "Kopi Sawit","callback": self.callback_for_menu_items,},
+            "text": "Kopi Arabica","callback": self.callback_for_menu_items,},
         ]
         
     def callback_for_menu_items(self, *args):

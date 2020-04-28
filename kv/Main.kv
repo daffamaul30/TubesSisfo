@@ -57,9 +57,9 @@ Screen:
         id: toolbar
         title: "Dashboard"
         pos_hint: {"top": 1}
-        elevation: 10
+        elevation: 5
         specific_text_color: 1, 1, 1, 1
-        left_action_items: [['menu', lambda x: root.ids.nav_drawer.toggle_nav_drawer()]]
+        left_action_items: [['menu', lambda x: root.ids.nav_drawer.set_state("open")]]
     NavigationLayout:
         id: navi 
         x: toolbar.height

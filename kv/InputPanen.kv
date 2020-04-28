@@ -20,15 +20,24 @@
             size_hint_y: None
             height: 200
             padding: 0,0,0,0
-            spacing: 50
+            spacing: 60
             halign: "center"
             BoxLayout:
                 orientation: "vertical"
                 # padding: 40,0,40,0
                 MDLabel:
                     text: "Jenis Kopi"
+            BoxLayout:
+                spacing: 30
                 MDTextField:
                     id: jenis 
+                    disabled: True
+                MDRaisedButton:
+                    id: pilihkopi
+                    text: 'Pilih Kopi'
+                    specific_text_color: 1, 1, 1, 1
+                    elevation_normal: 0
+                    on_release: MDDropdownMenu(items=app.menu_labels, width_mult=4).open(self)
                     readonly : True
             BoxLayout:
                 orientation: "vertical"
@@ -63,25 +72,6 @@
                     helper_text: "Double tap to open clock"
                     helper_text_mode: "persistent"
                     on_double_tap: app.show_time_picker()
-            BoxLayout:
-                orientation: "vertical"
-                # padding: 40,0,40,0
-                MDRaisedButton:
-                    id: select_warning_image_Button
-                    size_hint: None, None
-                    size: 3 * dp(48), dp(48)
-                    text: 'Pilih Kopi'
-                    opposite_colors: True
-                    elevation_normal:    0
-                    pos_hint: {'center_x': 0.1, 'center_y': 0.9}
-                    on_release: MDDropdownMenu(items=app.menu_labels, width_mult=4).open(self)
-            BoxLayout:
-                orientation: "vertical"
-                # padding: 40,0,40,0
-                
-                MDTextField:
-                    id: chosen_dropdown
-                    required: True
 
         MDFillRoundFlatButton:
             text: "Submit"
@@ -91,7 +81,7 @@
             halign: "center"
             specific_text_color: 1, 1, 1, 1
             on_release:
-                root.pop()
+                # root.pop()
                 app.root.ids.screen_manager.current = "hasilinput"
                 root.manager.transition.direction = "left"
 
