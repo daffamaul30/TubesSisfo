@@ -24,6 +24,9 @@ class InputPanen(Screen):
 class layout_popup(FloatLayout):
     pass
 
+class Cherry(Screen):
+    pass
+
 def show_popup():
     popUp = layout_popup()
     popup = Popup(title='DUARRR',

@@ -2,6 +2,7 @@
 #:include kv/HasilInput.kv
 #:include kv/Dashboard.
 #:include kv/InputProduksi.kv
+#:include kv/Cherry.kv
 
 
 # <ItemDrawer>:
@@ -52,11 +53,11 @@
                     app.root.ids.screen_manager.transition.direction = "left"
             OneLineIconListItem:
                 text: "Cherry-Wet Mill - Muat"
-                # on_press:
-                #     app.root.ids.nav_drawer.set_state("close")
-                #     app.root.ids.screen_manager.current = "inputproduksi"
-                #     app.root.ids.toolbar.title = "Input Produksi"
-                #     app.root.ids.screen_manager.transition.direction = "left"
+                on_press:
+                    app.root.ids.nav_drawer.set_state("close")
+                    app.root.ids.screen_manager.current = "cheri"
+                    app.root.ids.toolbar.title = "Cherry-Wett Mill"
+                    app.root.ids.screen_manager.transition.direction = "left"
             OneLineIconListItem:
                 text: "Gabah Basah-Transport Ke Pabrik"
                 # on_press:
@@ -140,8 +141,8 @@ Screen:
                 name: "inputpanen"
             Hasilpanen:
                 name: "hasilpanen"
-            InputProduksi:
-                name: "inputproduksi"
+            Cherry:
+                name: "cheri"
         MDNavigationDrawer:
             id: nav_drawer
             ContentNavigationDrawer:
