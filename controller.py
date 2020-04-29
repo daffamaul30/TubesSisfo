@@ -15,6 +15,11 @@ from kivymd.icon_definitions import md_icons
 import m_panen
 
 Window.size = (350, 650)
+Builder.load_file('kv/InputPanen.kv')
+Builder.load_file('kv/HasilInput.kv')  
+Builder.load_file('kv/Dashboard.kv') 
+Builder.load_file('kv/Cherry.kv') 
+Builder.load_file('kv/GB_Transport.kv') 
 
 class InputPanen(Screen):
     def pop(self):
@@ -22,6 +27,9 @@ class InputPanen(Screen):
 
 # show popup
 class layout_popup(FloatLayout):
+    pass
+    
+class GB_Transport(Screen):
     pass
 
 class Cherry(Screen):
@@ -64,7 +72,6 @@ def toast(text):
     toast(text)
     
 class Main(MDApp):
-    icons = list(md_icons.keys())[15:30]
     def __init__(self, **kwargs):
         self.title = "Frinsa"
         self.theme_cls.primary_palette = "LightGreen"

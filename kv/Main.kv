@@ -1,8 +1,3 @@
-#:include kv/InputPanen.kv
-#:include kv/HasilInput.kv
-#:include kv/Dashboard.
-#:include kv/InputProduksi.kv
-#:include kv/Cherry.kv
 
 
 # <ItemDrawer>:
@@ -25,8 +20,6 @@
 
     ScrollView:
 
-        # DrawerList:
-        #     id: md_list 
         MDList:
             OneLineListItem:
                 icon: "home"
@@ -39,11 +32,6 @@
             OneLineListItem:
                 text: "Produksi"
                 disabled: True
-                # on_press:
-                #     app.root.ids.nav_drawer.set_state("close")
-                #     app.root.ids.screen_manager.current = "inputpanen"
-                #     app.root.ids.toolbar.title = "Input Hasil Panen"
-                #     app.root.ids.screen_manager.transition.direction = "left"
             OneLineIconListItem:
                 text: "Panen"
                 on_press:
@@ -60,11 +48,11 @@
                     app.root.ids.screen_manager.transition.direction = "left"
             OneLineIconListItem:
                 text: "Gabah Basah-Transport Ke Pabrik"
-                # on_press:
-                #     app.root.ids.nav_drawer.set_state("close")
-                #     app.root.ids.screen_manager.current = "inputproduksi"
-                #     app.root.ids.toolbar.title = "Input Produksi"
-                #     app.root.ids.screen_manager.transition.direction = "left"
+                on_press:
+                    app.root.ids.nav_drawer.set_state("close")
+                    app.root.ids.screen_manager.current = "gb_transport"
+                    app.root.ids.toolbar.title = "GB-Transport Ke Pabrik"
+                    app.root.ids.screen_manager.transition.direction = "left"
             OneLineIconListItem:
                 text: "Gabah Basah-Bongkar"
                 # on_press:
@@ -136,13 +124,16 @@ Screen:
         ScreenManager:
             id: screen_manager
             Dashboard:
-                name: "dashboard"
+                # name: "dashboard"
             InputPanen:
-                name: "inputpanen"
+                # name: "inputpanen"
             Hasilpanen:
-                name: "hasilpanen"
+                # name: "hasilpanen"
             Cherry:
                 name: "cheri"
+            GB_Transport:
+                # name: "gb_transport"
+                
         MDNavigationDrawer:
             id: nav_drawer
             ContentNavigationDrawer:
