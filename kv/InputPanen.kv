@@ -42,16 +42,14 @@
                         text: "Varietas"
                 BoxLayout:
                     spacing: 30
-                    height: 10
-                    width: 70
 
                     MDTextField:
                         id: varietas
                         disabled: True
-                    MDRaisedButton:
+                    MDIconButton:
                         id: pilihkopi
-                        text: 'Pilih Varietas'
-                        specific_text_color: 1, 1, 1, 1
+                        icon: "arrow-down-drop-circle"
+                        md_bg_color: app.theme_cls.primary_color
                         elevation_normal: 0
                         on_release: MDDropdownMenu(items=app.varietas_labels, width_mult=3).open(self)
                         readonly : True
@@ -88,10 +86,10 @@
                     MDTextField:
                         id: proses
                         disabled: True
-                    MDRaisedButton:
-                        id: pilihkopi
-                        text: 'Pilih Proses'
-                        specific_text_color: 1, 1, 1, 1
+                    MDIconButton:
+                        id: pilihproses
+                        icon: "arrow-down-drop-circle"
+                        md_bg_color: app.theme_cls.primary_color
                         elevation_normal: 0
                         on_release: MDDropdownMenu(items=app.proses_labels, width_mult=3).open(self)
                         readonly : True
@@ -106,7 +104,7 @@
             #         helper_text_mode: "persistent"
             #         on_double_tap: app.show_time_picker()
 
-        MDFillRoundFlatButton:
+        MDRaisedButton:
             text: "Submit"
             pos_hint: {"center_x": 0.8, "center_y": 0.1}
             font_size: 20

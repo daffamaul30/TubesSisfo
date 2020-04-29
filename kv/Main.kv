@@ -30,7 +30,7 @@
                     app.root.ids.toolbar.title = "Dashboard"
                     app.root.ids.screen_manager.transition.direction = "right"
             OneLineListItem:
-                text: "Produksi"
+                text: '[color=111111]Produksi[/color]'
                 disabled: True
             OneLineIconListItem:
                 text: "Panen"
@@ -55,60 +55,60 @@
                     app.root.ids.screen_manager.transition.direction = "left"
             OneLineIconListItem:
                 text: "Gabah Basah-Bongkar"
-                # on_press:
-                #     app.root.ids.nav_drawer.set_state("close")
-                #     app.root.ids.screen_manager.current = "inputproduksi"
-                #     app.root.ids.toolbar.title = "Input Produksi"
-                #     app.root.ids.screen_manager.transition.direction = "left"
+                on_press:
+                    app.root.ids.nav_drawer.set_state("close")
+                    app.root.ids.screen_manager.current = "gb_bongkar"
+                    app.root.ids.toolbar.title = "GB-Bongkar"
+                    app.root.ids.screen_manager.transition.direction = "left"
             OneLineIconListItem:
-                text: "Gabah basah-Jemur"
-                # on_press:
-                #     app.root.ids.nav_drawer.set_state("close")
-                #     app.root.ids.screen_manager.current = "inputproduksi"
-                #     app.root.ids.toolbar.title = "Input Produksi"
-                #     app.root.ids.screen_manager.transition.direction = "left"
+                text: "Gabah Basah-Jemur"
+                on_press:
+                    app.root.ids.nav_drawer.set_state("close")
+                    app.root.ids.screen_manager.current = "gb_jemur"
+                    app.root.ids.toolbar.title = "GB-Jemur"
+                    app.root.ids.screen_manager.transition.direction = "left"
             OneLineIconListItem:
                 text: "Gabah Kering-Hull"
-                # on_press:
-                #     app.root.ids.nav_drawer.set_state("close")
-                #     app.root.ids.screen_manager.current = "inputproduksi"
-                #     app.root.ids.toolbar.title = "Input Produksi"
-                #     app.root.ids.screen_manager.transition.direction = "left"
+                on_press:
+                    app.root.ids.nav_drawer.set_state("close")
+                    app.root.ids.screen_manager.current = "gk_hull"
+                    app.root.ids.toolbar.title = "GK-Hull"
+                    app.root.ids.screen_manager.transition.direction = "left"
             OneLineIconListItem:
                 text: "Gabah Kering-Jemur"
-                # on_press:
-                #     app.root.ids.nav_drawer.set_state("close")
-                #     app.root.ids.screen_manager.current = "inputproduksi"
-                #     app.root.ids.toolbar.title = "Input Produksi"
-                #     app.root.ids.screen_manager.transition.direction = "left"
+                on_press:
+                    app.root.ids.nav_drawer.set_state("close")
+                    app.root.ids.screen_manager.current = "gk_jemur"
+                    app.root.ids.toolbar.title = "GK-Jemur"
+                    app.root.ids.screen_manager.transition.direction = "left"
             OneLineIconListItem:
                 text: "Greenbean-Suton"
-                # on_press:
-                #     app.root.ids.nav_drawer.set_state("close")
-                #     app.root.ids.screen_manager.current = "inputproduksi"
-                #     app.root.ids.toolbar.title = "Input Produksi"
-                #     app.root.ids.screen_manager.transition.direction = "left"
+                on_press:
+                    app.root.ids.nav_drawer.set_state("close")
+                    app.root.ids.screen_manager.current = "green_suton"
+                    app.root.ids.toolbar.title = "Greenbean-Suton"
+                    app.root.ids.screen_manager.transition.direction = "left"
             OneLineIconListItem:
                 text: "Greenbean-Grading"
-                # on_press:
-                #     app.root.ids.nav_drawer.set_state("close")
-                #     app.root.ids.screen_manager.current = "inputproduksi"
-                #     app.root.ids.toolbar.title = "Input Produksi"
-                #     app.root.ids.screen_manager.transition.direction = "left"
+                on_press:
+                    app.root.ids.nav_drawer.set_state("close")
+                    app.root.ids.screen_manager.current = "green_grading"
+                    app.root.ids.toolbar.title = "Greenbean-Grading"
+                    app.root.ids.screen_manager.transition.direction = "left"
             OneLineIconListItem:
                 text: "Greenbean-Color Sorter"
-                # on_press:
-                #     app.root.ids.nav_drawer.set_state("close")
-                #     app.root.ids.screen_manager.current = "inputproduksi"
-                #     app.root.ids.toolbar.title = "Input Produksi"
-                #     app.root.ids.screen_manager.transition.direction = "left"
+                on_press:
+                    app.root.ids.nav_drawer.set_state("close")
+                    app.root.ids.screen_manager.current = "green_color"
+                    app.root.ids.toolbar.title = "Greenbean-Color Sorter"
+                    app.root.ids.screen_manager.transition.direction = "left"
             OneLineIconListItem:
                 text: "Greenbean-Hand Pick"
-                # on_press:
-                #     app.root.ids.nav_drawer.set_state("close")
-                #     app.root.ids.screen_manager.current = "inputproduksi"
-                #     app.root.ids.toolbar.title = "Input Produksi"
-                #     app.root.ids.screen_manager.transition.direction = "left"
+                on_press:
+                    app.root.ids.nav_drawer.set_state("close")
+                    app.root.ids.screen_manager.current = "green_hand_pick"
+                    app.root.ids.toolbar.title = "Greenbean-Hand Pick"
+                    app.root.ids.screen_manager.transition.direction = "left"
 
 Screen:
     MDToolbar:
@@ -124,16 +124,20 @@ Screen:
         ScreenManager:
             id: screen_manager
             Dashboard:
-                # name: "dashboard"
             InputPanen:
-                # name: "inputpanen"
             Hasilpanen:
-                # name: "hasilpanen"
             Cherry:
-                name: "cheri"
             GB_Transport:
-                # name: "gb_transport"
-                
+            GB_Bongkar:
+            GB_Jemur:
+            GK_Hull:
+            GK_Jemur:
+            Green_Suton:
+            Green_Grading:
+            Green_Color:
+            Green_HandPick:
+            # HasilAkhir:
+
         MDNavigationDrawer:
             id: nav_drawer
             ContentNavigationDrawer:

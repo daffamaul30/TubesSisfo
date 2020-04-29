@@ -1,9 +1,8 @@
 from kivy.lang import Builder
 from kivymd.app import MDApp
-from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.uix.screenmanager import Screen
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.popup import Popup
-from kivy.factory import Factory
 from kivy.core.window import Window
 from kivymd.uix.picker import MDDatePicker, MDTimePicker
 from kivy.uix.boxlayout import BoxLayout
@@ -18,8 +17,17 @@ Window.size = (350, 650)
 Builder.load_file('kv/InputPanen.kv')
 Builder.load_file('kv/HasilInput.kv')  
 Builder.load_file('kv/Dashboard.kv') 
-Builder.load_file('kv/Cherry.kv') 
-Builder.load_file('kv/GB_Transport.kv') 
+Builder.load_file('kv/Cherry.kv')
+Builder.load_file('kv/GB_Transport.kv')
+Builder.load_file('kv/GB_Bongkar.kv') 
+Builder.load_file('kv/GB_Jemur.kv') 
+Builder.load_file('kv/GK_Hull.kv') 
+Builder.load_file('kv/GK_Jemur.kv') 
+Builder.load_file('kv/Green_Suton.kv') 
+Builder.load_file('kv/Green_Grading.kv')
+Builder.load_file('kv/Green_Color.kv')
+Builder.load_file('kv/Green_HandPick.kv')
+Builder.load_file('kv/HasilAkhir.kv')
 
 class InputPanen(Screen):
     def pop(self):

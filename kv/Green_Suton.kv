@@ -1,8 +1,8 @@
 #:import MDToolbar kivymd.uix.toolbar.MDToolbar
 #:import utils kivy.utils
 
-<Cherry>
-    name: "cheri"
+<Green_Suton@Screen>
+    name: "green_suton"
     BoxLayout:
         pos_hint: {"center_x": 0.5, "center_y": 0.5}
         height:500
@@ -25,7 +25,7 @@
                     text: "Tanggal (yyyy-mm-dd)"
                 # GridLayout:
                 MDTextField:
-                    id: date_picker_label_cherry_wet_mill
+                    id: date_picker_label_green_suton
                     # required: True
                     helper_text: "Double tap to open calender"
                     helper_text_mode: "persistent"
@@ -36,14 +36,14 @@
                 MDLabel:
                     text: "Berat (Kg)"
                 MDTextField:
-                    id: berat_cherry_wet_mill
+                    id: berat_green_suton
             BoxLayout:
                 orientation: "vertical"
                 # padding: 40,0,40,0
                 MDLabel:
                     text: "Biaya"
                 MDTextField:
-                    id: biaya_cherry_wet_mill
+                    id: biaya_green_suton
 
         MDFillRoundFlatButton:
             text: "Submit"
