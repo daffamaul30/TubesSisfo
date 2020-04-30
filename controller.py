@@ -31,6 +31,9 @@ Builder.load_file('kv/Green_Color.kv')
 Builder.load_file('kv/Green_HandPick.kv')
 Builder.load_file('kv/HasilAkhir.kv')
 
+class Content(ThreeLineListItem):
+    pass
+
 class InputPanen(Screen):
     def pop(self):
         show_popup() 
@@ -146,12 +149,18 @@ class Main(MDApp):
     def on_start(self):
         for i in range(10):
             self.root.ids.screen_manager.get_screen("dashboard").ids.box.add_widget(
-                ThreeLineListItem(
+                # ListProduksi(text="Proses", secondary_text="Tanggal", tertiary_text='Varietas'))
+                MDExpansionPanel(
+                    icon=f"kv/assets/frinsa.png",
+                    content=Content(text="Blok", secondary_text="Biaya (Hpp)",tertiary_text='Last Update'),
+                    panel_cls=MDExpansionPanelThreeLine(
                         text="Proses",
                         secondary_text="Tanggal",
                         tertiary_text="Varietas",
+                    )
                 )
             )
+            
 
     def show_date_picker(self, *args):
         # print('AAA')
