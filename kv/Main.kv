@@ -2,7 +2,7 @@
 
 # <ItemDrawer>:
 #     theme_text_color: "Custom"
-#     on_release: 
+#     on_release:
 #         self.parent.set_color_item(self)
 #         app.change_screen()
 
@@ -21,7 +21,7 @@
     ScrollView:
 
         MDList:
-            OneLineListItem:
+            OneLineIconListItem:
                 icon: "home"
                 text: "Dashboard"
                 on_press:
@@ -29,9 +29,14 @@
                     app.root.ids.screen_manager.current = "dashboard"
                     app.root.ids.toolbar.title = "Dashboard"
                     app.root.ids.screen_manager.transition.direction = "right"
-            OneLineListItem:
+                IconLeftWidget:
+                    icon: 'home'
+                    disabled: True
+            OneLineIconListItem:
                 text: '[color=111111]Produksi[/color]'
                 disabled: True
+                IconLeftWidget:
+                    icon: 'factory'
             OneLineIconListItem:
                 text: "Panen"
                 on_press:
@@ -119,7 +124,7 @@ Screen:
         specific_text_color: 1, 1, 1, 1
         left_action_items: [['menu', lambda x: root.ids.nav_drawer.set_state("open")]]
     NavigationLayout:
-        id: navi 
+        id: navi
         x: toolbar.height
         ScreenManager:
             id: screen_manager

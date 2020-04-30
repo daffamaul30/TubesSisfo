@@ -4,3 +4,15 @@
 
 <Dashboard>
     name: "dashboard"
+    BoxLayout:
+        orientation: "vertical"
+        padding: 0,60,0,0
+
+        ScrollView:
+
+            GridLayout:
+                cols: 1
+                padding: 50,0,0,0
+                size_hint_y: None
+                height: self.minimum_height
+                id: box

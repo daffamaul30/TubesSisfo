@@ -6,11 +6,13 @@ from kivy.uix.popup import Popup
 from kivy.core.window import Window
 from kivymd.uix.picker import MDDatePicker, MDTimePicker
 from kivy.uix.boxlayout import BoxLayout
-from kivymd.uix.list import OneLineIconListItem, MDList
+from kivymd.uix.list import ThreeLineListItem, MDList
 from kivy.properties import StringProperty, ObjectProperty
 from kivymd.theming import ThemableBehavior
 from kivymd.uix.menu import MDDropdownMenu
 from kivymd.icon_definitions import md_icons
+from kivymd import images_path
+from kivymd.uix.expansionpanel import MDExpansionPanel, MDExpansionPanelThreeLine
 import m_panen
 
 Window.size = (350, 650)
@@ -141,19 +143,15 @@ class Main(MDApp):
     def build(self):
         return Builder.load_file("kv/Main.kv")
     
-    # def on_start(self):
-    #     icons_item = {
-    #         "home": "Home",
-    #         "leaf": "Input Hasil Panen",
-    #         "factory": "Input Produksi",
-    #         # "history": "Recent",
-    #         # "checkbox-marked": "Shared with me",
-    #         # "upload": "Upload",
-    #     }
-    #     for icon_name in icons_item.keys():
-    #         self.root.ids.content_drawer.ids.md_list.add_widget(
-    #             ItemDrawer(icon=icon_name, text=icons_item[icon_name])
-    #         )
+    def on_start(self):
+        for i in range(10):
+            self.root.ids.screen_manager.get_screen("dashboard").ids.box.add_widget(
+                ThreeLineListItem(
+                        text="Proses",
+                        secondary_text="Tanggal",
+                        tertiary_text="Varietas",
+                )
+            )
 
     def show_date_picker(self, *args):
         # print('AAA')
