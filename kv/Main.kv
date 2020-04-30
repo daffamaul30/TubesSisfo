@@ -18,6 +18,22 @@
     padding: "8dp"
     spacing: "8dp"
 
+    AnchorLayout:
+        anchor_x: "center"
+        size_hint_y: None
+        height: avatar.height
+
+        Image:
+            id: avatar
+            size_hint: None, None
+            size: "100dp", "100dp"
+            source: "kv/assets/frinsa.png"
+    MDLabel:
+        text: "Java Frinsa Estate"
+        font_style: "Button"
+        size_hint_y: None
+        halign: "center"
+        height: self.texture_size[1]
     ScrollView:
 
         MDList:
