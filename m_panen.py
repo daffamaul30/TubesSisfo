@@ -5,7 +5,7 @@ import connection
 def inputPanen(tanggal,blok,varietas,tipe_proses):
     conn = connection.koneksi()
     mycursor = conn.cursor()
-    query = "INSERT INTO biji_kopi (tanggal,blok,varietas,tipe_proses) VALUES (%s,%s,%s,%s)"
+    query = "INSERT INTO panen (tanggal,blok,varietas,tipe_proses) VALUES (%s,%s,%s,%s)"
     val = (tanggal,blok,varietas,tipe_proses)
     mycursor.execute(query,val)
     conn.commit()
