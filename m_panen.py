@@ -2,11 +2,11 @@ import mysql.connector
 from mysql.connector import Error
 import connection
 
-def inputPanen(jenis,berat,waktu,tanggal):
+def inputPanen(tanggal,blok,varietas,tipe_proses):
     conn = connection.koneksi()
     mycursor = conn.cursor()
-    query = "INSERT INTO biji_kopi (jenis_kopi,berat,waktu,tanggal) VALUES (%s,%s,%s,%s)"
-    val = (jenis,berat,waktu,tanggal)
+    query = "INSERT INTO biji_kopi (tanggal,blok,varietas,tipe_proses) VALUES (%s,%s,%s,%s)"
+    val = (tanggal,blok,varietas,tipe_proses)
     mycursor.execute(query,val)
     conn.commit()
     if mycursor.rowcount == 1:

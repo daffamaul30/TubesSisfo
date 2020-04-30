@@ -180,15 +180,16 @@ class Main(MDApp):
         self.root.ids.screen_manager.get_screen("inputpanen").ids.time_picker_label.text = str(time)
         
     def panen(self):
-        jenis = self.root.ids.screen_manager.get_screen("inputpanen").ids.jenis.text
-        
-        berat = self.root.ids.screen_manager.get_screen("inputpanen").ids.berat.text
-        waktu = self.root.ids.screen_manager.get_screen("inputpanen").ids.time_picker_label.text
         tanggal = self.root.ids.screen_manager.get_screen("inputpanen").ids.date_picker_label.text
+        blok = self.root.ids.screen_manager.get_screen("inputpanen").ids.blok.text
+        
+        varietas = self.root.ids.screen_manager.get_screen("inputpanen").ids.varietas.text
+        tipe_proses = self.root.ids.screen_manager.get_screen("inputpanen").ids.proses.text
+        
         try:
-            m_panen.inputPanen(jenis,berat,waktu,tanggal)
+            m_panen.inputPanen(tanggal,blok,varietas,tipe_proses)
         except:
-            print("ERROR : ",jenis,berat,waktu,tanggal)
+            print("ERROR : ",tanggal,blok,varietas,tipe_proses)
     def dataPanen(self):
         try :
             m_panen.getPanen()    
