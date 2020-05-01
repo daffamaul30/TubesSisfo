@@ -199,9 +199,15 @@ class Main(MDApp):
         tipe_proses = self.root.ids.screen_manager.get_screen("inputpanen").ids.proses.text
         try:
             m_panen.inputPanen(tanggal,blok,varietas,tipe_proses)
+            
         except:
             print("ERROR : ",tanggal,blok,varietas,tipe_proses)
         self.root.ids.screen_manager.current = "hasilpanen"
+        finally:
+            self.root.ids.screen_manager.get_screen("inputpanen").ids.date_picker_label.text = ""
+            self.root.ids.screen_manager.get_screen("inputpanen").ids.blok.text = ""
+            self.root.ids.screen_manager.get_screen("inputpanen").ids.varietas.text = ""
+            self.root.ids.screen_manager.get_screen("inputpanen").ids.proses.text = ""
     def dataPanen(self):
         try :
             m_panen.getPanen()    
