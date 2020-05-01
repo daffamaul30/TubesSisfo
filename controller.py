@@ -201,6 +201,7 @@ class Main(MDApp):
             m_panen.inputPanen(tanggal,blok,varietas,tipe_proses)
         except:
             print("ERROR : ",tanggal,blok,varietas,tipe_proses)
+        self.root.ids.screen_manager.current = "hasilpanen"
     def dataPanen(self):
         try :
             m_panen.getPanen()    

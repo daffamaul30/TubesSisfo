@@ -9,14 +9,14 @@
         width:300
         orientation: "vertical"
         # size_hint: self.width,self.height
-        padding: 40, 0, 40, 150
+        padding: 40, 0, 40, 170
         spacing: 50
         BoxLayout:
             orientation: "vertical"
             size_hint_y: None
             height: 200
             padding: 0,0,0,0
-            spacing: 50
+            spacing: 60
             halign: "center"
             BoxLayout:
                 orientation: "vertical"
@@ -39,43 +39,46 @@
                     id: search_blok
             BoxLayout:
                 orientation: "vertical"
-                # padding: 40,0,40,0
-                MDLabel:
-                    text: "Varietas"
-            BoxLayout:
-                spacing: 30
+                BoxLayout:
+                    orientation: "vertical"
+                    padding: 0,-110,0,0
+                    MDLabel:
+                        text: "Varietas"
+                BoxLayout:
+                    spacing: 30
 
-                MDTextField:
-                    id: search_varietas
-                    disabled: True
-                MDIconButton:
-                    id: pilihkopi
-                    icon: "arrow-down-drop-circle"
-                    md_bg_color: app.theme_cls.primary_color
-                    elevation_normal: 0
-                    on_release: MDDropdownMenu(items=app.varietas_labels, width_mult=3).open(self)
-                    readonly : True
-                    
+                    MDTextField:
+                        id: search_varietas
+                        disabled: True
+                    MDIconButton:
+                        id: pilihkopi
+                        icon: "arrow-down-drop-circle"
+                        md_bg_color: app.theme_cls.primary_color
+                        elevation_normal: 0
+                        on_release: MDDropdownMenu(items=app.varietas_labels, width_mult=3).open(self)
+                        readonly : True
             BoxLayout:
                 orientation: "vertical"
-                # padding: 40,0,40,0
-                MDLabel:
-                    text: "Proses"
-            BoxLayout:
-                spacing: 30
-                height: 10
-                width: 70
+                BoxLayout:
+                    orientation: "vertical"
+                    padding: 0,-110,0,0
+                    MDLabel:
+                        text: "Proses"
+                BoxLayout:
+                    spacing: 30
+                    height: 10
+                    width: 70
 
-                MDTextField:
-                    id: search_proses
-                    disabled: True
-                MDIconButton:
-                    id: pilihproses
-                    icon: "arrow-down-drop-circle"
-                    md_bg_color: app.theme_cls.primary_color
-                    elevation_normal: 0
-                    on_release: MDDropdownMenu(items=app.proses_labels, width_mult=3).open(self)
-                    readonly : True
+                    MDTextField:
+                        id: search_proses
+                        disabled: True
+                    MDIconButton:
+                        id: pilihproses
+                        icon: "arrow-down-drop-circle"
+                        md_bg_color: app.theme_cls.primary_color
+                        elevation_normal: 0
+                        on_release: MDDropdownMenu(items=app.proses_labels, width_mult=3).open(self)
+                        readonly : True
 
         MDFillRoundFlatButton:
             text: "Cari"

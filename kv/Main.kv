@@ -61,85 +61,91 @@
                     app.root.ids.toolbar.title = "Input Panen"
                     app.root.ids.screen_manager.transition.direction = "left"
             OneLineIconListItem:
-                text: "Cherry-Wet Mill - Muat"
+                text: "Cari Produksi"
                 on_press:
                     app.root.ids.nav_drawer.set_state("close")
                     app.root.ids.screen_manager.current = "search"
-                    # app.root.ids.toolbar.title = "Cherry-Wett Mill"
                     app.root.ids.toolbar.title = "Cari Produksi"
-                    app.root.ids.screen_manager.transition.direction = "left"
-            OneLineIconListItem:
-                text: "Gabah Basah-Transport Ke Pabrik"
-                on_press:
-                    app.root.ids.nav_drawer.set_state("close")
-                    app.root.ids.screen_manager.current = "search"
-                    # app.root.ids.toolbar.title = "GB-Transport Ke Pabrik"
-                    app.root.ids.toolbar.title = "Cari Produksi"
-                    app.root.ids.screen_manager.transition.direction = "left"
-            OneLineIconListItem:
-                text: "Gabah Basah-Bongkar"
-                on_press:
-                    app.root.ids.nav_drawer.set_state("close")
-                    app.root.ids.screen_manager.current = "search"
-                    # app.root.ids.toolbar.title = "GB-Bongkar"
-                    app.root.ids.toolbar.title = "Cari Produksi"
-                    app.root.ids.screen_manager.transition.direction = "left"
-            OneLineIconListItem:
-                text: "Gabah Basah-Jemur"
-                on_press:
-                    app.root.ids.nav_drawer.set_state("close")
-                    app.root.ids.screen_manager.current = "search"
-                    # app.root.ids.toolbar.title = "GB-Jemur"
-                    app.root.ids.toolbar.title = "Cari Produksi"
-                    app.root.ids.screen_manager.transition.direction = "left"
-            OneLineIconListItem:
-                text: "Gabah Kering-Hull"
-                on_press:
-                    app.root.ids.nav_drawer.set_state("close")
-                    app.root.ids.screen_manager.current = "search"
-                    # app.root.ids.toolbar.title = "GK-Hull"
-                    app.root.ids.toolbar.title = "Cari Produksi"
-                    app.root.ids.screen_manager.transition.direction = "left"
-            OneLineIconListItem:
-                text: "Gabah Kering-Jemur"
-                on_press:
-                    app.root.ids.nav_drawer.set_state("close")
-                    app.root.ids.screen_manager.current = "search"
-                    # app.root.ids.toolbar.title = "GK-Jemur"
-                    app.root.ids.toolbar.title = "Cari Produksi"
-                    app.root.ids.screen_manager.transition.direction = "left"
-            OneLineIconListItem:
-                text: "Greenbean-Suton"
-                on_press:
-                    app.root.ids.nav_drawer.set_state("close")
-                    app.root.ids.screen_manager.current = "search"
-                    # app.root.ids.toolbar.title = "Greenbean-Suton"
-                    app.root.ids.toolbar.title = "Cari Produksi"
-                    app.root.ids.screen_manager.transition.direction = "left"
-            OneLineIconListItem:
-                text: "Greenbean-Grading"
-                on_press:
-                    app.root.ids.nav_drawer.set_state("close")
-                    app.root.ids.screen_manager.current = "search"
-                    # app.root.ids.toolbar.title = "Greenbean-Grading"
-                    app.root.ids.toolbar.title = "Cari Produksi"
-                    app.root.ids.screen_manager.transition.direction = "left"
-            OneLineIconListItem:
-                text: "Greenbean-Color Sorter"
-                on_press:
-                    app.root.ids.nav_drawer.set_state("close")
-                    app.root.ids.screen_manager.current = "search"
-                    # app.root.ids.toolbar.title = "Greenbean-Color Sorter"
-                    app.root.ids.toolbar.title = "Cari Produksi"
-                    app.root.ids.screen_manager.transition.direction = "left"
-            OneLineIconListItem:
-                text: "Greenbean-Hand Pick"
-                on_press:
-                    app.root.ids.nav_drawer.set_state("close")
-                    app.root.ids.screen_manager.current = "search"
-                    # app.root.ids.toolbar.title = "Greenbean-Hand Pick"
-                    app.root.ids.toolbar.title = "Cari Produksi"
-                    app.root.ids.screen_manager.transition.direction = "left"
+            # OneLineIconListItem:
+            #     text: "Cherry-Wet Mill - Muat"
+            #     on_press:
+            #         app.root.ids.nav_drawer.set_state("close")
+            #         app.root.ids.screen_manager.current = "search"
+            #         # app.root.ids.toolbar.title = "Cherry-Wett Mill"
+            #         app.root.ids.toolbar.title = "Cari Produksi"
+            #         app.root.ids.screen_manager.transition.direction = "left"
+            # OneLineIconListItem:
+            #     text: "Gabah Basah-Transport Ke Pabrik"
+            #     on_press:
+            #         app.root.ids.nav_drawer.set_state("close")
+            #         app.root.ids.screen_manager.current = "search"
+            #         # app.root.ids.toolbar.title = "GB-Transport Ke Pabrik"
+            #         app.root.ids.toolbar.title = "Cari Produksi"
+            #         app.root.ids.screen_manager.transition.direction = "left"
+            # OneLineIconListItem:
+            #     text: "Gabah Basah-Bongkar"
+            #     on_press:
+            #         app.root.ids.nav_drawer.set_state("close")
+            #         app.root.ids.screen_manager.current = "search"
+            #         # app.root.ids.toolbar.title = "GB-Bongkar"
+            #         app.root.ids.toolbar.title = "Cari Produksi"
+            #         app.root.ids.screen_manager.transition.direction = "left"
+            # OneLineIconListItem:
+            #     text: "Gabah Basah-Jemur"
+            #     on_press:
+            #         app.root.ids.nav_drawer.set_state("close")
+            #         app.root.ids.screen_manager.current = "search"
+            #         # app.root.ids.toolbar.title = "GB-Jemur"
+            #         app.root.ids.toolbar.title = "Cari Produksi"
+            #         app.root.ids.screen_manager.transition.direction = "left"
+            # OneLineIconListItem:
+            #     text: "Gabah Kering-Hull"
+            #     on_press:
+            #         app.root.ids.nav_drawer.set_state("close")
+            #         app.root.ids.screen_manager.current = "search"
+            #         # app.root.ids.toolbar.title = "GK-Hull"
+            #         app.root.ids.toolbar.title = "Cari Produksi"
+            #         app.root.ids.screen_manager.transition.direction = "left"
+            # OneLineIconListItem:
+            #     text: "Gabah Kering-Jemur"
+            #     on_press:
+            #         app.root.ids.nav_drawer.set_state("close")
+            #         app.root.ids.screen_manager.current = "search"
+            #         # app.root.ids.toolbar.title = "GK-Jemur"
+            #         app.root.ids.toolbar.title = "Cari Produksi"
+            #         app.root.ids.screen_manager.transition.direction = "left"
+            # OneLineIconListItem:
+            #     text: "Greenbean-Suton"
+            #     on_press:
+            #         app.root.ids.nav_drawer.set_state("close")
+            #         app.root.ids.screen_manager.current = "search"
+            #         # app.root.ids.toolbar.title = "Greenbean-Suton"
+            #         app.root.ids.toolbar.title = "Cari Produksi"
+            #         app.root.ids.screen_manager.transition.direction = "left"
+            # OneLineIconListItem:
+            #     text: "Greenbean-Grading"
+            #     on_press:
+            #         app.root.ids.nav_drawer.set_state("close")
+            #         app.root.ids.screen_manager.current = "search"
+            #         # app.root.ids.toolbar.title = "Greenbean-Grading"
+            #         app.root.ids.toolbar.title = "Cari Produksi"
+            #         app.root.ids.screen_manager.transition.direction = "left"
+            # OneLineIconListItem:
+            #     text: "Greenbean-Color Sorter"
+            #     on_press:
+            #         app.root.ids.nav_drawer.set_state("close")
+            #         app.root.ids.screen_manager.current = "search"
+            #         # app.root.ids.toolbar.title = "Greenbean-Color Sorter"
+            #         app.root.ids.toolbar.title = "Cari Produksi"
+            #         app.root.ids.screen_manager.transition.direction = "left"
+            # OneLineIconListItem:
+            #     text: "Greenbean-Hand Pick"
+            #     on_press:
+            #         app.root.ids.nav_drawer.set_state("close")
+            #         app.root.ids.screen_manager.current = "search"
+            #         # app.root.ids.toolbar.title = "Greenbean-Hand Pick"
+            #         app.root.ids.toolbar.title = "Cari Produksi"
+            #         app.root.ids.screen_manager.transition.direction = "left"
 
 Screen:
     MDToolbar:
