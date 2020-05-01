@@ -8,7 +8,7 @@
         height:500
         width:300
         orientation: "vertical"
-        padding: 40, 0, 40, 170
+        padding: 40, 0, 40, 50
         spacing: 50
         BoxLayout:
             orientation: "vertical"
@@ -17,46 +17,44 @@
             padding: 0,0,0,0
             spacing: 60
             halign: "center"
+            # Graph
             BoxLayout:
                 orientation: "vertical"
                 MDLabel:
-                    text: "Tanggal Panen (yyyy-mm-dd)"
+                    text: "Tanggal (yyyy-mm-dd)"
                 MDTextField:
-                    id: date_picker_label
-                    # helper_text: "Double tap to open calender"
-                    # helper_text_mode: "persistent"
-                    # on_double_tap: app.show_date_picker2()
+                    id: hasilakhir_date
+            BoxLayout:
+                orientation: "vertical"
+                MDLabel:
+                    text: "Blok"
+                MDTextField:
+                    id: hasilakhir_blok
+            BoxLayout:
+                orientation: "vertical"
+                MDLabel:
+                    text: "Varietas"
+                MDTextField:
+                    id: hasilakhir_varietas
             BoxLayout:
                 orientation: "vertical"
                 MDLabel:
                     text: "Proses"
                 MDTextField:
-                    id: proses_hasilakhir
-                    # readonly: True 
+                    id: hasilakhir_proses
             BoxLayout:
                 orientation: "vertical"
                 MDLabel:
-                    text: "Cherry - wet mill (kg)"
+                    text: "Biaya (Hpp) per Kg"
                 MDTextField:
-                    id: proses_hasilakhir
-                    # readonly: True
-            BoxLayout:
-                orientation: "vertical"
-                MDLabel:
-                    text: "Gabah basah - jemur (kg)"
-                MDTextField:
-                    id: proses_hasilakhir
-                    # readonly: True
-            
+                    id: hasilakhir_biaya
 
-        MDFillRoundFlatButton:
-            text: "Selesai"
+        MDRaisedButton:
+            text: "Submit"
             pos_hint: {"center_x": 0.8, "center_y": 0.1}
             font_size: 20
             halign: "center"
             specific_text_color: 1, 1, 1, 1
             on_release:
-                app.dataPanen()
-                app.root.ids.screen_manager.current = "hasilinput"
+                app.root.ids.screen_manager.current = "dashboard"
                 root.manager.transition.direction = "left"
-                app.root.ids.toolbar.title = "Dashboard"

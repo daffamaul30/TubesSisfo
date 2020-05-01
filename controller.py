@@ -16,6 +16,7 @@ from kivymd.icon_definitions import md_icons
 from kivymd import images_path
 from kivymd.uix.expansionpanel import MDExpansionPanel, MDExpansionPanelThreeLine
 import m_panen
+import m_produksi
 
 Window.size = (350, 650)
 Builder.load_file('kv/InputPanen.kv')
@@ -213,11 +214,8 @@ class Main(MDApp):
                     )
                 )
             )
-            
-
-    # def change_screen(self):
-    #     # print(self.root.ids)
-    #     pass
+    
+    def graph
     
     def show_date_picker(self, *args):
         # print('AAA')
@@ -274,7 +272,20 @@ class Main(MDApp):
         tipe_proses = self.root.ids.screen_manager.get_screen("search").ids.search_proses.text
         try :
             
-            m_panen.getPanen(tanggal,blok,varietas,tipe_proses)    
+            data_panen = m_panen.getPanen(tanggal,blok,varietas,tipe_proses)
+            id_panen = data_panen[0]
+            print(data_panen)
+            data_cherry = m_produksi.getCherry(id_panen)
+            print(data_cherry)
+            if data_cherry == 0:
+                ##panggil halaman cherry biar nginput
+                print("A")
+            else: 
+                data_gabahB = m_produksi.getGabahBasah(data_cherry[0])
+                print(data_gabahB)
+                if data_gabahB == 0:
+                    ##panggil halaman gabahB biar nginput
+                    print("A")
         except:
             print("ERROR :",tanggal,blok,varietas,tipe_proses)
     def test(self):

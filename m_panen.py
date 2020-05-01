@@ -18,10 +18,11 @@ def getPanen(tanggal,blok,varietas,tipe_proses):
     query = "SELECT * FROM panen WHERE tanggal='{}' AND blok = '{}' AND varietas='{}' AND tipe_proses='{}'".format(tanggal,blok,varietas,tipe_proses)
     #query = "SELECT DATE_FORMAT(waktu,'%d/%m/%Y') as 'tanggal' FROM biji_kopi HAVING tanggal BETWEEN '25/04/2020' AND '30/04/2020' "
     mycursor.execute(query)
-    result = mycursor.fetchall()
-    for x in result:
-        print(x)
-    return result
+    try :
+        result = mycursor.fetchone()
+        return result
+    except:
+        return 0
 
 def deletePanen(id):
     conn = connection.koneksi()
