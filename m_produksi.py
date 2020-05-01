@@ -1,9 +1,18 @@
 import mysql.connector
 from mysql.connector import Error
-from connection import koneksi
+import connection
 
-def inputProduksi():
-    return None
-
-def getProduksi():
-    return None
+def getCherry(id):
+    conn = connection.koneksi()
+    mycursor = conn.cursor()
+    
+    query = "SELECT * FROM cherry WHERE id_panen="+str(id)
+    mycursor.execute(query)
+    
+    if mycursor.rowcount == 1:
+        print("DATA FOUND")
+        return True
+    else:
+        print("NOT FOUND")
+        return False
+getCherry(20)
