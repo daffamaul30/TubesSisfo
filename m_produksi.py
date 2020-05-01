@@ -31,3 +31,14 @@ def getGabahBasah(id_cherry):
     except:
         print("NOT FOUND")
         return 0
+def inputCherry(id_panen,jumlah,harga):
+    conn = connection.koneksi()
+    mycursor = conn.cursor()
+    query = "INSERT INTO cherry (id_panen,jumalah_kg,harga_kg) VALUES (%s,%s,%s)"
+    val = (id_panen,jumlah,harga)
+    mycursor.execute(query,val)
+    mycursor.commit()
+    if mycursor.rowcount == 1:
+        print("Data Added")
+    else:
+        print("FAILED")

@@ -2,15 +2,25 @@ import mysql.connector
 from mysql.connector import Error
 import connection
 
-def inputPanen(tanggal,blok,varietas,tipe_proses):
+def inputPanen(tanggal,blok,varietas,tipe_proses,berat,biaya):
     conn = connection.koneksi()
     mycursor = conn.cursor()
     query = "INSERT INTO panen (tanggal,blok,varietas,tipe_proses) VALUES (%s,%s,%s,%s)"
     val = (tanggal,blok,varietas,tipe_proses)
     mycursor.execute(query,val)
+    
     conn.commit()
     if mycursor.rowcount == 1:
-        print("Data Added")
+        query = "INSERT INTO cherry (id_panen,jumlah_kg,harga_kg) VALUES (%s,%s,%s)"
+        val = (mycursor.lastrowid,berat,biaya)
+        mycursor.execute(query,val)
+        conn.commit()
+        if mycursor.rowcount == 1:
+            print("Data Added")
+        else:
+            print("FAILED")
+    else:
+        print("FAILED")
     
 def getPanen(tanggal,blok,varietas,tipe_proses):
     conn = connection.koneksi()

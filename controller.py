@@ -256,11 +256,13 @@ class Main(MDApp):
         blok = self.root.ids.screen_manager.get_screen("inputpanen").ids.blok.text
         varietas = self.root.ids.screen_manager.get_screen("inputpanen").ids.varietas.text
         tipe_proses = self.root.ids.screen_manager.get_screen("inputpanen").ids.proses.text
+        berat = self.root.ids.screen_manager.get_screen("inputpanen").ids.berat.text
+        biaya = self.root.ids.screen_manager.get_screen("inputpanen").ids.biayacherry.text
         try:
-            m_panen.inputPanen(tanggal,blok,varietas,tipe_proses)
+            m_panen.inputPanen(tanggal,blok,varietas,tipe_proses,berat,biaya)
         except:
             print("ERROR : ",tanggal,blok,varietas,tipe_proses)
-            self.root.ids.screen_manager.current = "hasilpanen"
+            #self.root.ids.screen_manager.current = "hasilpanen"
         # self.root.ids.screen_manager.current = "hasilpanen"
         finally:
             self.root.ids.screen_manager.get_screen("inputpanen").ids.date_picker_label.text = ""
@@ -301,7 +303,9 @@ class Main(MDApp):
         print(self.root.ids.toolbar.title)
         
     # def show_dialog_submit_panen(self):
-        
+    def cherry(self,id_panen):
+        harga = "a"
+        jumlah = "b"
     
 if __name__ == "__main__":
     Main().run()
