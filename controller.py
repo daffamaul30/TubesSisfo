@@ -268,7 +268,7 @@ class Main(MDApp):
             self.root.ids.screen_manager.get_screen("inputpanen").ids.biayacherry.text = ""
             self.root.ids.screen_manager.current = "hasilpanen"
     def dataPanen(self):
-        tanggal = self.root.ids.screen_manager.get_screen("search").ids.search_tgl.text
+        tanggal = self.root.ids.screen_manager.get_screen("search").ids.date_picker_label.text
         blok = self.root.ids.screen_manager.get_screen("search").ids.search_blok.text
         varietas = self.root.ids.screen_manager.get_screen("search").ids.search_varietas.text
         tipe_proses = self.root.ids.screen_manager.get_screen("search").ids.search_proses.text

@@ -15,4 +15,3 @@ def getCherry(id):
     else:
         print("NOT FOUND")
         return False
-getCherry(20)
