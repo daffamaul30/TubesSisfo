@@ -50,5 +50,14 @@ def inputWetMill(id_cherry,berat,harga,tanggal,id_panen):
             print("FAILED")   
     else:
         print("FAILED")
-def getWetMill():
-    return "z"
+def getWetMill(id_cherry):
+    conn = connection.koneksi()
+    mycursor = conn.cursor()
+    query = "SELECT * FROM wetmill WHERE id_cherry ="+str(id_cherry)
+    mycursor.execute(query)
+    try :
+        result = mycursor.fetchone()
+        return result
+    except:
+        return 0
+    
