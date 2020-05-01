@@ -2,6 +2,7 @@ from kivy.lang import Builder
 from kivymd.app import MDApp
 from kivy.uix.screenmanager import Screen
 from kivy.uix.floatlayout import FloatLayout
+from kivy.uix.gridlayout import GridLayout
 from kivy.uix.popup import Popup
 from kivy.core.window import Window
 from kivymd.uix.picker import MDDatePicker, MDTimePicker
@@ -32,8 +33,8 @@ Builder.load_file('kv/Green_HandPick.kv')
 Builder.load_file('kv/HasilAkhir.kv')
 
 class Content(ThreeLineListItem):
-    pass
-
+    pass     
+    
 class InputPanen(Screen):
     def pop(self):
         show_popup() 
@@ -149,14 +150,15 @@ class Main(MDApp):
     def on_start(self):
         for i in range(10):
             self.root.ids.screen_manager.get_screen("dashboard").ids.box.add_widget(
-                # ListProduksi(text="Proses", secondary_text="Tanggal", tertiary_text='Varietas'))
                 MDExpansionPanel(
                     icon=f"kv/assets/frinsa.png",
-                    content=Content(text="Blok", secondary_text="Biaya (Hpp)",tertiary_text='Last Update'),
+                    content=Content(text="Biaya (Hpp) /Kg : {}".format("serebu"), 
+                                    secondary_text="Tanggal Panen : {}".format("01/01/2001"),
+                                    tertiary_text='Tanggal produksi Terakhir : {}'.format("10/01/2001")),
                     panel_cls=MDExpansionPanelThreeLine(
-                        text="Proses",
-                        secondary_text="Tanggal",
-                        tertiary_text="Varietas",
+                        text="Proses : {}".format("HAHA"),
+                        secondary_text="Blok : {}".format("Blok A"),
+                        tertiary_text="Varietas : {}".format("A"),
                     )
                 )
             )
