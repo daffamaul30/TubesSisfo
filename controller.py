@@ -5,6 +5,7 @@ from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.popup import Popup
 from kivy.core.window import Window
+from kivymd.uix.dialog import MDInputDialog, MDDialog
 from kivymd.uix.picker import MDDatePicker, MDTimePicker
 from kivy.uix.boxlayout import BoxLayout
 from kivymd.uix.list import ThreeLineListItem, MDList
@@ -38,11 +39,23 @@ class Content(ThreeLineListItem):
     
 class InputPanen(Screen):
     def pop(self):
-        show_popup() 
+        # popUp = MDDialog(title="Konfirmasi", text="Apakah Anda yakin?",
+        #     size_hint=[.7,.3], events_callback=self.call, auto_dismiss=False,
+        #     text_button_cancel="Tidak", text_button_ok="Ya")
+        # popUp.open() 
+        show_popup(self)
 
+    # def call(self, text_of_selection,pup):
+    #     return text_of_selection
 # show popup
 class layout_popup(FloatLayout):
     pass
+
+def show_popup(self):
+    popUp = MDDialog(title="Konfirmasi", text="Apakah Anda yakin?",
+            size_hint=[.7,.3], auto_dismiss=False,
+            text_button_cancel="Tidak", text_button_ok="Ya")
+    popUp.open()
     
 class GB_Transport(Screen):
     pass
@@ -52,13 +65,6 @@ class Cherry(Screen):
 
 class Search(Screen):
     pass
-
-def show_popup():
-    popUp = layout_popup()
-    popup = Popup(title='DUARRR',
-        content=popUp,
-        size_hint=(None, None), size=(400, 400))
-    popup.open()
 
 class InputProduksi(Screen):
     pass
@@ -202,12 +208,14 @@ class Main(MDApp):
             
         except:
             print("ERROR : ",tanggal,blok,varietas,tipe_proses)
-        self.root.ids.screen_manager.current = "hasilpanen"
+            self.root.ids.screen_manager.current = "hasilpanen"
         finally:
             self.root.ids.screen_manager.get_screen("inputpanen").ids.date_picker_label.text = ""
             self.root.ids.screen_manager.get_screen("inputpanen").ids.blok.text = ""
             self.root.ids.screen_manager.get_screen("inputpanen").ids.varietas.text = ""
             self.root.ids.screen_manager.get_screen("inputpanen").ids.proses.text = ""
+            self.root.ids.screen_manager.get_screen("inputpanen").ids.berat.text = ""
+            self.root.ids.screen_manager.get_screen("inputpanen").ids.biayacherry.text = ""
     def dataPanen(self):
         try :
             m_panen.getPanen()    
