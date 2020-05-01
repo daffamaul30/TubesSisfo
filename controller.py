@@ -168,20 +168,29 @@ class Main(MDApp):
             )
             
 
+    # def change_screen(self):
+    #     # print(self.root.ids)
+    #     pass
+    
     def show_date_picker(self, *args):
         # print('AAA')
         MDDatePicker(self.set_date).open()
-    
-    def change_screen(self):
-        # print(self.root.ids)
-        pass
 
     def set_date(self, date_obj):
         self.previous_date = date_obj
-        # print(self.root.ids.screen_manager)
         
         self.root.ids.screen_manager.get_screen("inputpanen").ids.date_picker_label.text = str(date_obj)
-    
+
+    def show_date_picker2(self, *args):
+        # print('AAA')
+        MDDatePicker(self.set_date2).open()
+        
+    def set_date2(self, date_obj):
+        self.previous_date2 = date_obj
+        
+        self.root.ids.screen_manager.get_screen("search").ids.date_picker_label.text = str(date_obj)
+
+
     def show_time_picker(self):
         time_dialog = MDTimePicker()
         time_dialog.bind(time=self.get_time)
@@ -199,10 +208,9 @@ class Main(MDApp):
         tipe_proses = self.root.ids.screen_manager.get_screen("inputpanen").ids.proses.text
         try:
             m_panen.inputPanen(tanggal,blok,varietas,tipe_proses)
-            
         except:
             print("ERROR : ",tanggal,blok,varietas,tipe_proses)
-        self.root.ids.screen_manager.current = "hasilpanen"
+        # self.root.ids.screen_manager.current = "hasilpanen"
         finally:
             self.root.ids.screen_manager.get_screen("inputpanen").ids.date_picker_label.text = ""
             self.root.ids.screen_manager.get_screen("inputpanen").ids.blok.text = ""
