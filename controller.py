@@ -75,6 +75,9 @@ class Dashboard(Screen):
 class Hasilpanen(Screen):
     pass
 
+class HasilAkhir(Screen):
+    pass
+
 class ContentNavigationDrawer(BoxLayout):
     pass
 
