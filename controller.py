@@ -31,6 +31,7 @@ Builder.load_file('kv/Green_Grading.kv')
 Builder.load_file('kv/Green_Color.kv')
 Builder.load_file('kv/Green_HandPick.kv')
 Builder.load_file('kv/HasilAkhir.kv')
+Builder.load_file('kv/Search.kv')
 
 class Content(ThreeLineListItem):
     pass     
