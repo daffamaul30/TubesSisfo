@@ -42,16 +42,40 @@
                 # padding: 40,0,40,0
                 MDLabel:
                     text: "Varietas"
+            BoxLayout:
+                spacing: 30
+
                 MDTextField:
                     id: search_varietas
+                    disabled: True
+                MDIconButton:
+                    id: pilihkopi
+                    icon: "arrow-down-drop-circle"
+                    md_bg_color: app.theme_cls.primary_color
+                    elevation_normal: 0
+                    on_release: MDDropdownMenu(items=app.varietas_labels, width_mult=3).open(self)
+                    readonly : True
                     
             BoxLayout:
                 orientation: "vertical"
                 # padding: 40,0,40,0
                 MDLabel:
                     text: "Proses"
+            BoxLayout:
+                spacing: 30
+                height: 10
+                width: 70
+
                 MDTextField:
                     id: search_proses
+                    disabled: True
+                MDIconButton:
+                    id: pilihproses
+                    icon: "arrow-down-drop-circle"
+                    md_bg_color: app.theme_cls.primary_color
+                    elevation_normal: 0
+                    on_release: MDDropdownMenu(items=app.proses_labels, width_mult=3).open(self)
+                    readonly : True
 
         MDFillRoundFlatButton:
             text: "Cari"
