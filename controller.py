@@ -15,6 +15,7 @@ from kivymd.uix.menu import MDDropdownMenu
 from kivymd.icon_definitions import md_icons
 from kivymd import images_path
 from kivymd.uix.expansionpanel import MDExpansionPanel, MDExpansionPanelThreeLine
+import matplotlib.pyplot as plt
 import m_panen
 import m_produksi
 
@@ -215,7 +216,11 @@ class Main(MDApp):
                 )
             )
     
-    def graph
+    # def graph(self):
+    #     plt.plot([1, 23, 2, 4])
+    #     plt.ylabel('some numbers')
+    #     self.box = BoxLayout()
+    #     self.box.add_widget(FigureCanvasKivyAgg(plt.gcf()))
     
     def show_date_picker(self, *args):
         # print('AAA')

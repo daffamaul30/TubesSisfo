@@ -17,40 +17,49 @@
             padding: 0,0,0,0
             spacing: 60
             halign: "center"
-            # Graph
+            BoxLayout:
+                orientation: "vertical"
+                padding: 0,0,0,50
+                MDLabel:
+                    text: "Graph"
             BoxLayout:
                 orientation: "vertical"
                 MDLabel:
-                    text: "Tanggal (yyyy-mm-dd)"
+                    text: "Tanggal Panen"
                 MDTextField:
                     id: hasilakhir_date
+                    readonly: True
             BoxLayout:
                 orientation: "vertical"
                 MDLabel:
                     text: "Blok"
                 MDTextField:
                     id: hasilakhir_blok
+                    readonly: True
             BoxLayout:
                 orientation: "vertical"
                 MDLabel:
                     text: "Varietas"
                 MDTextField:
                     id: hasilakhir_varietas
+                    readonly: True
             BoxLayout:
                 orientation: "vertical"
                 MDLabel:
                     text: "Proses"
                 MDTextField:
                     id: hasilakhir_proses
+                    readonly: True
             BoxLayout:
                 orientation: "vertical"
                 MDLabel:
                     text: "Biaya (Hpp) per Kg"
                 MDTextField:
                     id: hasilakhir_biaya
+                    readonly: True
 
         MDRaisedButton:
-            text: "Submit"
+            text: "Selesai"
             pos_hint: {"center_x": 0.8, "center_y": 0.1}
             font_size: 20
             halign: "center"
