@@ -5,6 +5,7 @@ from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.popup import Popup
 from kivy.core.window import Window
+from kivymd.uix.dialog import MDInputDialog, MDDialog
 from kivymd.uix.picker import MDDatePicker, MDTimePicker
 from kivy.uix.boxlayout import BoxLayout
 from kivymd.uix.list import ThreeLineListItem, MDList
@@ -15,6 +16,7 @@ from kivymd.icon_definitions import md_icons
 from kivymd import images_path
 from kivymd.uix.expansionpanel import MDExpansionPanel, MDExpansionPanelThreeLine
 import m_panen
+import m_produksi
 
 Window.size = (350, 650)
 Builder.load_file('kv/InputPanen.kv')
@@ -38,11 +40,23 @@ class Content(ThreeLineListItem):
     
 class InputPanen(Screen):
     def pop(self):
-        show_popup() 
+        # popUp = MDDialog(title="Konfirmasi", text="Apakah Anda yakin?",
+        #     size_hint=[.7,.3], events_callback=self.call, auto_dismiss=False,
+        #     text_button_cancel="Tidak", text_button_ok="Ya")
+        # popUp.open() 
+        show_popup(self)
 
+    # def call(self, text_of_selection,pup):
+    #     return text_of_selection
 # show popup
 class layout_popup(FloatLayout):
     pass
+
+def show_popup(self):
+    popUp = MDDialog(title="Konfirmasi", text="Apakah Anda yakin?",
+            size_hint=[.7,.3], auto_dismiss=False,
+            text_button_cancel="Tidak", text_button_ok="Ya")
+    popUp.open()
     
 class GB_Transport(Screen):
     pass
@@ -52,13 +66,6 @@ class Cherry(Screen):
 
 class Search(Screen):
     pass
-
-def show_popup():
-    popUp = layout_popup()
-    popup = Popup(title='DUARRR',
-        content=popUp,
-        size_hint=(None, None), size=(400, 400))
-    popup.open()
 
 class InputProduksi(Screen):
     pass
@@ -248,21 +255,41 @@ class Main(MDApp):
             m_panen.inputPanen(tanggal,blok,varietas,tipe_proses)
         except:
             print("ERROR : ",tanggal,blok,varietas,tipe_proses)
+            self.root.ids.screen_manager.current = "hasilpanen"
         # self.root.ids.screen_manager.current = "hasilpanen"
         finally:
             self.root.ids.screen_manager.get_screen("inputpanen").ids.date_picker_label.text = ""
             self.root.ids.screen_manager.get_screen("inputpanen").ids.blok.text = ""
             self.root.ids.screen_manager.get_screen("inputpanen").ids.varietas.text = ""
             self.root.ids.screen_manager.get_screen("inputpanen").ids.proses.text = ""
+            self.root.ids.screen_manager.get_screen("inputpanen").ids.berat.text = ""
+            self.root.ids.screen_manager.get_screen("inputpanen").ids.biayacherry.text = ""
             self.root.ids.screen_manager.current = "hasilpanen"
     def dataPanen(self):
-        tanggal = self.root.ids.screen_manager.get_screen("search").ids.search_tgl.text
+        tanggal = self.root.ids.screen_manager.get_screen("search").ids.date_picker_label.text
         blok = self.root.ids.screen_manager.get_screen("search").ids.search_blok.text
         varietas = self.root.ids.screen_manager.get_screen("search").ids.search_varietas.text
         tipe_proses = self.root.ids.screen_manager.get_screen("search").ids.search_proses.text
         try :
             
-            m_panen.getPanen(tanggal,blok,varietas,tipe_proses)    
+            data_panen = m_panen.getPanen(tanggal,blok,varietas,tipe_proses)
+            id_panen = data_panen[0]
+            print(data_panen)
+            data_cherry = m_produksi.getCherry(id_panen)
+            print(data_cherry)
+            if data_cherry == 0:
+                ##panggil halaman cherry biar 
+                self.root.ids.screen_manager.current = "cheri"
+                self.root.ids.toolbar.title = "Cherry-Wett Mill"
+                print("A")
+            else: 
+                data_gabahB = m_produksi.getGabahBasah(data_cherry[0])
+                print(data_gabahB)
+                if data_gabahB == 0:
+                    ##panggil halaman gabahB biar nginput
+                self.root.ids.screen_manager.current = ""gb_transport
+                self.root.ids.toolbar.title = "GB-Transport Ke Pabrik"
+                    print("A")
         except:
             print("ERROR :",tanggal,blok,varietas,tipe_proses)
     def test(self):

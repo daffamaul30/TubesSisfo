@@ -111,29 +111,7 @@
             halign: "center"
             specific_text_color: 1, 1, 1, 1
             on_release:
-                # root.pop()
+                root.pop()
                 app.panen()
                 # app.root.ids.screen_manager.current = "hasilpanen"
                 # root.manager.transition.direction = "left"
-
-<layout_popup>:
-    canvas.before:
-        Color:
-            rgba: 1, 1, 1, 1
-        Rectangle:
-            pos: self.pos
-            size: self.size
-    BoxLayout:
-        pos_hint: {"center_x": 0.5, "center_y": 0.5}
-        orientation: "vertical"
-        rgba: 0, 1, 0, 1
-        MDLabel:
-            text: "Input Berhasil"
-            halign: "center"
-            pos_hint: {"center_x": 0.5, "center_y": 0.5}
-        MDFillRoundFlatButton:
-            text: "OK"
-            specific_text_color: 1, 1, 1, 1
-            pos_hint: {"center_x": 0.5, "center_y": 0.5} 
-        on_release:
-            
