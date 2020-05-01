@@ -55,7 +55,7 @@
                         icon: "arrow-down-drop-circle"
                         md_bg_color: app.theme_cls.primary_color
                         elevation_normal: 0
-                        on_release: MDDropdownMenu(items=app.varietas_labels, width_mult=3).open(self)
+                        on_release: MDDropdownMenu(items=app.varietas_labels_search, width_mult=3).open(self)
                         readonly : True
             BoxLayout:
                 orientation: "vertical"
@@ -77,7 +77,7 @@
                         icon: "arrow-down-drop-circle"
                         md_bg_color: app.theme_cls.primary_color
                         elevation_normal: 0
-                        on_release: MDDropdownMenu(items=app.proses_labels, width_mult=3).open(self)
+                        on_release: MDDropdownMenu(items=app.proses_labels_search, width_mult=3).open(self)
                         readonly : True
 
         MDFillRoundFlatButton:
@@ -88,6 +88,7 @@
             halign: "center"
             specific_text_color: 1, 1, 1, 1
             on_release:
+                app.dataPanen()
                 app.root.ids.screen_manager.current = "hasilinput"
                 root.manager.transition.direction = "left"
                 app.root.ids.toolbar.title = "Dashboard"

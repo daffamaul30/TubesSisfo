@@ -128,12 +128,44 @@ class Main(MDApp):
             "text": "Honey Lactic","callback": self.callback_for_proses_items,},
         ]
         
+        self.varietas_labels_search = [
+            {"viewclass": "MDMenuItem",
+            "text": "Kopi Robusta","callback": self.callback_for_varietas_items_search,},
+            {"viewclass": "MDMenuItem",
+            "text": "Kopi Luwak","callback": self.callback_for_varietas_items_search,},
+            {"viewclass": "MDMenuItem",
+            "text": "Kopi Arabica","callback": self.callback_for_varietas_items_search,},
+        ]
+        # Dropdown Search Proses
+        self.Process = ""
+        self.proses_labels_search = [
+            {"viewclass": "MDMenuItem",
+            "text": "Full Wash","callback": self.callback_for_proses_items_search,},
+            {"viewclass": "MDMenuItem",
+            "text": "Wet Hull","callback": self.callback_for_proses_items_search,},
+            {"viewclass": "MDMenuItem",
+            "text": "Natural","callback": self.callback_for_proses_items_search,},
+            {"viewclass": "MDMenuItem",
+            "text": "Honey","callback": self.callback_for_proses_items_search,},
+            {"viewclass": "MDMenuItem",
+            "text": "Lactic Full Wash","callback": self.callback_for_proses_items_search,},
+            {"viewclass": "MDMenuItem",
+            "text": "Natural Wet Hull","callback": self.callback_for_proses_items_search,},
+            {"viewclass": "MDMenuItem",
+            "text": "Honey Wet Hull","callback": self.callback_for_proses_items_search,},
+            {"viewclass": "MDMenuItem",
+            "text": "Natural Lactic","callback": self.callback_for_proses_items_search,},
+            {"viewclass": "MDMenuItem",
+            "text": "Honey Lactic","callback": self.callback_for_proses_items_search,},
+        ]
+        
     def callback_for_proses_items(self, *args):
         toast(args[0])
         self.root.ids.screen_manager.get_screen("inputpanen").ids.proses.text = args[0]
     def callback_for_varietas_items(self, *args):
         toast(args[0])
         self.root.ids.screen_manager.get_screen("inputpanen").ids.varietas.text = args[0]
+    
     def change_variable_varietas(self, value):
         
         print("dipilih > ",value)
@@ -143,7 +175,13 @@ class Main(MDApp):
         self.root.ids.screen_manager.get_screen("inputpanen").ids.proses.text = value
         #####
            
-    
+    ##search part
+    def callback_for_proses_items_search(self, *args):
+        toast(args[0])
+        self.root.ids.screen_manager.get_screen("search").ids.search_proses.text = args[0]
+    def callback_for_varietas_items_search(self, *args):
+        toast(args[0])
+        self.root.ids.screen_manager.get_screen("search").ids.search_varietas.text = args[0]
         
     def set_item(self, instance):
         self.screen.ids.dropdown_item.set_item(instance.text)
@@ -216,11 +254,17 @@ class Main(MDApp):
             self.root.ids.screen_manager.get_screen("inputpanen").ids.blok.text = ""
             self.root.ids.screen_manager.get_screen("inputpanen").ids.varietas.text = ""
             self.root.ids.screen_manager.get_screen("inputpanen").ids.proses.text = ""
+            self.root.ids.screen_manager.current = "hasilpanen"
     def dataPanen(self):
+        tanggal = self.root.ids.screen_manager.get_screen("search").ids.search_tgl.text
+        blok = self.root.ids.screen_manager.get_screen("search").ids.search_blok.text
+        varietas = self.root.ids.screen_manager.get_screen("search").ids.search_varietas.text
+        tipe_proses = self.root.ids.screen_manager.get_screen("search").ids.search_proses.text
         try :
-            m_panen.getPanen()    
+            
+            m_panen.getPanen(tanggal,blok,varietas,tipe_proses)    
         except:
-            print("ERROR :")
+            print("ERROR :",tanggal,blok,varietas,tipe_proses)
     def test(self):
         print(self.root.ids.toolbar.title)
         
