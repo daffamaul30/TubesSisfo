@@ -60,6 +60,9 @@ def show_popup(self):
 class GB_Transport(Screen):
     pass
 
+class HasilAkhir(Screen):
+    pass
+
 class Cherry(Screen):
     pass
 
@@ -73,9 +76,6 @@ class Dashboard(Screen):
     pass
 
 class Hasilpanen(Screen):
-    pass
-
-class HasilAkhir(Screen):
     pass
 
 class ContentNavigationDrawer(BoxLayout):
