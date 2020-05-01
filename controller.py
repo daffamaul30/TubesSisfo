@@ -292,8 +292,8 @@ class Main(MDApp):
                 print(data_gabahB)
                 if data_gabahB == 0:
                     ##panggil halaman gabahB biar nginput
-                self.root.ids.screen_manager.current = ""gb_transport
-                self.root.ids.toolbar.title = "GB-Transport Ke Pabrik"
+                    self.root.ids.screen_manager.current = "gb_transport"
+                    self.root.ids.toolbar.title = "GB-Transport Ke Pabrik"
                     print("A")
         except:
             print("ERROR :",tanggal,blok,varietas,tipe_proses)
