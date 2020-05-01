@@ -49,6 +49,9 @@ class GB_Transport(Screen):
 class Cherry(Screen):
     pass
 
+class Search(Screen):
+    pass
+
 def show_popup():
     popUp = layout_popup()
     popup = Popup(title='DUARRR',
