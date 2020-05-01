@@ -282,9 +282,8 @@ class Main(MDApp):
             data_panen = m_panen.getPanen(tanggal,blok,varietas,tipe_proses)
             id_panen = data_panen[0]
             print(data_panen)
-            data_cherry = m_produksi.getCherry(id_panen)
-            print(data_cherry)
-            if data_cherry == 0:
+            
+            if data_panen == 0:
                 ##panggil halaman cherry biar 
                 self.root.ids.screen_manager.current = "cheri"
                 self.root.ids.toolbar.title = "Cherry-Wett Mill"
@@ -303,7 +302,7 @@ class Main(MDApp):
         print(self.root.ids.toolbar.title)
         
     # def show_dialog_submit_panen(self):
-    def cherry(self,id_panen):
+    def wetmill(self,id_panen):
         harga = "a"
         jumlah = "b"
     

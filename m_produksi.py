@@ -31,14 +31,24 @@ def getGabahBasah(id_cherry):
     except:
         print("NOT FOUND")
         return 0
-def inputCherry(id_panen,jumlah,harga):
+def inputWetMill(id_cherry,berat,harga,tanggal,id_panen):
     conn = connection.koneksi()
     mycursor = conn.cursor()
-    query = "INSERT INTO cherry (id_panen,jumalah_kg,harga_kg) VALUES (%s,%s,%s)"
-    val = (id_panen,jumlah,harga)
+    query = "INSERT INTO biaya (berat_kg,biaya,tanggal) VALUES (%s,%s,%s)"
+    val = (berat,harga,tanggal)
     mycursor.execute(query,val)
     mycursor.commit()
     if mycursor.rowcount == 1:
-        print("Data Added")
+        query = "INSERT INTO wetmill (id_cherry,id_biaya) VALUES(%s,%s)"
+        val = (id_cherry,mycursor.lastrowid)
+        if mycursor.rowcount == 1:
+            query = "UPDATE panen SET status='wetmill' WHERE id_panen = "+str(id_panen)          
+            mycursor.execute(query)
+            mycursor.commit()
+            print("Data Added")
+        else:
+            print("FAILED")   
     else:
         print("FAILED")
+def getWetMill():
+    return "z"
