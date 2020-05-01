@@ -20,7 +20,7 @@ def getPanen(tanggal,blok,varietas,tipe_proses):
     mycursor.execute(query)
     try :
         result = mycursor.fetchone()
-        return result[0]
+        return result
     except:
         return 0
 
