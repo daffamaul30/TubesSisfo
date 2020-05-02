@@ -42,7 +42,7 @@ Builder.load_file('kv/Laporan.kv')
 class Content(ThreeLineListItem):
     pass
 
-class laporan(Screen):
+class Laporan(Screen):
     pass
     
 class InputPanen(Screen):

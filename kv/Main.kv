@@ -70,7 +70,7 @@
                 text: "Laporan Produksi"
                 on_press:
                     app.root.ids.nav_drawer.set_state("close")
-                    app.root.ids.screen_manager.current = "search"
+                    app.root.ids.screen_manager.current = "laporan"
                     app.root.ids.toolbar.title = "Cari Produksi"
                     app.root.ids.screen_manager.transition.direction = "left"
                 IconLeftWidget:
@@ -177,6 +177,7 @@ Screen:
             Green_HandPick:
             Search:
             HasilAkhir:
+            Laporan:
 
         MDNavigationDrawer:
             id: nav_drawer

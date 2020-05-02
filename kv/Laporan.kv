@@ -4,13 +4,22 @@
 <Laporan>
     name: "laporan"
     BoxLayout:
-        orientation: "vertical"
-        padding: 0,65,0,0
-
-        ScrollView:
-
-            GridLayout:
-                cols: 1
-                size_hint_y: None
-                height: self.minimum_height
-                id: box
+        pos_hint: {"center_x": 0.5, "center_y": 0.8}
+        size_hint_y: None
+        height: self.minimum_height
+        id: box
+        BoxLayout:
+            spacing: 30
+            padding: 15, 0, 35, 0
+            MDTextField:
+                id: date_picker_tgl_awal
+                hint_text: "Tanggal Awal"
+                helper_text: "Double tap to open calender"
+                helper_text_mode: "persistent"
+                on_double_tap: app.show_date_picker()
+            MDTextField:
+                id: date_picker_tgl_akhir
+                hint_text: "Tanggal Akhir"
+                helper_text: "Double tap to open calender"
+                helper_text_mode: "persistent"
+                on_double_tap: app.show_date_picker()
