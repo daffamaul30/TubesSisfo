@@ -302,10 +302,8 @@ class Main(MDApp):
                 #wetmill(self,id_cherry,id_panen)
                 print("MASOK")
                 self.root.ids.screen_manager.current = "cheri"
-                self.root.manager.transition.direction = "left"
                 self.root.ids.toolbar.title = "Cherry-Wett Mill"
-                
-
+                print("A")
             else: 
                 data_gabahB = m_produksi.getGabahBasah(data_cherry[0])
                 print(data_gabahB)
