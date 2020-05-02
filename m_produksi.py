@@ -228,7 +228,20 @@ def inputSuton(id_gabahK,berat,harga,tanggal,id_panen):
                     mycursor.execute(query)
                     conn.commit()
                     print("DATA ADDED")
-
-    
     except mysql.connector.Error as err:
         print(err)
+
+def getGreenBean(id_cherry):
+    conn = connection.koneksi()
+    mycursor  = conn.cursor()
+    query = "SELECT * FROM green_bean JOIN gabah_kering ON green_bean.id_gabahK = gabah_kering.id_gabahK JOIN gabah_basah ON gabah_basah.id_gabahB = gabah_kering.id_gabahB WHERE id_cherry = "+str(id_cherry)
+    #print(query)
+    mycursor.execute(query)
+    try:
+        result = mycursor.fetchone()
+        return result
+    except:
+        return 0
+def 
+    
+    
