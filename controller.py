@@ -333,6 +333,10 @@ class Main(MDApp):
                 ##panggil halaman jemur
                 self.root.ids.screen_manager.current = "gb_jemur"
                 self.root.ids.toolbar.title = "GB-Jemur"
+            elif status == "gb_jemur":
+                ##panggil halaman gk hull
+                self.root.ids.screen_manager.current = "gk_hull"
+                self.root.ids.toolbar.title = "GK-Hull"
         except:
             print("ERROR :",self.tanggal,self.blok,self.varietas,self.tipe_proses)
     def test(self):
@@ -374,7 +378,7 @@ class Main(MDApp):
         #print(berat,harga,tanggal)
         result = m_produksi.getGabahBasah(id_cherry)
         
-        m_produksi.inputBongkar(result[1],berat,harga,tanggal,id_panen)
+        m_produksi.inputBongkar(result[0],berat,harga,tanggal,id_panen)
     def gbJemur(self):
         data_cherry = m_panen.getPanen(self.tanggal,self.blok,self.varietas,self.tipe_proses)
         id_cherry = data_cherry[0]
@@ -385,7 +389,18 @@ class Main(MDApp):
         tanggal = self.root.ids.screen_manager.get_screen("gb_jemur").ids.date_picker_label.text
         #print(berat,harga,tanggal)
         result = m_produksi.getGabahBasah(id_cherry)
-        m_produksi.inputGabahBasahJemur(result[1],berat,harga,tanggal,id_panen)
+        m_produksi.inputGabahBasahJemur(result[0],berat,harga,tanggal,id_panen)
     
+    def gkHull(self):
+        data_cherry = m_panen.getPanen(self.tanggal,self.blok,self.varietas,self.tipe_proses)
+        id_cherry = data_cherry[0]
+        id_panen = data_cherry[1]
+        #status = data_cherry[2]
+        berat = self.root.ids.screen_manager.get_screen("gk_hull").ids.berat_gk_hull.text
+        harga = self.root.ids.screen_manager.get_screen("gk_hull").ids.biaya_gk_hull.text
+        tanggal = self.root.ids.screen_manager.get_screen("gk_hull").ids.date_picker_label.text
+        #print(berat,harga,tanggal)
+        result = m_produksi.getGabahBasah(id_cherry)
+        m_produksi.inputGabahKeringHull(result[0],berat,harga,tanggal,id_panen)
 if __name__ == "__main__":
     Main().run()
