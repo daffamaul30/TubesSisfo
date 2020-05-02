@@ -216,6 +216,8 @@ class Main(MDApp):
                     )
                 )
             )
+            
+        # TAROH DI FUNCTION SEBELUM PINDAH KE PAGE HASILTERAKHIR
         plt.plot(("tttttttttttttttt","ini","ini","ini","ini","ini","ini","ini","ini","ini"),(1,2,1,2,1,2,1,2,1,2)) # ((Subproses),(Berat)) 
         plt.title("Berat Per Subproses", fontsize=10)
         plt.yticks(fontsize=7)
