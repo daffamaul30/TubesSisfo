@@ -16,6 +16,7 @@ from kivymd.icon_definitions import md_icons
 from kivymd import images_path
 from kivymd.uix.expansionpanel import MDExpansionPanel, MDExpansionPanelThreeLine
 import matplotlib.pyplot as plt
+from kivy.garden.matplotlib.backend_kivyagg import FigureCanvasKivyAgg
 import m_panen
 import m_produksi
 
@@ -215,6 +216,14 @@ class Main(MDApp):
                     )
                 )
             )
+        plt.plot(("tttttttttttttttt","ini","ini","ini","ini","ini","ini","ini","ini","ini"),(1,2,1,2,1,2,1,2,1,2)) # ((Subproses),(Berat)) 
+        plt.title("Berat Per Subproses", fontsize=10)
+        plt.yticks(fontsize=7)
+        plt.xticks(fontsize=6)
+        # plt.xticks(rotation=90, fontsize=6)
+        # plt.tight_layout()
+        # box.add_widget(FigureCanvasKivyAgg(plt.gcf()))
+        self.root.ids.screen_manager.get_screen("hasilakhir").ids.box.add_widget(FigureCanvasKivyAgg(plt.gcf()))
     
     # def graph(self):
     #     plt.plot([1, 23, 2, 4])

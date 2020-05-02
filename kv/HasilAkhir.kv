@@ -3,55 +3,64 @@
 
 <HasilAkhir>
     name: "hasilakhir"
+    # GridLayout:
+    #     cols: 1
+    BoxLayout:
+        pos_hint: {"center_x": 0.5, "center_y": 0.73}
+        padding: 0,50,0,0
+        size_hint_y: None
+        height: 300
+        width: 350
+        id: box
     BoxLayout:
         pos_hint: {"center_x": 0.5, "center_y": 0.5}
         height:500
         width:300
         orientation: "vertical"
-        padding: 40, 0, 40, 50
-        spacing: 50
+        padding: 40, 150, 40, 50
+        spacing: 30
         BoxLayout:
             orientation: "vertical"
             size_hint_y: None
             height: 200
             padding: 0,0,0,0
-            spacing: 60
+            # spacing: 30
             halign: "center"
             BoxLayout:
-                orientation: "vertical"
-                padding: 0,0,0,10
-                MDLabel:
-                    text: "Graph"
-            BoxLayout:
-                orientation: "vertical"
+                orientation: "horizontal"
                 MDLabel:
                     text: "Tanggal Panen"
                 MDLabel:
                     id: hasilakhir_date
+                    halign: "right"
             BoxLayout:
-                orientation: "vertical"
+                orientation: "horizontal"
                 MDLabel:
                     text: "Blok"
                 MDLabel:
                     id: hasilakhir_blok
+                    halign: "right"
             BoxLayout:
-                orientation: "vertical"
+                orientation: "horizontal"
                 MDLabel:
                     text: "Varietas"
                 MDLabel:
                     id: hasilakhir_varietas
+                    halign: "right"
             BoxLayout:
-                orientation: "vertical"
+                orientation: "horizontal"
                 MDLabel:
                     text: "Proses"
                 MDLabel:
                     id: hasilakhir_proses
+                    halign: "right"
             BoxLayout:
-                orientation: "vertical"
+                orientation: "horizontal"
                 MDLabel:
                     text: "Biaya (Hpp) per Kg"
                 MDLabel:
                     id: hasilakhir_biaya
+                    halign: "right"
 
         MDRaisedButton:
             text: "Selesai"
@@ -61,4 +70,63 @@
             specific_text_color: 1, 1, 1, 1
             on_release:
                 app.root.ids.screen_manager.current = "dashboard"
-                root.manager.transition.direction = "left"
+                root.manager.transition.direction = "left"    
+# BoxLayout:
+#     pos_hint: {"center_x": 0.5, "center_y": 0.5}
+#     height:500
+#     width:300
+#     orientation: "vertical"
+#     padding: 40, 0, 40, 50
+#     spacing: 50
+#     BoxLayout:
+#         orientation: "vertical"
+#         size_hint_y: None
+#         height: 200
+#         padding: 0,0,0,0
+#         spacing: 60
+#         halign: "center"
+#         BoxLayout:
+#             orientation: "vertical"
+#             padding: 0,0,0,10
+#             MDLabel:
+#                 text: "Graph"
+#         BoxLayout:
+#             orientation: "vertical"
+#             MDLabel:
+#                 text: "Tanggal Panen"
+#             MDLabel:
+#                 id: hasilakhir_date
+#         BoxLayout:
+#             orientation: "vertical"
+#             MDLabel:
+#                 text: "Blok"
+#             MDLabel:
+#                 id: hasilakhir_blok
+#         BoxLayout:
+#             orientation: "vertical"
+#             MDLabel:
+#                 text: "Varietas"
+#             MDLabel:
+#                 id: hasilakhir_varietas
+#         BoxLayout:
+#             orientation: "vertical"
+#             MDLabel:
+#                 text: "Proses"
+#             MDLabel:
+#                 id: hasilakhir_proses
+#         BoxLayout:
+#             orientation: "vertical"
+#             MDLabel:
+#                 text: "Biaya (Hpp) per Kg"
+#             MDLabel:
+#                 id: hasilakhir_biaya
+
+#     MDRaisedButton:
+#         text: "Selesai"
+#         pos_hint: {"center_x": 0.8, "center_y": 0.1}
+#         font_size: 20
+#         halign: "center"
+#         specific_text_color: 1, 1, 1, 1
+#         on_release:
+#             app.root.ids.screen_manager.current = "dashboard"
+#             root.manager.transition.direction = "left"
