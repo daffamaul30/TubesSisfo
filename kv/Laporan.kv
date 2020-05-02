@@ -4,22 +4,33 @@
 <Laporan>
     name: "laporan"
     BoxLayout:
-        pos_hint: {"center_x": 0.5, "center_y": 0.8}
+        pos_hint: {"center_x": 0.5, "center_y": 0.72}
         size_hint_y: None
         height: self.minimum_height
         id: box
         BoxLayout:
+            orientation: "vertical"
             spacing: 30
-            padding: 15, 0, 35, 0
-            MDTextField:
-                id: date_picker_tgl_awal
-                hint_text: "Tanggal Awal"
-                helper_text: "Double tap to open calender"
-                helper_text_mode: "persistent"
-                on_double_tap: app.show_date_picker()
-            MDTextField:
-                id: date_picker_tgl_akhir
-                hint_text: "Tanggal Akhir"
-                helper_text: "Double tap to open calender"
-                helper_text_mode: "persistent"
-                on_double_tap: app.show_date_picker()
+            BoxLayout:
+                spacing: 30
+                padding: 15, 0, 35, 0
+                MDTextField:
+                    id: date_picker_tgl_awal
+                    hint_text: "Tanggal Awal"
+                    helper_text: "Double tap to open calender"
+                    helper_text_mode: "persistent"
+                    on_double_tap: app.show_date_picker()
+                MDTextField:
+                    id: date_picker_tgl_akhir
+                    hint_text: "Tanggal Akhir"
+                    helper_text: "Double tap to open calender"
+                    helper_text_mode: "persistent"
+                    on_double_tap: app.show_date_picker()
+            MDFillRoundFlatButton:
+                text: "Cari"
+                # padding: 0,50,0,0
+                pos_hint: {"center_x": 0.5}
+                font_size: 15
+                halign: "center"
+                specific_text_color: 1, 1, 1, 1
+                on_release:
