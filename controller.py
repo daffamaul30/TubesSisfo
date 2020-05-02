@@ -273,23 +273,29 @@ class Main(MDApp):
             self.root.ids.screen_manager.get_screen("inputpanen").ids.biayacherry.text = ""
             self.root.ids.screen_manager.current = "hasilpanen"
     def dataPanen(self):
-        tanggal = self.root.ids.screen_manager.get_screen("search").ids.date_picker_label.text
-        blok = self.root.ids.screen_manager.get_screen("search").ids.search_blok.text
-        varietas = self.root.ids.screen_manager.get_screen("search").ids.search_varietas.text
-        tipe_proses = self.root.ids.screen_manager.get_screen("search").ids.search_proses.text
+        self.tanggal = self.root.ids.screen_manager.get_screen("search").ids.date_picker_label.text
+        self.blok = self.root.ids.screen_manager.get_screen("search").ids.search_blok.text
+        self.varietas = self.root.ids.screen_manager.get_screen("search").ids.search_varietas.text
+        self.tipe_proses = self.root.ids.screen_manager.get_screen("search").ids.search_proses.text
         try :
             
-            data_cherry = m_panen.getPanen(tanggal,blok,varietas,tipe_proses)
+            data_cherry = m_panen.getPanen(self.tanggal,self.blok,self.varietas,self.tipe_proses)
             id_cherry = data_cherry[0]
+            id_panen = data_cherry[1]
+            status = data_cherry[2]
             print(data_cherry)
-            data_wetmill = m_produksi.getCherry(id_cherry)
-            print(data_wetmill)
-            if id_cherry == 0:
-                ##panggil halaman cherry biar 
+            # data_wetmill = m_produksi.getWetMill(id_cherry)
+            # print(data_wetmill)
+            if status == "cherry":
+                ##panggil halaman wetmill  
+                
+                #wetmill(self,id_cherry,id_panen)
+                print("MASOK")
                 self.root.ids.screen_manager.current = "cheri"
                 self.root.manager.transition.direction = "left"
                 self.root.ids.toolbar.title = "Cherry-Wett Mill"
                 
+
             else: 
                 data_gabahB = m_produksi.getGabahBasah(data_cherry[0])
                 print(data_gabahB)
@@ -299,18 +305,25 @@ class Main(MDApp):
                     self.root.ids.toolbar.title = "GB-Transport Ke Pabrik"
                     print("A")
         except:
-            print("ERROR :",tanggal,blok,varietas,tipe_proses)
+            print("ERROR :",self.tanggal,self.blok,self.varietas,self.tipe_proses)
     def test(self):
         print(self.root.ids.toolbar.title)
         
     # def show_dialog_submit_panen(self):
     def wetmill(self):
-        harga = self.root.ids.screen_manager.get_screen("cheri").berat_cherry_wet_mill.text
-        jumlah = self.root.ids.screen_manager.get_screen("cheri").biaya_cherry_wet_mill.text
-        tanggal = self.root.ids.screen_manager.get_screen("cheri").date_picker_label_cherry_wet_mill.text
+        
+        data_cherry = m_panen.getPanen(self.tanggal,self.blok,self.varietas,self.tipe_proses)
+        id_cherry = data_cherry[0]
+        id_panen = data_cherry[1]
+        status = data_cherry[2]
+        berat = self.root.ids.screen_manager.get_screen("cheri").ids.berat_cherry_wet_mill.text
+        harga = self.root.ids.screen_manager.get_screen("cheri").ids.biaya_cherry_wet_mill.text
+        tanggal = self.root.ids.screen_manager.get_screen("cheri").ids.date_picker_label_cherry_wet_mill.text
         try:
             
-            m_produksi.inputCherry(harga,jumlah,tanggal)
+            m_produksi.inputWetMill(id_cherry,berat,harga,tanggal,id_panen)
+        except:
+            print("ERROR WETMILL : ",id_cherry,berat,harga,tanggal,id_panen)
     
 if __name__ == "__main__":
     Main().run()

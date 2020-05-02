@@ -36,6 +36,7 @@ def inputWetMill(id_cherry,berat,harga,tanggal,id_panen):
     mycursor = conn.cursor()
     query = "INSERT INTO biaya (berat_kg,biaya,tanggal) VALUES (%s,%s,%s)"
     val = (berat,harga,tanggal)
+    print(query,val)
     mycursor.execute(query,val)
     mycursor.commit()
     if mycursor.rowcount == 1:

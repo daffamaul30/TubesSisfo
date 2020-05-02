@@ -26,7 +26,7 @@ def getPanen(tanggal,blok,varietas,tipe_proses):
     conn = connection.koneksi()
     mycursor = conn.cursor()
     
-    query = "SELECT id_cherry,panen.id_panen FROM panen,cherry WHERE tanggal='{}' AND blok = '{}' AND varietas='{}' AND tipe_proses='{}'".format(tanggal,blok,varietas,tipe_proses)
+    query = "SELECT id_cherry,panen.id_panen,status FROM panen,cherry WHERE tanggal='{}' AND blok = '{}' AND varietas='{}' AND tipe_proses='{}'".format(tanggal,blok,varietas,tipe_proses)
     #query  = "SELECT * from cherry WHERE id_panen =({})".format(sub_query)
     #query = "SELECT DATE_FORMAT(waktu,'%d/%m/%Y') as 'tanggal' FROM biji_kopi HAVING tanggal BETWEEN '25/04/2020' AND '30/04/2020' "
     print(query)
