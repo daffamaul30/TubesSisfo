@@ -224,6 +224,7 @@ class Main(MDApp):
     
     def show_date_picker(self, *args):
         # print('AAA')
+        
         MDDatePicker(self.set_date).open()
 
     def set_date(self, date_obj):
@@ -233,14 +234,23 @@ class Main(MDApp):
 
     def show_date_picker2(self, *args):
         # print('AAA')
+        
         MDDatePicker(self.set_date2).open()
         
     def set_date2(self, date_obj):
         self.previous_date2 = date_obj
         
         self.root.ids.screen_manager.get_screen("search").ids.date_picker_label.text = str(date_obj)
-
-
+    
+    def show_date_mdm(self,*args):
+        self.tgl_screen = args[0]
+        MDDatePicker(self.set_date_mdm).open()
+        
+    
+    def set_date_mdm(self, date_obj):
+        self.previous_date2 = date_obj
+        self.root.ids.screen_manager.get_screen(self.tgl_screen).ids.date_picker_label.text = str(date_obj)
+    #def set_date_mdm(self,)
     def show_time_picker(self):
         time_dialog = MDTimePicker()
         time_dialog.bind(time=self.get_time)
