@@ -2,25 +2,26 @@ from kivy.lang import Builder
 from kivymd.app import MDApp
 from kivy.uix.screenmanager import Screen
 from kivy.uix.floatlayout import FloatLayout
+from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.popup import Popup
 from kivy.core.window import Window
 from kivymd.uix.dialog import MDInputDialog, MDDialog
 from kivymd.uix.picker import MDDatePicker, MDTimePicker
-from kivy.uix.boxlayout import BoxLayout
-from kivymd.uix.list import ThreeLineListItem, MDList
-from kivy.properties import StringProperty, ObjectProperty
-from kivymd.theming import ThemableBehavior
+from kivymd.uix.list import ThreeLineListItem
+# from kivy.properties import StringProperty, ObjectProperty
+# from kivymd.theming import ThemableBehavior
 from kivymd.uix.menu import MDDropdownMenu
-from kivymd.icon_definitions import md_icons
+# from kivymd.icon_definitions import md_icons
 from kivymd import images_path
 from kivymd.uix.expansionpanel import MDExpansionPanel, MDExpansionPanelThreeLine
-import matplotlib.pyplot as plt
 from kivy.garden.matplotlib.backend_kivyagg import FigureCanvasKivyAgg
+import matplotlib.pyplot as plt
 import m_panen
 import m_produksi
 
 Window.size = (350, 650)
+
 Builder.load_file('kv/InputPanen.kv')
 Builder.load_file('kv/HasilInput.kv')  
 Builder.load_file('kv/Dashboard.kv') 
@@ -36,9 +37,13 @@ Builder.load_file('kv/Green_Color.kv')
 Builder.load_file('kv/Green_HandPick.kv')
 Builder.load_file('kv/HasilAkhir.kv')
 Builder.load_file('kv/Search.kv')
+Builder.load_file('kv/Laporan.kv')
 
 class Content(ThreeLineListItem):
-    pass     
+    pass
+
+class laporan(Screen):
+    pass
     
 class InputPanen(Screen):
     def pop(self):
