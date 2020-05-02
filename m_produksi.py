@@ -23,7 +23,7 @@ def inputWetMill(id_cherry,berat,harga,tanggal,id_panen):
     mycursor = conn.cursor()
     query = "INSERT INTO biaya (berat_kg,biaya,tanggal) VALUES (%s,%s,%s)"
     val = (berat,harga,tanggal)
-    print(query,val)
+    #print(query,val)
     try:
         mycursor.execute(query,val)
         #conn.commit()
@@ -194,10 +194,41 @@ def inputGabahKeringJemur(id_gabahK,berat,harga,tanggal,id_panen):
 def getGabahKering(id_cherry):
     conn = connection.koneksi()
     mycursor  = conn.cursor()
-    query = "SELECT id_gabahK FROM gabah_kering JOIN gabah_basah ON gabah_basah.id_gabahB = gabah_kering.id_gabahB WHERE id_cherry = "+str(id_cherry)
+    query = "SELECT * FROM gabah_kering JOIN gabah_basah ON gabah_basah.id_gabahB = gabah_kering.id_gabahB WHERE id_cherry = "+str(id_cherry)
+    #print(query)
     mycursor.execute(query)
     try:
         result = mycursor.fetchone()
         return result
     except:
         return 0
+    
+def inputSuton(id_gabahK,berat,harga,tanggal,id_panen):
+    conn = connection.koneksi()
+    mycursor = conn.cursor()
+    query = "INSERT INTO biaya (berat_kg,biaya,tanggal) VALUES (%s,%s,%s)"
+    val = (berat,harga,tanggal)
+    
+    try:
+        mycursor.execute(query,val)
+        
+        if mycursor.rowcount == 1:
+            id_biaya = mycursor.lastrowid
+            #print("IDBIAYA",id_biaya)    
+            query = "INSERT INTO green_bean (id_gabahK) VALUES ({})".format(id_gabahK)
+            #print(query)
+            mycursor.execute(query)
+            if mycursor.rowcount == 1:
+                #print("Suton")
+                query = "INSERT INTO suton (id_bean,id_biaya) VALUES (%s,%s)"
+                val = (mycursor.lastrowid,id_biaya)
+                mycursor.execute(query,val)
+                if mycursor.rowcount == 1:
+                    query = "UPDATE panen SET status='green_suton' WHERE id_panen = "+str(id_panen)          
+                    mycursor.execute(query)
+                    conn.commit()
+                    print("DATA ADDED")
+
+    
+    except mysql.connector.Error as err:
+        print(err)

@@ -430,6 +430,19 @@ class Main(MDApp):
         tanggal = self.root.ids.screen_manager.get_screen("gk_hull").ids.date_picker_label.text
         #print(berat,harga,tanggal)
         result = m_produksi.getGabahKering(id_cherry)
-        m_produksi.inputGabahKeringJemur(result,berat,harga,tanggal,id_panen)
+        m_produksi.inputGabahKeringJemur(result[0],berat,harga,tanggal,id_panen)
+        
+    def suton(self):
+        data_cherry = m_panen.getPanen(self.tanggal,self.blok,self.varietas,self.tipe_proses)
+        id_cherry = data_cherry[0]
+        id_panen = data_cherry[1]
+        #status = data_cherry[2]
+        berat = self.root.ids.screen_manager.get_screen("green_suton").ids.berat_green_suton.text
+        harga = self.root.ids.screen_manager.get_screen("green_suton").ids.biaya_green_suton.text
+        tanggal = self.root.ids.screen_manager.get_screen("green_suton").ids.date_picker_label.text
+        #print(berat,harga,tanggal)
+        result = m_produksi.getGabahKering(id_cherry)
+        #print("ID KERING:",result)
+        m_produksi.inputSuton(result[0],berat,harga,tanggal,id_panen)
 if __name__ == "__main__":
     Main().run()
