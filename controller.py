@@ -317,18 +317,18 @@ class Main(MDApp):
                 ##panggil halaman wetmill  
                 
                 #wetmill(self,id_cherry,id_panen)
-                print("MASOK")
+                
                 self.root.ids.screen_manager.current = "cheri"
                 self.root.ids.toolbar.title = "Cherry-Wett Mill"
-                print("A")
-            else: 
-                data_gabahB = m_produksi.getGabahBasah(data_cherry[0])
-                print(data_gabahB)
-                if data_gabahB == 0:
-                    ##panggil halaman gabahB biar nginput
-                    self.root.ids.screen_manager.current = "gb_transport"
-                    self.root.ids.toolbar.title = "GB-Transport Ke Pabrik"
-                    print("A")
+                
+            elif status == "wetmill": 
+                ##panggil halaman transport
+                self.root.ids.screen_manager.current = "gb_transport"
+                self.root.ids.toolbar.title = "GB-Transport Ke Pabrik"
+            elif status == "transport":
+                ##panggil halaman bongkar
+                self.root.ids.screen_manager.current = "gb_bongkar"
+                self.root.ids.toolbar.title = "GB-Bongkar"
         except:
             print("ERROR :",self.tanggal,self.blok,self.varietas,self.tipe_proses)
     def test(self):
@@ -347,6 +347,17 @@ class Main(MDApp):
         
             
         m_produksi.inputWetMill(id_cherry,berat,harga,tanggal,id_panen)
+    
+    def transport(self):
+        data_cherry = m_panen.getPanen(self.tanggal,self.blok,self.varietas,self.tipe_proses)
+        id_cherry = data_cherry[0]
+        id_panen = data_cherry[1]
+        status = data_cherry[2]
+        berat = self.root.ids.screen_manager.get_screen("gb_transport").ids.berat_gb_transport.text
+        harga = self.root.ids.screen_manager.get_screen("gb_transport").ids.biaya_gb_transport.text
+        tanggal = self.root.ids.screen_manager.get_screen("gb_transport").ids.date_picker_label.text
+        
+        m_produksi.inputTransport(id_cherry,berat,harga,tanggal,id_panen)
         
     
 if __name__ == "__main__":
