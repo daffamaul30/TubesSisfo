@@ -359,6 +359,18 @@ class Main(MDApp):
         
         m_produksi.inputTransport(id_cherry,berat,harga,tanggal,id_panen)
         
+    def bongkar(self):
+        data_cherry = m_panen.getPanen(self.tanggal,self.blok,self.varietas,self.tipe_proses)
+        id_cherry = data_cherry[0]
+        id_panen = data_cherry[1]
+        status = data_cherry[2]
+        berat = self.root.ids.screen_manager.get_screen("gb_bongkar").ids.berat_gb_bongkar.text
+        harga = self.root.ids.screen_manager.get_screen("gb_bongkar").ids.biaya_gb_bongkar.text
+        tanggal = self.root.ids.screen_manager.get_screen("gb_bongkar").ids.date_picker_label.text
+        print(berat,harga,tanggal)
+        result = m_produksi.getGabahBasah(id_cherry)
+        
+        m_produksi.inputBongkar(result[1],berat,harga,tanggal,id_panen)
     
 if __name__ == "__main__":
     Main().run()
