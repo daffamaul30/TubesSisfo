@@ -337,6 +337,23 @@ class Main(MDApp):
                 ##panggil halaman gk hull
                 self.root.ids.screen_manager.current = "gk_hull"
                 self.root.ids.toolbar.title = "GK-Hull"
+            elif status == "gk_hull" :
+                if self.tipe_proses == "Wet Hull" or self.tipe_proses == "Natural Wet Hull" or self.tipe_proses == "Honey Wet Hull":
+                    ##panggil gk_jemur
+                    print("GK JEMUR")
+                    self.root.ids.screen_manager.current = "gk_jemur"
+                    self.root.ids.toolbar.title = "GK-Jemur"
+                else:
+                    ##panggil GreenSuton
+                    print("GREEN SUTON")
+                    self.root.ids.screen_manager.current = "green_suton"
+                    self.root.ids.toolbar.title = "Green Bean Suton"
+            elif status == "gk_jemur" :
+                ##panggil GreenSuton 
+                print("GREEN SUTON")
+                self.root.ids.screen_manager.current = "green_suton"
+                self.root.ids.toolbar.title = "Green Bean Suton"
+                    
         except:
             print("ERROR :",self.tanggal,self.blok,self.varietas,self.tipe_proses)
     def test(self):
@@ -402,5 +419,17 @@ class Main(MDApp):
         #print(berat,harga,tanggal)
         result = m_produksi.getGabahBasah(id_cherry)
         m_produksi.inputGabahKeringHull(result[0],berat,harga,tanggal,id_panen)
+    
+    def gkJemur(self):
+        data_cherry = m_panen.getPanen(self.tanggal,self.blok,self.varietas,self.tipe_proses)
+        id_cherry = data_cherry[0]
+        id_panen = data_cherry[1]
+        #status = data_cherry[2]
+        berat = self.root.ids.screen_manager.get_screen("gk_hull").ids.berat_gk_hull.text
+        harga = self.root.ids.screen_manager.get_screen("gk_hull").ids.biaya_gk_hull.text
+        tanggal = self.root.ids.screen_manager.get_screen("gk_hull").ids.date_picker_label.text
+        #print(berat,harga,tanggal)
+        result = m_produksi.getGabahKering(id_cherry)
+        m_produksi.inputGabahKeringJemur(result,berat,harga,tanggal,id_panen)
 if __name__ == "__main__":
     Main().run()
