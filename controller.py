@@ -329,6 +329,10 @@ class Main(MDApp):
                 ##panggil halaman bongkar
                 self.root.ids.screen_manager.current = "gb_bongkar"
                 self.root.ids.toolbar.title = "GB-Bongkar"
+            elif status == "bongkar":
+                ##panggil halaman jemur
+                self.root.ids.screen_manager.current = "gb_jemur"
+                self.root.ids.toolbar.title = "GB-Jemur"
         except:
             print("ERROR :",self.tanggal,self.blok,self.varietas,self.tipe_proses)
     def test(self):
@@ -340,7 +344,7 @@ class Main(MDApp):
         data_cherry = m_panen.getPanen(self.tanggal,self.blok,self.varietas,self.tipe_proses)
         id_cherry = data_cherry[0]
         id_panen = data_cherry[1]
-        status = data_cherry[2]
+        #status = data_cherry[2]
         berat = self.root.ids.screen_manager.get_screen("cheri").ids.berat_cherry_wet_mill.text
         harga = self.root.ids.screen_manager.get_screen("cheri").ids.biaya_cherry_wet_mill.text
         tanggal = self.root.ids.screen_manager.get_screen("cheri").ids.date_picker_label.text
@@ -352,7 +356,7 @@ class Main(MDApp):
         data_cherry = m_panen.getPanen(self.tanggal,self.blok,self.varietas,self.tipe_proses)
         id_cherry = data_cherry[0]
         id_panen = data_cherry[1]
-        status = data_cherry[2]
+        #status = data_cherry[2]
         berat = self.root.ids.screen_manager.get_screen("gb_transport").ids.berat_gb_transport.text
         harga = self.root.ids.screen_manager.get_screen("gb_transport").ids.biaya_gb_transport.text
         tanggal = self.root.ids.screen_manager.get_screen("gb_transport").ids.date_picker_label.text
@@ -363,14 +367,25 @@ class Main(MDApp):
         data_cherry = m_panen.getPanen(self.tanggal,self.blok,self.varietas,self.tipe_proses)
         id_cherry = data_cherry[0]
         id_panen = data_cherry[1]
-        status = data_cherry[2]
+        #status = data_cherry[2]
         berat = self.root.ids.screen_manager.get_screen("gb_bongkar").ids.berat_gb_bongkar.text
         harga = self.root.ids.screen_manager.get_screen("gb_bongkar").ids.biaya_gb_bongkar.text
         tanggal = self.root.ids.screen_manager.get_screen("gb_bongkar").ids.date_picker_label.text
-        print(berat,harga,tanggal)
+        #print(berat,harga,tanggal)
         result = m_produksi.getGabahBasah(id_cherry)
         
         m_produksi.inputBongkar(result[1],berat,harga,tanggal,id_panen)
+    def gbJemur(self):
+        data_cherry = m_panen.getPanen(self.tanggal,self.blok,self.varietas,self.tipe_proses)
+        id_cherry = data_cherry[0]
+        id_panen = data_cherry[1]
+        #status = data_cherry[2]
+        berat = self.root.ids.screen_manager.get_screen("gb_jemur").ids.berat_gb_jemur.text
+        harga = self.root.ids.screen_manager.get_screen("gb_jemur").ids.biaya_gb_jemur.text
+        tanggal = self.root.ids.screen_manager.get_screen("gb_jemur").ids.date_picker_label.text
+        #print(berat,harga,tanggal)
+        result = m_produksi.getGabahBasah(id_cherry)
+        m_produksi.inputGabahBasahJemur(result[1],berat,harga,tanggal,id_panen)
     
 if __name__ == "__main__":
     Main().run()
