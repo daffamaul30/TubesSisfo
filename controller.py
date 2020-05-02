@@ -265,6 +265,7 @@ class Main(MDApp):
     
     def set_date_mdm(self, date_obj):
         self.previous_date2 = date_obj
+        print(self.tgl_screen)
         self.root.ids.screen_manager.get_screen(self.tgl_screen).ids.date_picker_label.text = str(date_obj)
     #def set_date_mdm(self,)
     def show_time_picker(self):
@@ -342,12 +343,11 @@ class Main(MDApp):
         status = data_cherry[2]
         berat = self.root.ids.screen_manager.get_screen("cheri").ids.berat_cherry_wet_mill.text
         harga = self.root.ids.screen_manager.get_screen("cheri").ids.biaya_cherry_wet_mill.text
-        tanggal = self.root.ids.screen_manager.get_screen("cheri").ids.date_picker_label_cherry_wet_mill.text
-        try:
+        tanggal = self.root.ids.screen_manager.get_screen("cheri").ids.date_picker_label.text
+        
             
-            m_produksi.inputWetMill(id_cherry,berat,harga,tanggal,id_panen)
-        except:
-            print("ERROR WETMILL : ",id_cherry,berat,harga,tanggal,id_panen)
+        m_produksi.inputWetMill(id_cherry,berat,harga,tanggal,id_panen)
+        
     
 if __name__ == "__main__":
     Main().run()

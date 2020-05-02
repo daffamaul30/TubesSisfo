@@ -37,20 +37,24 @@ def inputWetMill(id_cherry,berat,harga,tanggal,id_panen):
     query = "INSERT INTO biaya (berat_kg,biaya,tanggal) VALUES (%s,%s,%s)"
     val = (berat,harga,tanggal)
     print(query,val)
-    mycursor.execute(query,val)
-    mycursor.commit()
-    if mycursor.rowcount == 1:
-        query = "INSERT INTO wetmill (id_cherry,id_biaya) VALUES(%s,%s)"
-        val = (id_cherry,mycursor.lastrowid)
+    try:
+        mycursor.execute(query,val)
+        #conn.commit()
         if mycursor.rowcount == 1:
-            query = "UPDATE panen SET status='wetmill' WHERE id_panen = "+str(id_panen)          
-            mycursor.execute(query)
-            mycursor.commit()
-            print("Data Added")
-        else:
-            print("FAILED")   
-    else:
-        print("FAILED")
+            
+            query = "INSERT INTO wetmill (id_cherry,id_biaya) VALUES (%s,%s)"
+            val = (str(id_cherry),str(mycursor.lastrowid))
+            mycursor.execute(query,val)
+            #conn.commit()
+            if mycursor.rowcount == 1:
+                print("WETMILL SUKSES")
+                query = "UPDATE panen SET status='wetmill' WHERE id_panen = "+str(id_panen)          
+                mycursor.execute(query)
+                conn.commit()
+                print("Data Added")
+            
+    except mysql.connector.Error as err:
+            print(err)
 def getWetMill(id_cherry):
     conn = connection.koneksi()
     mycursor = conn.cursor()
