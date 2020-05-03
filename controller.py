@@ -155,6 +155,9 @@ class Main(MDApp):
             "text": "Honey Lactic","callback": self.callback_for_proses_items_search,},
         ]
         
+    def delete(self, *args):
+        print("MASOK", args[0])
+        
     def callback_for_proses_items(self, *args):
         toast(args[0])
         self.root.ids.screen_manager.get_screen("inputpanen").ids.proses.text = args[0]

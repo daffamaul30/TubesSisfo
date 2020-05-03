@@ -6,6 +6,10 @@
         app.root.ids.screen_manager.current = "hasilakhir"
         app.root.ids.screen_manager.transition.direction = "left"
         app.test_toast(self.id)
+    IconRightWidget:
+        icon: "delete"
+        pos_hint: {"center_x": 0.9, "center_y": 0.5}
+        on_release: app.delete(root.id)
 <Dashboard>
     name: "dashboard"
     BoxLayout:
