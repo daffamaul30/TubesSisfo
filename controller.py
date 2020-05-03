@@ -187,7 +187,6 @@ class Main(MDApp):
         return Builder.load_file("kv/Main.kv")
     
     def delete(self, *args):
-        print("MASOK", args[0])
         m_panen.deletePanen(self.arrayPanen[int(args[0])][8])
         self.refresh_dashboard()
         
@@ -205,9 +204,9 @@ class Main(MDApp):
             result = m_produksi.getDataSubProcess(i[4],i[3],i[8],False)
             
             try :
-                hpp = result[1]
+                hpp = int(i[6]) + int(result[1])
             except:
-                hpp = "Error Data"
+                hpp = int(i[6])
             #x.insert(len(x),hpp)
             x = i + (hpp,)
             
@@ -240,6 +239,7 @@ class Main(MDApp):
         varietas = self.arrayPanen[int(args[0])][2]
         proses = self.arrayPanen[int(args[0])][3] 
         status = self.arrayPanen[int(args[0])][4]
+        berat = self.arrayPanen[int(args[0])][5]
         biaya = str(self.arrayPanen[int(args[0])][9]) 
         id_panen = self.arrayPanen[int(args[0])][8]
         self.root.ids.screen_manager.get_screen("hasilakhir").ids.hasilakhir_date.text = tanggal
@@ -253,10 +253,22 @@ class Main(MDApp):
         else:
             subprocess = ["Panen","Cherry Wet Mill","Gabah Basah Transport","Gabah Basah Bongkar","Gabah Basah Jemur","Gabah Kering Hull","Green Bean Suton","Green Bean Grading","Green Bean Sorter","Green Bean Hand Pick"]
         print(self.arrayPanen[int(args[0])])
-        result = m_produksi.getDataSubProcess(status,proses,id_panen,True)
+        data = m_produksi.getDataSubProcess(status,proses,id_panen,True)
+        result =  []
+        result.append(berat)
+        j = 0
+        
+        if status != "wetmill":
+            for i in data:
+                print(i ,j)
+                j+=1
+                result.append(i[0])
+        elif status == "wetmill":
+            result.append(data[0][0])
         beratSubProcess = []
         for i in result:
-            beratSubProcess.append(i[0])
+            print(i)
+            beratSubProcess.append(i)
         
         subprocess = subprocess[0:len(beratSubProcess)]
         print(beratSubProcess)
