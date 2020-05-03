@@ -46,28 +46,8 @@ class Laporan(Screen):
     pass
     
 class InputPanen(Screen):
-    def pop(self):
-        # popUp = MDDialog(title="Konfirmasi", text="Apakah Anda yakin?",
-        #     size_hint=[.7,.3], events_callback=self.call, auto_dismiss=False,
-        #     text_button_cancel="Tidak", text_button_ok="Ya")
-        # popUp.open() 
-        show_popup(self)
-
-    # def call(self, text_of_selection,pup):
-    #     return text_of_selection
-# show popup
-class layout_popup(FloatLayout):
     pass
-
-def show_popup(self):
-    popUp = MDDialog(title="Konfirmasi", text="Apakah Anda yakin?",
-            size_hint=[.7,.3], auto_dismiss=False,
-            text_button_cancel="Tidak", text_button_ok="Ya")
-    print(popUp.text_button_ok, popUp.text_button_cancel)
-    if on_press=popUp.text_button_ok:
-        print("a")
-    popUp.open()
-    
+  
 class GB_Transport(Screen):
     pass
 
