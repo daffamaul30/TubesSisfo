@@ -666,3 +666,21 @@ def getDataSubProcess(status,tipe_proses,id_panen):
         return result
     except:
         return 0
+    
+def getTanggalTerakhir(id_panen):
+    query = """SELECT DATE_FORMAT(biaya.tanggal,'%d/%m/%Y') FROM biaya
+    JOIN hand_pick ON hand_pick.id_biaya = biaya.id_biaya
+    JOIN green_bean ON green_bean.id_bean = hand_pick.id_bean
+    JOIN gabah_kering ON gabah_kering.id_gabahK = green_bean.id_gabahK
+    JOIN gabah_basah ON gabah_basah.id_gabahB = gabah_kering.id_gabahB
+    JOIN cherry ON cherry.id_cherry = gabah_basah.id_cherry
+    WHERE cherry.id_panen = {} """.format(id_panen)
+    conn = connection.koneksi()
+    mycursor = conn.cursor()
+    mycursor.execute(query)
+    try:
+        result = mycursor.fetchone()
+        return result
+    except:
+        return 0
+    
