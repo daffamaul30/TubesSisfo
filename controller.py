@@ -207,6 +207,13 @@ class Main(MDApp):
                     )
                 )
             )
+    def afterInput(self):
+        self.root.ids.screen_manager.get_screen("hasilpanen").ids.hsl_tgl_panen.text = self.tanggal
+        self.root.ids.screen_manager.get_screen("hasilpanen").ids.hsl_varietas.text = self.varietas
+        self.root.ids.screen_manager.get_screen("hasilpanen").ids.hsl_blok = self.blok
+        self.root.ids.screen_manager.get_screen("hasilpanen").ids.hsl_berat = self.berat
+        self.root.ids.screen_manager.get_screen("hasilpanen").ids.hsl_biaya = self.biaya
+        self.root.ids.screen_manager.get_screen("hasilpanen").ids.hsl_proses = self.tipe_proses
     def finalReport(self):   
         # TAROH DI FUNCTION SEBELUM PINDAH KE PAGE HASILTERAKHIR
         print("FINAL")
@@ -264,6 +271,14 @@ class Main(MDApp):
         biaya = self.root.ids.screen_manager.get_screen("inputpanen").ids.biayacherry.text
         try:
             m_panen.inputPanen(tanggal,blok,varietas,tipe_proses,berat,biaya)
+            self.root.ids.screen_manager.get_screen("hasilpanen").ids.hsl_tgl_panen.text = tanggal
+            self.root.ids.screen_manager.get_screen("hasilpanen").ids.hsl_varietas.text = varietas
+            self.root.ids.screen_manager.get_screen("hasilpanen").ids.hsl_blok.text = blok
+            self.root.ids.screen_manager.get_screen("hasilpanen").ids.hsl_berat.text = berat
+            self.root.ids.screen_manager.get_screen("hasilpanen").ids.hsl_biaya.text = biaya
+            self.root.ids.screen_manager.get_screen("hasilpanen").ids.hsl_proses.text = tipe_proses
+            self.root.ids.screen_manager.current = "hasilpanen"
+            root.manager.transition.direction = "left"
         except:
             print("ERROR : ",tanggal,blok,varietas,tipe_proses)
         finally:
@@ -273,8 +288,12 @@ class Main(MDApp):
             self.root.ids.screen_manager.get_screen("inputpanen").ids.proses.text = ""
             self.root.ids.screen_manager.get_screen("inputpanen").ids.berat.text = ""
             self.root.ids.screen_manager.get_screen("inputpanen").ids.biayacherry.text = ""
+<<<<<<< HEAD
             self.root.ids.screen_manager.current = "hasilpanen"
             self.root.ids.toolbar.title = "Panen"
+=======
+            
+>>>>>>> 5a170859f9649335bcde0b9fea2605a7337356d4
             
     def dataPanen(self):
         self.tanggal = self.root.ids.screen_manager.get_screen("search").ids.date_picker_label.text
