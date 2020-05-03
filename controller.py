@@ -187,6 +187,7 @@ class Main(MDApp):
     
     def on_start(self):
         result = m_panen.getAllPanen()
+        j = 0
         for i in result:
             update = "On Progress"
             print(i)
@@ -201,7 +202,7 @@ class Main(MDApp):
             self.root.ids.screen_manager.get_screen("dashboard").ids.box.add_widget(
                 MDExpansionPanel(
                     icon=f"kv/assets/frinsa.png",
-                    content=Content(text="Biaya (Hpp) /Kg : Rp. {}".format(hpp), 
+                    content=Content(id="{}".format(j),text="Biaya (Hpp) /Kg : Rp. {}".format(hpp), 
                                     secondary_text="Tanggal Panen : {}".format(i[0]),
                                     tertiary_text=update),
                     panel_cls=MDExpansionPanelThreeLine(
@@ -211,6 +212,12 @@ class Main(MDApp):
                     )
                 )
             )
+            j+=1
+    
+    def test_toast(self,*args):
+        toast(args[0])
+        print(args[0])        
+    
     def afterInput(self):
         self.root.ids.screen_manager.get_screen("hasilpanen").ids.hsl_tgl_panen.text = self.tanggal
         self.root.ids.screen_manager.get_screen("hasilpanen").ids.hsl_varietas.text = self.varietas

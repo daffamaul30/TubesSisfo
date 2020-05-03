@@ -2,8 +2,10 @@
 # :include kv/Main.kv
 
 <Content>:
-    id: listproduk
-    on_release: app.root.ids.screen_manager.current = "hasilakhir"
+    on_release: 
+        app.root.ids.screen_manager.current = "hasilakhir"
+        app.root.ids.screen_manager.transition.direction = "left"
+        app.test_toast(self.id)
 <Dashboard>
     name: "dashboard"
     BoxLayout:
