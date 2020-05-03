@@ -46,7 +46,7 @@ def deletePanen(id):
 def getAllPanen():
     conn = connection.koneksi()
     mycursor = conn.cursor()
-    query = "SELECT * FROM panen JOIN cherry ON panen.id_panen = cherry.id_panen"
+    query = "SELECT DATE_FORMAT(tanggal,'%d/%m/%Y'),blok,varietas,tipe_proses,status,jumlah_kg,harga_kg FROM panen JOIN cherry ON panen.id_panen = cherry.id_panen "
     mycursor.execute(query)
     try : 
         result = mycursor.fetchall()

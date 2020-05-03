@@ -208,13 +208,13 @@ class Main(MDApp):
             self.root.ids.screen_manager.get_screen("dashboard").ids.box.add_widget(
                 MDExpansionPanel(
                     icon=f"kv/assets/frinsa.png",
-                    content=Content(text="Biaya (Hpp) /Kg : {}".format(result[i][9]), 
-                                    secondary_text="Tanggal Panen : {}".format(result[i][1]),
+                    content=Content(text="Biaya (Hpp) /Kg : {}".format(result[i][6]), 
+                                    secondary_text="Tanggal Panen : {}".format(result[i][0]),
                                     tertiary_text='Tanggal produksi Terakhir : {}'.format("10/01/2001")),
                     panel_cls=MDExpansionPanelThreeLine(
-                        text="Proses : {}".format(result[i][4]),
-                        secondary_text="Blok : {}".format(result[i][2]),
-                        tertiary_text="Varietas : {}".format(result[i][3]),
+                        text="Proses : {}".format(result[i][3]),
+                        secondary_text="Blok : {}".format(result[i][1]),
+                        tertiary_text="Varietas : {}".format(result[i][2]),
                     )
                 )
             )
