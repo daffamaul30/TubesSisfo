@@ -197,7 +197,7 @@ class Main(MDApp):
             self.root.ids.screen_manager.get_screen("dashboard").ids.box.add_widget(
                 MDExpansionPanel(
                     icon=f"kv/assets/frinsa.png",
-                    content=Content(text="Biaya (Hpp) /Kg : {}".format(i[6]), 
+                    content=Content(text="Biaya (Hpp) /Kg : Rp. {}".format(i[6]), 
                                     secondary_text="Tanggal Panen : {}".format(i[0]),
                                     tertiary_text=update),
                     panel_cls=MDExpansionPanelThreeLine(
