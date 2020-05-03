@@ -221,9 +221,11 @@ class Main(MDApp):
                     )
                 )
             )
-            
+    def finalReport(self):   
         # TAROH DI FUNCTION SEBELUM PINDAH KE PAGE HASILTERAKHIR
-        plt.plot(("tttttttttttttttt","ini","ini","ini","ini","ini","ini","ini","ini","ini"),(1,2,1,2,1,2,1,2,1,2)) # ((Subproses),(Berat)) 
+        print("FINAL")
+        self.root.ids.screen_manager.current = "hasilakhir"
+        plt.plot(("tttttttttttttttt","inxi","indi","inai","iniFFF","invgi","inqi","inri","inei","izni"),(1,5,1,2,9,2,1,2,1,2)) # ((Subproses),(Berat)) 
         plt.title("Berat Per Subproses", fontsize=10)
         plt.yticks(fontsize=7)
         plt.xticks(fontsize=6)
@@ -342,6 +344,7 @@ class Main(MDApp):
                 self.root.ids.toolbar.title = "Green Bean Color Sorter"
             elif status == "green_color":
                 ##panggil Green HandPick
+                #finalReport(self)
                 self.root.ids.screen_manager.current = "green_hand_pick"
                 self.root.ids.toolbar.title = "Green Bean Hand Pick"      
         except:
@@ -448,6 +451,7 @@ class Main(MDApp):
         tanggal = self.root.ids.screen_manager.get_screen("green_hand_pick").ids.date_picker_label.text
         result = m_produksi.getGabahKering(id_cherry)
         m_produksi.inputHandPick(result[0],berat,harga,tanggal,id_panen)
+        
         
 if __name__ == "__main__":
     Main().run()
