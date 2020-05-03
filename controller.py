@@ -118,8 +118,6 @@ class Main(MDApp):
             {"viewclass": "MDMenuItem",
             "text": "Kopi Robusta","callback": self.callback_for_varietas_items,},
             {"viewclass": "MDMenuItem",
-            "text": "Kopi Luwak","callback": self.callback_for_varietas_items,},
-            {"viewclass": "MDMenuItem",
             "text": "Kopi Arabica","callback": self.callback_for_varietas_items,},
         ]
         # Dropdown Proses
@@ -148,8 +146,6 @@ class Main(MDApp):
         self.varietas_labels_search = [
             {"viewclass": "MDMenuItem",
             "text": "Kopi Robusta","callback": self.callback_for_varietas_items_search,},
-            {"viewclass": "MDMenuItem",
-            "text": "Kopi Luwak","callback": self.callback_for_varietas_items_search,},
             {"viewclass": "MDMenuItem",
             "text": "Kopi Arabica","callback": self.callback_for_varietas_items_search,},
         ]
