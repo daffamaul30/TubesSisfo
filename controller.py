@@ -189,9 +189,11 @@ class Main(MDApp):
     def delete(self, *args):
         print("MASOK", args[0])
         m_panen.deletePanen(self.arrayPanen[int(args[0])][8])
+        self.refresh_dashboard()
+        
+    def refresh_dashboard(self):
         self.root.ids.screen_manager.get_screen("dashboard").ids.box.clear_widgets()
         self.on_start()
-        
     
     def on_start(self):
         result = m_panen.getAllPanen()
@@ -359,6 +361,7 @@ class Main(MDApp):
             self.root.ids.screen_manager.get_screen("hasilpanen").ids.hsl_berat.text = berat
             self.root.ids.screen_manager.get_screen("hasilpanen").ids.hsl_biaya.text = biaya
             self.root.ids.screen_manager.get_screen("hasilpanen").ids.hsl_proses.text = tipe_proses
+            self.refresh_dashboard()
             self.root.ids.screen_manager.current = "hasilpanen"
             root.manager.transition.direction = "left"
         except:
