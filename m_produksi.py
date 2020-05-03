@@ -254,5 +254,110 @@ def inputHandPick(id_bean,berat,harga,tanggal,id_panen):
                 print("DATA ADDED")
     except mysql.connector.Error as err:
         print(err)
+def getDataWetMill(id_cherry):
+    conn = connection.koneksi()
+    mycursor = conn.cursor()
+    query = "SELECT berat_kg,biaya FROM biaya JOIN wetmill ON biaya.id_biaya = wetmill.id_biaya JOIN cherry ON wetmill.id_cherry = cherry.id_cherry WHERE cherry.id_cherry = "+str(id_cherry)
+    mycursor.execute(query)
+    try:
+        result = mycursor.fetchone()
+        return result
+    except:
+        return 0
+def getDataTransport(id_cherry):
     
+    query = "SELECT berat_kg,biaya FROM biaya JOIN transport ON biaya.id_biaya = transport.id_biaya JOIN gabah_basah ON gabah_basah.id_gabahB = transport.id_gabahB WHERE id_cherry = "+str(id_cherry)
+    conn = connection.koneksi()
+    mycursor = conn.cursor()
+    mycursor.execute(query)
+    try:
+        result = mycursor.fetchone()
+        return result
+    except:
+        return 0
+
+def getDataBongkar(id_cherry):
+    query = "SELECT berat_kg,biaya FROM biaya JOIN bongkar ON biaya.id_biaya = bongkar.id_biaya JOIN gabah_basah ON gabah_basah.id_gabahB = bongkar.id_gabahB WHERE id_cherry = "+str(id_cherry)
+    conn = connection.koneksi()
+    mycursor = conn.cursor()
+    mycursor.execute(query)
+    try:
+        result = mycursor.fetchone()
+        return result
+    except:
+        return 0
+    
+def getDataGabahBasahJemur(id_cherry):
+    query = "SELECT berat_kg,biaya FROM biaya JOIN jemurB ON biaya.id_biaya = jemurB.id_biaya JOIN gabah_basah ON gabah_basah.id_gabahB = jemurB.id_gabahB WHERE id_cherry = "+str(id_cherry)
+    conn = connection.koneksi()
+    mycursor = conn.cursor()
+    mycursor.execute(query)
+    try:
+        result = mycursor.fetchone()
+        return result
+    except:
+        return 0
+
+def getDataGabahKeringHull(id_gabahB):
+    query = "SELECT berat_kg,biaya FROM biaya JOIN hull ON biaya.id_biaya = hull.id_biaya JOIN gabah_kering ON gabah_kering.id_gabahK = hull.id_gabahK WHERE id_gabahB = "+str(id_gabahB)
+    conn = connection.koneksi()
+    mycursor = conn.cursor()
+    mycursor.execute(query)
+    try:
+        result = mycursor.fetchone()
+        return result
+    except:
+        return 0
+def getDataGabahKeringJemur(id_gabahB):
+    query = "SELECT berat_kg,biaya FROM biaya JOIN jemurK ON biaya.id_biaya = jemurK.id_biaya JOIN gabah_kering ON gabah_kering.id_gabahK = jemurK.id_gabahK WHERE id_gabahB = "+str(id_gabahB)
+    conn = connection.koneksi()
+    mycursor = conn.cursor()
+    mycursor.execute(query)
+    try:
+        result = mycursor.fetchone()
+        return result
+    except:
+        return 0
+
+def getDataGreenBeanSuton(id_gabahK):
+    query = "SELECT berat_kg,biaya FROM biaya JOIN suton ON biaya.id_biaya = suton.id_biaya JOIN green_bean ON green_bean.id_bean = suton.id_bean WHERE id_gabahK = "+str(id_gabahK)
+    conn = connection.koneksi()
+    mycursor = conn.cursor()
+    mycursor.execute(query)
+    try:
+        result = mycursor.fetchone()
+        return result
+    except:
+        return 0
+
+def getDataGreenBeanGrading(id_gabahK):
+    query = "SELECT berat_kg,biaya FROM biaya JOIN grading ON biaya.id_biaya = grading.id_biaya JOIN green_bean ON green_bean.id_bean = grading.id_bean WHERE id_gabahK = "+str(id_gabahK)
+    conn = connection.koneksi()
+    mycursor = conn.cursor()
+    mycursor.execute(query)
+    try:
+        result = mycursor.fetchone()
+        return result
+    except:
+        return 0
+def getDataGreenBeanSorter(id_gabahK):
+    query = "SELECT berat_kg,biaya FROM biaya JOIN sorter ON biaya.id_biaya = sorter.id_biaya JOIN green_bean ON green_bean.id_bean = sorter.id_bean WHERE id_gabahK = "+str(id_gabahK)
+    conn = connection.koneksi()
+    mycursor = conn.cursor()
+    mycursor.execute(query)
+    try:
+        result = mycursor.fetchone()
+        return result
+    except:
+        return 0
+def getDataGreenBeanHandPick(id_gabahK):
+    query = "SELECT berat_kg,biaya FROM biaya JOIN hand_pick ON biaya.id_biaya = hand_pick.id_biaya JOIN green_bean ON green_bean.id_bean = hand_pick.id_bean WHERE id_gabahK = "+str(id_gabahK)
+    conn = connection.koneksi()
+    mycursor = conn.cursor()
+    mycursor.execute(query)
+    try:
+        result = mycursor.fetchone()
+        return result
+    except:
+        return 0
     

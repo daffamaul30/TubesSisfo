@@ -451,7 +451,15 @@ class Main(MDApp):
         tanggal = self.root.ids.screen_manager.get_screen("green_hand_pick").ids.date_picker_label.text
         result = m_produksi.getGabahKering(id_cherry)
         m_produksi.inputHandPick(result[0],berat,harga,tanggal,id_panen)
-        
+    def getAllSubProcess(self):
+        data_cherry = m_panen.getPanen(self.tanggal,self.blok,self.varietas,self.tipe_proses)
+        id_cherry = data_cherry[0]
+        id_panen = data_cherry[1]
+        id_gabahB = m_produksi.getGabahBasah(id_cherry)[0]
+        id_gabahK = m_produksi.getGabahKering(id_cherry)[0]
+        id_bean = m_produksi.getGreenBean(id_cherry)[0]
+       
+    
         
 if __name__ == "__main__":
     Main().run()
