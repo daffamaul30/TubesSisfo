@@ -43,3 +43,13 @@ def deletePanen(id):
     mycursor.execute(query)
     conn.commit()
     print("Data Deleted")
+def getAllPanen():
+    conn = connection.koneksi()
+    mycursor = conn.cursor()
+    query = "SELECT * FROM panen JOIN cherry ON panen.id_panen = cherry.id_panen"
+    mycursor.execute(query)
+    try : 
+        result = mycursor.fetchall()
+        return result
+    except:
+        return 0
