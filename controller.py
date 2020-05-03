@@ -157,6 +157,7 @@ class Main(MDApp):
         
     def delete(self, *args):
         print("MASOK", args[0])
+        m_panen.deletePanen()
         
     def callback_for_proses_items(self, *args):
         toast(args[0])
