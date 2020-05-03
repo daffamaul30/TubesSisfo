@@ -664,13 +664,19 @@ def getDataSubProcess(status,tipe_proses,id_panen,focus):
     conn = connection.koneksi()
     mycursor = conn.cursor()
     mycursor.execute(query)
-    
-    try:
-        result = mycursor.fetchone()
-        return result
-    except:
-        return 0
-    
+    if focus :
+        try:
+            result = mycursor.fetchall()
+            return result
+        except:
+            return 0
+    else:
+        try:
+            result = mycursor.fetchone()
+            return result
+        except:
+            return 0
+        
 def getTanggalTerakhir(id_panen):
     query = """SELECT DATE_FORMAT(biaya.tanggal,'%d/%m/%Y') FROM biaya
     JOIN hand_pick ON hand_pick.id_biaya = biaya.id_biaya

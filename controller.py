@@ -233,15 +233,32 @@ class Main(MDApp):
         toast(args[0])
         print(args[0])    
         print(self.arrayPanen[int(args[0])][0])
-        self.root.ids.screen_manager.get_screen("hasilakhir").ids.hasilakhir_date.text = self.arrayPanen[int(args[0])][0]
-        self.root.ids.screen_manager.get_screen("hasilakhir").ids.hasilakhir_blok.text = self.arrayPanen[int(args[0])][1]
-        self.root.ids.screen_manager.get_screen("hasilakhir").ids.hasilakhir_varietas.text = self.arrayPanen[int(args[0])][2] 
-        self.root.ids.screen_manager.get_screen("hasilakhir").ids.hasilakhir_proses.text = self.arrayPanen[int(args[0])][3] 
-        self.root.ids.screen_manager.get_screen("hasilakhir").ids.hasilakhir_biaya.text = str(self.arrayPanen[int(args[0])][9])    
+        tanggal = self.arrayPanen[int(args[0])][0]
+        blok = self.arrayPanen[int(args[0])][1]
+        varietas = self.arrayPanen[int(args[0])][2]
+        proses = self.arrayPanen[int(args[0])][3] 
+        status = self.arrayPanen[int(args[0])][4]
+        biaya = str(self.arrayPanen[int(args[0])][9]) 
+        id_panen = self.arrayPanen[int(args[0])][8]
+        self.root.ids.screen_manager.get_screen("hasilakhir").ids.hasilakhir_date.text = tanggal
+        self.root.ids.screen_manager.get_screen("hasilakhir").ids.hasilakhir_blok.text = blok
+        self.root.ids.screen_manager.get_screen("hasilakhir").ids.hasilakhir_varietas.text = varietas 
+        self.root.ids.screen_manager.get_screen("hasilakhir").ids.hasilakhir_proses.text = proses
+        self.root.ids.screen_manager.get_screen("hasilakhir").ids.hasilakhir_biaya.text = biaya   
         ###
-        subprocess = ["Panen","Cherry Wet Mill","Gabah Basah Transport","Gabah Basah Bongkar","Gabah Basah Jemur","Gabah Kering Hull","Gabah Kering Jemur","Green Bean Suton","Green Bean Grading","Green Bean Sorter","Green Bean Hand Pick"]
+        if proses == "Wet Hull" or proses == "Natural Wet Hull" or proses == "Honey Wet Hull":
+            subprocess = ["Panen","Cherry Wet Mill","Gabah Basah Transport","Gabah Basah Bongkar","Gabah Basah Jemur","Gabah Kering Hull","Gabah Kering Jemur","Green Bean Suton","Green Bean Grading","Green Bean Sorter","Green Bean Hand Pick"]
+        else:
+            subprocess = ["Panen","Cherry Wet Mill","Gabah Basah Transport","Gabah Basah Bongkar","Gabah Basah Jemur","Gabah Kering Hull","Green Bean Suton","Green Bean Grading","Green Bean Sorter","Green Bean Hand Pick"]
         print(self.arrayPanen[int(args[0])])
-        print(subprocess[0:4])
+        result = m_produksi.getDataSubProcess(status,proses,id_panen,True)
+        beratSubProcess = []
+        for i in result:
+            beratSubProcess.append(i[0])
+        
+        subprocess = subprocess[0:len(beratSubProcess)]
+        print(beratSubProcess)
+        print(subprocess)
         #result = m_produksi.getDataSubProcess(i[4],i[3],i[8],False)
         # beratSubProcess = []
         # beratSubProcess.append(data_cherry[3])
@@ -260,16 +277,17 @@ class Main(MDApp):
         # beratSubProcess.append(m_produksi.getDataGreenBeanHandPick(id_gabahK)[0])
         
         
-        # print("FINAL")
-        # self.root.ids.screen_manager.current = "hasilakhir"
-        # plt.plot((subprocess),(beratSubProcess)) # ((Subproses),(Berat)) 
-        # plt.title("Berat Per Subproses", fontsize=10)
-        # plt.yticks(fontsize=7)
-        # plt.xticks(fontsize=6)
-        # # plt.xticks(rotation=90, fontsize=6)
-        # # plt.tight_layout()
-        # # box.add_widget(FigureCanvasKivyAgg(plt.gcf()))
-        # self.root.ids.screen_manager.get_screen("hasilakhir").ids.box.add_widget(FigureCanvasKivyAgg(plt.gcf()))
+        print("FINAL")
+        self.root.ids.screen_manager.current = "hasilakhir"
+        plt.plot((subprocess),(beratSubProcess)) # ((Subproses),(Berat)) 
+        plt.title("Berat Per Subproses", fontsize=10)
+        plt.yticks(fontsize=7)
+        plt.xticks(fontsize=6)
+        # plt.xticks(rotation=90, fontsize=6)
+        # plt.tight_layout()
+        # box.add_widget(FigureCanvasKivyAgg(plt.gcf()))
+        self.root.ids.screen_manager.get_screen("hasilakhir").ids.box.add_widget(FigureCanvasKivyAgg(plt.gcf()))
+        self.root.ids.screen_manager.transition.direction = "left"
         ###
     def afterInput(self):
         self.root.ids.screen_manager.get_screen("hasilpanen").ids.hsl_tgl_panen.text = self.tanggal
