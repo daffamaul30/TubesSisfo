@@ -362,6 +362,10 @@ class Main(MDApp):
                 ##panggil Green Color
                 self.root.ids.screen_manager.current = "green_color"
                 self.root.ids.toolbar.title = "Green Bean Color Sorter"
+            elif status == "green_color":
+                ##panggil Green HandPick
+                self.root.ids.screen_manager.current = "green_hand_pick"
+                self.root.ids.toolbar.title = "Green Bean Hand Pick"
                     
         except:
             print("ERROR :",self.tanggal,self.blok,self.varietas,self.tipe_proses)
@@ -477,5 +481,17 @@ class Main(MDApp):
         result = m_produksi.getGabahKering(id_cherry)
         
         m_produksi.inputColor(result[0],berat,harga,tanggal,id_panen)
+    def handPick(self):
+        data_cherry = m_panen.getPanen(self.tanggal,self.blok,self.varietas,self.tipe_proses)
+        id_cherry = data_cherry[0]
+        id_panen = data_cherry[1]
+        #status = data_cherry[2]
+        berat = self.root.ids.screen_manager.get_screen("green_hand_pick").ids.berat_green_hand_pick.text
+        harga = self.root.ids.screen_manager.get_screen("green_hand_pick").ids.biaya_green_hand_pick.text
+        tanggal = self.root.ids.screen_manager.get_screen("green_hand_pick").ids.date_picker_label.text
+        #print(berat,harga,tanggal)
+        result = m_produksi.getGabahKering(id_cherry)
+        
+        m_produksi.inputHandPick(result[0],berat,harga,tanggal,id_panen)
 if __name__ == "__main__":
     Main().run()
