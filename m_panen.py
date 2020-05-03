@@ -38,7 +38,7 @@ def getPanen(tanggal,blok,varietas,tipe_proses):
 def deletePanen(id):
     conn = connection.koneksi()
     mycursor = conn.cursor()
-    query = "DELETE FROM biji_kopi WHERE id_panen = %i" %(id)
+    query = "DELETE FROM panen WHERE id_panen = "+str(id)
     print(query)
     mycursor.execute(query)
     conn.commit()
