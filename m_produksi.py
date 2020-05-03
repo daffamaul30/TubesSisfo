@@ -361,15 +361,19 @@ def getDataGreenBeanHandPick(id_gabahK):
     except:
         return 0
     
-def getDataSubProcess(status,tipe_proses,id_panen):
+def getDataSubProcess(status,tipe_proses,id_panen,focus):
+    if focus:
+        query = "SELECT `biaya`.`berat_kg` AS 'berat total', `biaya`.`biaya` AS 'Total Biaya'"
+    else :
+        query = "SELECT SUM(`biaya`.`berat_kg`) AS 'berat total', SUM(`biaya`.`biaya`) AS 'Total Biaya'"
     if status == "cherry":
-        query = """SELECT SUM(`biaya`.`berat_kg`) AS 'berat total', SUM(`biaya`.`biaya`) AS 'Total Biaya'
+        query += """
             FROM `biaya`
             JOIN `panen`
             JOIN `cherry` ON (`cherry`.`id_panen` = `panen`.`id_panen`)
             WHERE (`panen`.`id_panen` = {})""".format(id_panen)
     elif status == "wetmill":
-        query = """SELECT SUM(`biaya`.`berat_kg`) AS 'berat total', SUM(`biaya`.`biaya`) AS 'Total Biaya'
+        query += """'
             FROM `biaya`
             JOIN `panen`
             JOIN `cherry` ON (`cherry`.`id_panen` = `panen`.`id_panen`)
@@ -377,7 +381,7 @@ def getDataSubProcess(status,tipe_proses,id_panen):
             WHERE (`panen`.`id_panen` = {}) 
             AND (`biaya`.`id_biaya` = `wetmill`.`id_biaya`)""".format(id_panen)
     elif status == "transport":
-        query = """SELECT SUM(`biaya`.`berat_kg`) AS 'berat total', SUM(`biaya`.`biaya`) AS 'Total Biaya'
+        query += """
             FROM `biaya`
             JOIN `panen`
             JOIN `cherry` ON (`cherry`.`id_panen` = `panen`.`id_panen`)
@@ -388,7 +392,7 @@ def getDataSubProcess(status,tipe_proses,id_panen):
             AND ((`biaya`.`id_biaya` = `wetmill`.`id_biaya`)
             OR (`biaya`.`id_biaya` = `transport`.`id_biaya`))""".format(id_panen)
     elif status == "bongkar":
-        query = """SELECT SUM(`biaya`.`berat_kg`) AS 'berat total', SUM(`biaya`.`biaya`) AS 'Total Biaya'
+        query += """
             FROM `biaya`
             JOIN `panen`
             JOIN `cherry` ON (`cherry`.`id_panen` = `panen`.`id_panen`)
@@ -401,7 +405,7 @@ def getDataSubProcess(status,tipe_proses,id_panen):
             OR (`biaya`.`id_biaya` = `transport`.`id_biaya`)
             OR (`biaya`.`id_biaya` = `bongkar`.`id_biaya`))""".format(id_panen)
     elif status == "gb_jemur":
-        query = """SELECT SUM(`biaya`.`berat_kg`) AS 'berat total', SUM(`biaya`.`biaya`) AS 'Total Biaya'
+        query += """
             FROM `biaya`
             JOIN `panen`
             JOIN `cherry` ON (`cherry`.`id_panen` = `panen`.`id_panen`)
@@ -416,7 +420,7 @@ def getDataSubProcess(status,tipe_proses,id_panen):
             OR (`biaya`.`id_biaya` = `bongkar`.`id_biaya`)
             OR (`biaya`.`id_biaya` = `jemurB`.`id_biaya`))""".format(id_panen)
     elif status == "gk_hull":
-        query = """SELECT SUM(`biaya`.`berat_kg`) AS 'berat total', SUM(`biaya`.`biaya`) AS 'Total Biaya'
+        query += """
             FROM `biaya`
             JOIN `panen`
             JOIN `cherry` ON (`cherry`.`id_panen` = `panen`.`id_panen`)
@@ -434,7 +438,7 @@ def getDataSubProcess(status,tipe_proses,id_panen):
             OR (`biaya`.`id_biaya` = `jemurB`.`id_biaya`)
             OR (`biaya`.`id_biaya` = `hull`.`id_biaya`))""".format(id_panen)
     elif status == "gk_jemur":
-        query = """SELECT SUM(`biaya`.`berat_kg`) AS 'berat total', SUM(`biaya`.`biaya`) AS 'Total Biaya'
+        query += """
             FROM `biaya`
             JOIN `panen`
             JOIN `cherry` ON (`cherry`.`id_panen` = `panen`.`id_panen`)
@@ -455,7 +459,7 @@ def getDataSubProcess(status,tipe_proses,id_panen):
             OR (`biaya`.`id_biaya` = `jemurK`.`id_biaya`))""".format(id_panen)
     elif status == "green_suton":
         if tipe_proses != "Wet Hull" or tipe_proses != "Natural Wet Hull" or tipe_proses != "Honey Wet Hull":
-                query = """SELECT SUM(`biaya`.`berat_kg`) AS 'berat total', SUM(`biaya`.`biaya`) AS 'Total Biaya'
+                query += """
                 FROM `biaya`
                 JOIN `panen`
                 JOIN `cherry` ON (`cherry`.`id_panen` = `panen`.`id_panen`)
@@ -476,7 +480,7 @@ def getDataSubProcess(status,tipe_proses,id_panen):
                 OR (`biaya`.`id_biaya` = `hull`.`id_biaya`)
                 OR (`biaya`.`id_biaya` = `suton`.`id_biaya`))""".format(id_panen)
         else:
-            query = """SELECT SUM(`biaya`.`berat_kg`) AS 'berat total', SUM(`biaya`.`biaya`) AS 'Total Biaya'
+            query += """
                 FROM `biaya`
                 JOIN `panen`
                 JOIN `cherry` ON (`cherry`.`id_panen` = `panen`.`id_panen`)
@@ -500,7 +504,7 @@ def getDataSubProcess(status,tipe_proses,id_panen):
                 OR (`biaya`.`id_biaya` = `suton`.`id_biaya`))""".format(id_panen)
     elif status == "green_grading":
         if tipe_proses != "Wet Hull" or tipe_proses != "Natural Wet Hull" or tipe_proses != "Honey Wet Hull":
-            query = """SELECT SUM(`biaya`.`berat_kg`) AS 'berat total', SUM(`biaya`.`biaya`) AS 'Total Biaya'
+            query += """
                 FROM `biaya`
                 JOIN `panen`
                 JOIN `cherry` ON (`cherry`.`id_panen` = `panen`.`id_panen`)
@@ -523,7 +527,7 @@ def getDataSubProcess(status,tipe_proses,id_panen):
                 OR (`biaya`.`id_biaya` = `suton`.`id_biaya`)
                 OR (`biaya`.`id_biaya` = `grading`.`id_biaya`)) """.format(id_panen)
         else:
-            query = """SELECT SUM(`biaya`.`berat_kg`) AS 'berat total', SUM(`biaya`.`biaya`) AS 'Total Biaya'
+            query += """
                 FROM `biaya`
                 JOIN `panen`
                 JOIN `cherry` ON (`cherry`.`id_panen` = `panen`.`id_panen`)
@@ -549,7 +553,7 @@ def getDataSubProcess(status,tipe_proses,id_panen):
                 OR (`biaya`.`id_biaya` = `grading`.`id_biaya`)) """.format(id_panen)
     elif status == "green_color":
         if tipe_proses != "Wet Hull" or tipe_proses != "Natural Wet Hull" or tipe_proses != "Honey Wet Hull":
-            query = """SELECT SUM(`biaya`.`berat_kg`) AS 'berat total', SUM(`biaya`.`biaya`) AS 'Total Biaya'
+            query += """
             FROM `biaya`
             JOIN `panen`
             JOIN `cherry` ON (`cherry`.`id_panen` = `panen`.`id_panen`)
@@ -574,7 +578,7 @@ def getDataSubProcess(status,tipe_proses,id_panen):
             OR (`biaya`.`id_biaya` = `grading`.`id_biaya`)
             OR (`biaya`.`id_biaya` = `sorter`.`id_biaya`)) """.format(id_panen)
         else:
-            query = """SELECT SUM(`biaya`.`berat_kg`) AS 'berat total', SUM(`biaya`.`biaya`) AS 'Total Biaya'
+            query += """
                 FROM `biaya`
                 JOIN `panen`
                 JOIN `cherry` ON (`cherry`.`id_panen` = `panen`.`id_panen`)
@@ -601,7 +605,7 @@ def getDataSubProcess(status,tipe_proses,id_panen):
                 OR (`biaya`.`id_biaya` = `sorter`.`id_biaya`)) """.format(id_panen)
     elif status == "green_hand_pick":
         if tipe_proses != "Wet Hull" or tipe_proses != "Natural Wet Hull" or tipe_proses != "Honey Wet Hull":
-            query = """SELECT SUM(`biaya`.`berat_kg`) AS 'berat total', SUM(`biaya`.`biaya`) AS 'Total Biaya'
+            query += """
             FROM `biaya`
             JOIN `panen`
             JOIN `cherry` ON (`cherry`.`id_panen` = `panen`.`id_panen`)
@@ -628,7 +632,7 @@ def getDataSubProcess(status,tipe_proses,id_panen):
             OR (`biaya`.`id_biaya` = `sorter`.`id_biaya`)
             OR (`biaya`.`id_biaya` = `hand_pick`.`id_biaya`)) """.format(id_panen)
         else:
-            query = """SELECT SUM(`biaya`.`berat_kg`) AS 'berat total', SUM(`biaya`.`biaya`) AS 'Total Biaya'
+            query += """
                 FROM `biaya`
                 JOIN `panen`
                 JOIN `cherry` ON (`cherry`.`id_panen` = `panen`.`id_panen`)
