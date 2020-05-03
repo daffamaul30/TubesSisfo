@@ -63,6 +63,9 @@ def show_popup(self):
     popUp = MDDialog(title="Konfirmasi", text="Apakah Anda yakin?",
             size_hint=[.7,.3], auto_dismiss=False,
             text_button_cancel="Tidak", text_button_ok="Ya")
+    print(popUp.text_button_ok, popUp.text_button_cancel)
+    if on_press=popUp.text_button_ok:
+        print("a")
     popUp.open()
     
 class GB_Transport(Screen):
