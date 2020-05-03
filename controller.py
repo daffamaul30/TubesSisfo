@@ -46,25 +46,8 @@ class Laporan(Screen):
     pass
     
 class InputPanen(Screen):
-    def pop(self):
-        # popUp = MDDialog(title="Konfirmasi", text="Apakah Anda yakin?",
-        #     size_hint=[.7,.3], events_callback=self.call, auto_dismiss=False,
-        #     text_button_cancel="Tidak", text_button_ok="Ya")
-        # popUp.open() 
-        show_popup(self)
-
-    # def call(self, text_of_selection,pup):
-    #     return text_of_selection
-# show popup
-class layout_popup(FloatLayout):
     pass
-
-def show_popup(self):
-    popUp = MDDialog(title="Konfirmasi", text="Apakah Anda yakin?",
-            size_hint=[.7,.3], auto_dismiss=False,
-            text_button_cancel="Tidak", text_button_ok="Ya")
-    popUp.open()
-    
+  
 class GB_Transport(Screen):
     pass
 
@@ -205,18 +188,18 @@ class Main(MDApp):
     def on_start(self):
         result = m_panen.getAllPanen()
         for i in result:
-            update = "PROCESS NOT FINISHED"
+            update = "On Progress"
             print(i)
             if i[4] == "green_hand_pick":
                 id_gabahK = m_produksi.getGabahKering(i[7])[0]
                 result = m_produksi.getDataGreenBeanHandPick(id_gabahK)
-                update = result[2]
+                update = 'Tanggal Produksi Terakhir : {}'.format(result[2])
             self.root.ids.screen_manager.get_screen("dashboard").ids.box.add_widget(
                 MDExpansionPanel(
                     icon=f"kv/assets/frinsa.png",
                     content=Content(text="Biaya (Hpp) /Kg : {}".format(i[6]), 
                                     secondary_text="Tanggal Panen : {}".format(i[0]),
-                                    tertiary_text='Tanggal produksi Terakhir : {}'.format(update)),
+                                    tertiary_text=update),
                     panel_cls=MDExpansionPanelThreeLine(
                         text="Proses : {}".format(i[3]),
                         secondary_text="Blok : {}".format(i[1]),
