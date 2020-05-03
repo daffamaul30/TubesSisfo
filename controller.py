@@ -229,7 +229,10 @@ class Main(MDApp):
                 )
             )
             j+=1
-    
+    def cleargraph(self):
+        #self.root.ids.screen_manager.get_screen("hasilakhir").ids.box.add_widget(FigureCanvasKivyAgg(plt.gcf()))
+        self.root.ids.screen_manager.get_screen("hasilakhir").ids.box.clear_widgets()
+        plt.clf()
     def test_toast(self,*args):
         toast(args[0])
         print(args[0])    
@@ -273,24 +276,6 @@ class Main(MDApp):
         subprocess = subprocess[0:len(beratSubProcess)]
         print(beratSubProcess)
         print(subprocess)
-        #result = m_produksi.getDataSubProcess(i[4],i[3],i[8],False)
-        # beratSubProcess = []
-        # beratSubProcess.append(data_cherry[3])
-        # beratSubProcess.append(m_produksi.getDataWetMill(id_cherry)[0])
-        # beratSubProcess.append(m_produksi.getDataTransport(id_cherry)[0])
-        # beratSubProcess.append(m_produksi.getDataBongkar(id_cherry)[0])
-        # beratSubProcess.append(m_produksi.getDataGabahBasahJemur(id_cherry)[0])
-        # beratSubProcess.append(m_produksi.getDataGabahKeringHull(id_gabahB)[0])
-        # if self.tipe_proses != "Wet Hull" or self.tipe_proses != "Natural Wet Hull" or self.tipe_proses != "Honey Wet Hull":
-        #     beratSubProcess.append(m_produksi.getDataGabahKeringJemur(id_gabahB)[0])
-        # else:
-        #     del subprocess[6]
-        # beratSubProcess.append(m_produksi.getDataGreenBeanSuton(id_gabahK)[0])
-        # beratSubProcess.append(m_produksi.getDataGreenBeanGrading(id_gabahK)[0])
-        # beratSubProcess.append(m_produksi.getDataGreenBeanSorter(id_gabahK)[0])
-        # beratSubProcess.append(m_produksi.getDataGreenBeanHandPick(id_gabahK)[0])
-        
-        
         print("FINAL")
         self.root.ids.screen_manager.current = "hasilakhir"
         plt.plot((subprocess),(beratSubProcess)) # ((Subproses),(Berat)) 
