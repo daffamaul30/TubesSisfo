@@ -228,6 +228,7 @@ class Main(MDApp):
         # TAROH DI FUNCTION SEBELUM PINDAH KE PAGE HASILTERAKHIR
         print("FINAL")
         self.root.ids.screen_manager.current = "hasilakhir"
+        self.root.ids.toolbar.title = "Produksi"
         plt.plot(("tttttttttttttttt","inxi","indi","inai","iniFFF","invgi","inqi","inri","inei","izni"),(1,5,1,2,9,2,1,2,1,2)) # ((Subproses),(Berat)) 
         plt.title("Berat Per Subproses", fontsize=10)
         plt.yticks(fontsize=7)
@@ -290,6 +291,7 @@ class Main(MDApp):
             self.root.ids.screen_manager.get_screen("inputpanen").ids.berat.text = ""
             self.root.ids.screen_manager.get_screen("inputpanen").ids.biayacherry.text = ""
             self.root.ids.screen_manager.current = "hasilpanen"
+            self.root.ids.toolbar.title = "Panen"
             
     def dataPanen(self):
         self.tanggal = self.root.ids.screen_manager.get_screen("search").ids.date_picker_label.text
@@ -330,26 +332,26 @@ class Main(MDApp):
                     ##panggil GreenSuton
                     print("GREEN SUTON")
                     self.root.ids.screen_manager.current = "green_suton"
-                    self.root.ids.toolbar.title = "Green Bean Suton"
+                    self.root.ids.toolbar.title = "Green Bean-Suton"
             elif status == "gk_jemur" :
                 ##panggil GreenSuton 
                 #print("GREEN SUTON")
                 self.root.ids.screen_manager.current = "green_suton"
-                self.root.ids.toolbar.title = "Green Bean Suton"
+                self.root.ids.toolbar.title = "Green Bean-Suton"
             elif status == "green_suton":
                 ##panggil GreenGrading
                 #print("GRADING")
                 self.root.ids.screen_manager.current = "green_grading"
-                self.root.ids.toolbar.title = "Green Bean Grading"
+                self.root.ids.toolbar.title = "Green Bean-Grading"
             elif status == "green_grading":
                 ##panggil Green Color
                 self.root.ids.screen_manager.current = "green_color"
-                self.root.ids.toolbar.title = "Green Bean Color Sorter"
+                self.root.ids.toolbar.title = "Green Bean-Color Sorter"
             elif status == "green_color":
                 ##panggil Green HandPick
                 #finalReport(self)
                 self.root.ids.screen_manager.current = "green_hand_pick"
-                self.root.ids.toolbar.title = "Green Bean Hand Pick"      
+                self.root.ids.toolbar.title = "Green Bean-Hand Pick"      
         except:
             print("ERROR :",self.tanggal,self.blok,self.varietas,self.tipe_proses)
             
