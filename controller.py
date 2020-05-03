@@ -188,14 +188,21 @@ class Main(MDApp):
     def on_start(self):
         result = m_panen.getAllPanen()
         j = 0
+        self.arrayPanen = []
         for i in result:
             update = "On Progress"
             print(i)
             result = m_produksi.getDataSubProcess(i[4],i[3],i[8])
+            
             try :
                 hpp = result[1]//result[0]
             except:
                 hpp = "Error Data"
+            #x.insert(len(x),hpp)
+            x = i + (hpp,)
+            
+            self.arrayPanen.append(x)
+            #self.arrayPanen[j] = x
             if i[4] == "green_hand_pick":
                 result = m_produksi.getTanggalTerakhir(i[8])
                 update = 'Tanggal Produksi Terakhir : {}'.format(result[0])
@@ -216,7 +223,13 @@ class Main(MDApp):
     
     def test_toast(self,*args):
         toast(args[0])
-        print(args[0])        
+        print(args[0])    
+        print(self.arrayPanen[int(args[0])][0])
+        self.root.ids.screen_manager.get_screen("hasilakhir").ids.hasilakhir_date.text = self.arrayPanen[int(args[0])][0]
+        self.root.ids.screen_manager.get_screen("hasilakhir").ids.hasilakhir_blok.text = self.arrayPanen[int(args[0])][1]
+        self.root.ids.screen_manager.get_screen("hasilakhir").ids.hasilakhir_varietas.text = self.arrayPanen[int(args[0])][2] 
+        self.root.ids.screen_manager.get_screen("hasilakhir").ids.hasilakhir_proses.text = self.arrayPanen[int(args[0])][3] 
+        self.root.ids.screen_manager.get_screen("hasilakhir").ids.hasilakhir_biaya.text = str(self.arrayPanen[int(args[0])][9])    
     
     def afterInput(self):
         self.root.ids.screen_manager.get_screen("hasilpanen").ids.hsl_tgl_panen.text = self.tanggal
