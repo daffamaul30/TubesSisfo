@@ -9,9 +9,10 @@
     BoxLayout:
         orientation: "vertical"
         padding: 0,65,0,0
-
-        ScrollView:
-
+        MDScrollViewRefreshLayout:
+            id: refresh_layout
+            refresh_callback: app.refresh_callback
+            root_layout: root
             GridLayout:
                 cols: 1
                 size_hint_y: None

@@ -288,12 +288,9 @@ class Main(MDApp):
             self.root.ids.screen_manager.get_screen("inputpanen").ids.proses.text = ""
             self.root.ids.screen_manager.get_screen("inputpanen").ids.berat.text = ""
             self.root.ids.screen_manager.get_screen("inputpanen").ids.biayacherry.text = ""
-<<<<<<< HEAD
-            self.root.ids.screen_manager.current = "hasilpanen"
-            self.root.ids.toolbar.title = "Panen"
-=======
             
->>>>>>> 5a170859f9649335bcde0b9fea2605a7337356d4
+    def refresh_callback(self, *args):
+        pass
             
     def dataPanen(self):
         self.tanggal = self.root.ids.screen_manager.get_screen("search").ids.date_picker_label.text
