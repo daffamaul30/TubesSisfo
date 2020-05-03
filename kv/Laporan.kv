@@ -19,13 +19,13 @@
                     hint_text: "Tanggal Awal"
                     helper_text: "Double tap to open calender"
                     helper_text_mode: "persistent"
-                    on_double_tap: app.show_date_picker()
+                    on_double_tap: app.show_date_laporan("awal")
                 MDTextField:
                     id: date_picker_tgl_akhir
                     hint_text: "Tanggal Akhir"
                     helper_text: "Double tap to open calender"
                     helper_text_mode: "persistent"
-                    on_double_tap: app.show_date_picker()
+                    on_double_tap: app.show_date_laporan("akhir")
             MDFillRoundFlatButton:
                 text: "Cari"
                 # padding: 0,50,0,0
