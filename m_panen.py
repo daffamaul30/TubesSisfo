@@ -39,7 +39,7 @@ def deletePanen(id):
     conn = connection.koneksi()
     mycursor = conn.cursor()
     query = "DELETE FROM panen WHERE id_panen = "+str(id)
-    print(query)
+    #print(query)
     mycursor.execute(query)
     conn.commit()
     print("Data Deleted")

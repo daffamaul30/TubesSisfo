@@ -510,7 +510,7 @@ class Main(MDApp):
         self.root.ids.screen_manager.get_screen("green_hand_pick").ids.biaya_green_hand_pick.text = ""
         self.root.ids.screen_manager.get_screen("green_hand_pick").ids.date_picker_label.text = ""
         id_gabahK = m_produksi.getGabahKering(id_cherry)[0]
-        m_produksi.inputHandPick(id_gabahK,berat,harga,tanggal,id_panen)
+        m_produksi.inputHandPick(id_gabahK,self.berat,self.harga,self.tanggal,id_panen)
         id_gabahB = m_produksi.getGabahBasah(id_cherry)[0]
         #id_bean = m_produksi.getGreenBean(id_cherry)[0]
         berat = self.root.ids.screen_manager.get_screen("green_hand_pick").ids.berat_green_hand_pick.text
