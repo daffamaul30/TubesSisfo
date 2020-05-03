@@ -369,9 +369,8 @@ def getDataSubProcess(status,tipe_proses,id_panen,focus):
     if status == "cherry":
         query += """
             FROM `biaya`
-            JOIN `panen`
-            JOIN `cherry` ON (`cherry`.`id_panen` = `panen`.`id_panen`)
-            WHERE (`panen`.`id_panen` = {})""".format(id_panen)
+            WHERE berat_kg = 0"""
+        #print(query,"KA")
     elif status == "wetmill":
         query += """
             FROM `biaya`
@@ -380,6 +379,7 @@ def getDataSubProcess(status,tipe_proses,id_panen,focus):
             JOIN `wetmill` ON (`cherry`.`id_cherry` = `wetmill`.`id_cherry`) 
             WHERE (`panen`.`id_panen` = {}) 
             AND (`biaya`.`id_biaya` = `wetmill`.`id_biaya`)""".format(id_panen)
+        print(query)
     elif status == "transport":
         query += """
             FROM `biaya`
