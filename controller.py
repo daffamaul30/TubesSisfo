@@ -238,7 +238,39 @@ class Main(MDApp):
         self.root.ids.screen_manager.get_screen("hasilakhir").ids.hasilakhir_varietas.text = self.arrayPanen[int(args[0])][2] 
         self.root.ids.screen_manager.get_screen("hasilakhir").ids.hasilakhir_proses.text = self.arrayPanen[int(args[0])][3] 
         self.root.ids.screen_manager.get_screen("hasilakhir").ids.hasilakhir_biaya.text = str(self.arrayPanen[int(args[0])][9])    
-    
+        ###
+        subprocess = ["Panen","Cherry Wet Mill","Gabah Basah Transport","Gabah Basah Bongkar","Gabah Basah Jemur","Gabah Kering Hull","Gabah Kering Jemur","Green Bean Suton","Green Bean Grading","Green Bean Sorter","Green Bean Hand Pick"]
+        print(self.arrayPanen[int(args[0])])
+        print(subprocess[0:4])
+        #result = m_produksi.getDataSubProcess(i[4],i[3],i[8],False)
+        # beratSubProcess = []
+        # beratSubProcess.append(data_cherry[3])
+        # beratSubProcess.append(m_produksi.getDataWetMill(id_cherry)[0])
+        # beratSubProcess.append(m_produksi.getDataTransport(id_cherry)[0])
+        # beratSubProcess.append(m_produksi.getDataBongkar(id_cherry)[0])
+        # beratSubProcess.append(m_produksi.getDataGabahBasahJemur(id_cherry)[0])
+        # beratSubProcess.append(m_produksi.getDataGabahKeringHull(id_gabahB)[0])
+        # if self.tipe_proses != "Wet Hull" or self.tipe_proses != "Natural Wet Hull" or self.tipe_proses != "Honey Wet Hull":
+        #     beratSubProcess.append(m_produksi.getDataGabahKeringJemur(id_gabahB)[0])
+        # else:
+        #     del subprocess[6]
+        # beratSubProcess.append(m_produksi.getDataGreenBeanSuton(id_gabahK)[0])
+        # beratSubProcess.append(m_produksi.getDataGreenBeanGrading(id_gabahK)[0])
+        # beratSubProcess.append(m_produksi.getDataGreenBeanSorter(id_gabahK)[0])
+        # beratSubProcess.append(m_produksi.getDataGreenBeanHandPick(id_gabahK)[0])
+        
+        
+        # print("FINAL")
+        # self.root.ids.screen_manager.current = "hasilakhir"
+        # plt.plot((subprocess),(beratSubProcess)) # ((Subproses),(Berat)) 
+        # plt.title("Berat Per Subproses", fontsize=10)
+        # plt.yticks(fontsize=7)
+        # plt.xticks(fontsize=6)
+        # # plt.xticks(rotation=90, fontsize=6)
+        # # plt.tight_layout()
+        # # box.add_widget(FigureCanvasKivyAgg(plt.gcf()))
+        # self.root.ids.screen_manager.get_screen("hasilakhir").ids.box.add_widget(FigureCanvasKivyAgg(plt.gcf()))
+        ###
     def afterInput(self):
         self.root.ids.screen_manager.get_screen("hasilpanen").ids.hsl_tgl_panen.text = self.tanggal
         self.root.ids.screen_manager.get_screen("hasilpanen").ids.hsl_varietas.text = self.varietas

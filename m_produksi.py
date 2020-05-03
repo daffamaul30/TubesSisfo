@@ -660,7 +660,7 @@ def getDataSubProcess(status,tipe_proses,id_panen,focus):
                 OR (`biaya`.`id_biaya` = `grading`.`id_biaya`)
                 OR (`biaya`.`id_biaya` = `sorter`.`id_biaya`)
                 OR (`biaya`.`id_biaya` = `hand_pick`.`id_biaya`)) """.format(id_panen)
-    print(query)
+    #print(query)
     conn = connection.koneksi()
     mycursor = conn.cursor()
     mycursor.execute(query)
