@@ -367,7 +367,7 @@ def getDataSubProcess(status,tipe_proses,id_panen):
             FROM `biaya`
             JOIN `panen`
             JOIN `cherry` ON (`cherry`.`id_panen` = `panen`.`id_panen`)
-            WHERE (`panen`.`id_panen` = {}))""".format(id_panen)
+            WHERE (`panen`.`id_panen` = {})""".format(id_panen)
     elif status == "wetmill":
         query = """SELECT SUM(`biaya`.`berat_kg`) AS 'berat total', SUM(`biaya`.`biaya`) AS 'Total Biaya'
             FROM `biaya`
@@ -375,7 +375,7 @@ def getDataSubProcess(status,tipe_proses,id_panen):
             JOIN `cherry` ON (`cherry`.`id_panen` = `panen`.`id_panen`)
             JOIN `wetmill` ON (`cherry`.`id_cherry` = `wetmill`.`id_cherry`) 
             WHERE (`panen`.`id_panen` = {}) 
-            AND ((`biaya`.`id_biaya` = `wetmill`.`id_biaya`))""".format(id_panen)
+            AND (`biaya`.`id_biaya` = `wetmill`.`id_biaya`)""".format(id_panen)
     elif status == "transport":
         query = """SELECT SUM(`biaya`.`berat_kg`) AS 'berat total', SUM(`biaya`.`biaya`) AS 'Total Biaya'
             FROM `biaya`
@@ -570,7 +570,6 @@ def getDataSubProcess(status,tipe_proses,id_panen):
             OR (`biaya`.`id_biaya` = `bongkar`.`id_biaya`)
             OR (`biaya`.`id_biaya` = `jemurB`.`id_biaya`)
             OR (`biaya`.`id_biaya` = `hull`.`id_biaya`)
-            OR (`biaya`.`id_biaya` = `jemurK`.`id_biaya`)
             OR (`biaya`.`id_biaya` = `suton`.`id_biaya`)
             OR (`biaya`.`id_biaya` = `grading`.`id_biaya`)
             OR (`biaya`.`id_biaya` = `sorter`.`id_biaya`)) """.format(id_panen)
@@ -613,7 +612,6 @@ def getDataSubProcess(status,tipe_proses,id_panen):
             JOIN `jemurB` ON (`jemurB`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
             JOIN `gabah_kering` ON (`gabah_kering`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
             JOIN `hull` ON (`hull`.`id_gabahK` = `gabah_kering`.`id_gabahK`)
-            JOIN `jemurK` ON (`jemurK`.`id_gabahK`= `gabah_kering`.`id_gabahK`)
             JOIN `green_bean` ON (`green_bean`.`id_gabahK` = `gabah_kering`.`id_gabahK`)
             JOIN `suton` ON (`suton`.`id_bean` = `green_bean`.`id_bean`)
             JOIN `grading` ON (`grading`.`id_bean` = `green_bean`.`id_bean`)
@@ -625,7 +623,6 @@ def getDataSubProcess(status,tipe_proses,id_panen):
             OR (`biaya`.`id_biaya` = `bongkar`.`id_biaya`)
             OR (`biaya`.`id_biaya` = `jemurB`.`id_biaya`)
             OR (`biaya`.`id_biaya` = `hull`.`id_biaya`)
-            OR (`biaya`.`id_biaya` = `jemurK`.`id_biaya`)
             OR (`biaya`.`id_biaya` = `suton`.`id_biaya`)
             OR (`biaya`.`id_biaya` = `grading`.`id_biaya`)
             OR (`biaya`.`id_biaya` = `sorter`.`id_biaya`)
@@ -659,11 +656,13 @@ def getDataSubProcess(status,tipe_proses,id_panen):
                 OR (`biaya`.`id_biaya` = `grading`.`id_biaya`)
                 OR (`biaya`.`id_biaya` = `sorter`.`id_biaya`)
                 OR (`biaya`.`id_biaya` = `hand_pick`.`id_biaya`)) """.format(id_panen)
+    #print(query)
     conn = connection.koneksi()
     mycursor = conn.cursor()
     mycursor.execute(query)
+    
     try:
-        result = mycursor.fetchall()
+        result = mycursor.fetchone()
         return result
     except:
         return 0
