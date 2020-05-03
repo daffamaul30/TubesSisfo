@@ -204,17 +204,23 @@ class Main(MDApp):
     
     def on_start(self):
         result = m_panen.getAllPanen()
-        for i in range(len(result)):
+        for i in result:
+            update = "PROCESS NOT FINISHED"
+            print(i)
+            if i[4] == "green_hand_pick":
+                id_gabahK = m_produksi.getGabahKering(i[7])[0]
+                result = m_produksi.getDataGreenBeanHandPick(id_gabahK)
+                update = result[2]
             self.root.ids.screen_manager.get_screen("dashboard").ids.box.add_widget(
                 MDExpansionPanel(
                     icon=f"kv/assets/frinsa.png",
-                    content=Content(text="Biaya (Hpp) /Kg : {}".format(result[i][6]), 
-                                    secondary_text="Tanggal Panen : {}".format(result[i][0]),
-                                    tertiary_text='Tanggal produksi Terakhir : {}'.format("10/01/2001")),
+                    content=Content(text="Biaya (Hpp) /Kg : {}".format(i[6]), 
+                                    secondary_text="Tanggal Panen : {}".format(i[0]),
+                                    tertiary_text='Tanggal produksi Terakhir : {}'.format(update)),
                     panel_cls=MDExpansionPanelThreeLine(
-                        text="Proses : {}".format(result[i][3]),
-                        secondary_text="Blok : {}".format(result[i][1]),
-                        tertiary_text="Varietas : {}".format(result[i][2]),
+                        text="Proses : {}".format(i[3]),
+                        secondary_text="Blok : {}".format(i[1]),
+                        tertiary_text="Varietas : {}".format(i[2]),
                     )
                 )
             )

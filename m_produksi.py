@@ -351,7 +351,7 @@ def getDataGreenBeanSorter(id_gabahK):
     except:
         return 0
 def getDataGreenBeanHandPick(id_gabahK):
-    query = "SELECT berat_kg,biaya FROM biaya JOIN hand_pick ON biaya.id_biaya = hand_pick.id_biaya JOIN green_bean ON green_bean.id_bean = hand_pick.id_bean WHERE id_gabahK = "+str(id_gabahK)
+    query = "SELECT berat_kg,biaya,tanggal FROM biaya JOIN hand_pick ON biaya.id_biaya = hand_pick.id_biaya JOIN green_bean ON green_bean.id_bean = hand_pick.id_bean WHERE id_gabahK = "+str(id_gabahK)
     conn = connection.koneksi()
     mycursor = conn.cursor()
     mycursor.execute(query)
