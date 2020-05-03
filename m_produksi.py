@@ -361,3 +361,309 @@ def getDataGreenBeanHandPick(id_gabahK):
     except:
         return 0
     
+def getDataSubProcess(status,tipe_proses,id_panen):
+    if status == "cherry":
+        query = """SELECT SUM(`biaya`.`berat_kg`) AS 'berat total', SUM(`biaya`.`biaya`) AS 'Total Biaya'
+            FROM `biaya`
+            JOIN `panen`
+            JOIN `cherry` ON (`cherry`.`id_panen` = `panen`.`id_panen`)
+            WHERE (`panen`.`id_panen` = {}))""".format(id_panen)
+    elif status == "wetmill":
+        query = """SELECT SUM(`biaya`.`berat_kg`) AS 'berat total', SUM(`biaya`.`biaya`) AS 'Total Biaya'
+            FROM `biaya`
+            JOIN `panen`
+            JOIN `cherry` ON (`cherry`.`id_panen` = `panen`.`id_panen`)
+            JOIN `wetmill` ON (`cherry`.`id_cherry` = `wetmill`.`id_cherry`) 
+            WHERE (`panen`.`id_panen` = {}) 
+            AND ((`biaya`.`id_biaya` = `wetmill`.`id_biaya`))""".format(id_panen)
+    elif status == "transport":
+        query = """SELECT SUM(`biaya`.`berat_kg`) AS 'berat total', SUM(`biaya`.`biaya`) AS 'Total Biaya'
+            FROM `biaya`
+            JOIN `panen`
+            JOIN `cherry` ON (`cherry`.`id_panen` = `panen`.`id_panen`)
+            JOIN `wetmill` ON (`cherry`.`id_cherry` = `wetmill`.`id_cherry`) 
+            JOIN `gabah_basah` ON (`gabah_basah`.`id_cherry` = `cherry`.`id_cherry`)
+            JOIN `transport` ON (`transport`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+            WHERE (`panen`.`id_panen` = {}) 
+            AND ((`biaya`.`id_biaya` = `wetmill`.`id_biaya`)
+            OR (`biaya`.`id_biaya` = `transport`.`id_biaya`))""".format(id_panen)
+    elif status == "bongkar":
+        query = """SELECT SUM(`biaya`.`berat_kg`) AS 'berat total', SUM(`biaya`.`biaya`) AS 'Total Biaya'
+            FROM `biaya`
+            JOIN `panen`
+            JOIN `cherry` ON (`cherry`.`id_panen` = `panen`.`id_panen`)
+            JOIN `wetmill` ON (`cherry`.`id_cherry` = `wetmill`.`id_cherry`) 
+            JOIN `gabah_basah` ON (`gabah_basah`.`id_cherry` = `cherry`.`id_cherry`)
+            JOIN `transport` ON (`transport`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+            JOIN `bongkar` ON (`bongkar`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+            WHERE (`panen`.`id_panen` = {}) 
+            AND ((`biaya`.`id_biaya` = `wetmill`.`id_biaya`)
+            OR (`biaya`.`id_biaya` = `transport`.`id_biaya`)
+            OR (`biaya`.`id_biaya` = `bongkar`.`id_biaya`))""".format(id_panen)
+    elif status == "gb_jemur":
+        query = """SELECT SUM(`biaya`.`berat_kg`) AS 'berat total', SUM(`biaya`.`biaya`) AS 'Total Biaya'
+            FROM `biaya`
+            JOIN `panen`
+            JOIN `cherry` ON (`cherry`.`id_panen` = `panen`.`id_panen`)
+            JOIN `wetmill` ON (`cherry`.`id_cherry` = `wetmill`.`id_cherry`) 
+            JOIN `gabah_basah` ON (`gabah_basah`.`id_cherry` = `cherry`.`id_cherry`)
+            JOIN `transport` ON (`transport`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+            JOIN `bongkar` ON (`bongkar`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+            JOIN `jemurB` ON (`jemurB`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+            WHERE (`panen`.`id_panen` = {}) 
+            AND ((`biaya`.`id_biaya` = `wetmill`.`id_biaya`)
+            OR (`biaya`.`id_biaya` = `transport`.`id_biaya`)
+            OR (`biaya`.`id_biaya` = `bongkar`.`id_biaya`)
+            OR (`biaya`.`id_biaya` = `jemurB`.`id_biaya`))""".format(id_panen)
+    elif status == "gk_hull":
+        query = """SELECT SUM(`biaya`.`berat_kg`) AS 'berat total', SUM(`biaya`.`biaya`) AS 'Total Biaya'
+            FROM `biaya`
+            JOIN `panen`
+            JOIN `cherry` ON (`cherry`.`id_panen` = `panen`.`id_panen`)
+            JOIN `wetmill` ON (`cherry`.`id_cherry` = `wetmill`.`id_cherry`) 
+            JOIN `gabah_basah` ON (`gabah_basah`.`id_cherry` = `cherry`.`id_cherry`)
+            JOIN `transport` ON (`transport`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+            JOIN `bongkar` ON (`bongkar`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+            JOIN `jemurB` ON (`jemurB`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+            JOIN `gabah_kering` ON (`gabah_kering`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+            JOIN `hull` ON (`hull`.`id_gabahK` = `gabah_kering`.`id_gabahK`)
+            WHERE (`panen`.`id_panen` = {}) 
+            AND ((`biaya`.`id_biaya` = `wetmill`.`id_biaya`)
+            OR (`biaya`.`id_biaya` = `transport`.`id_biaya`)
+            OR (`biaya`.`id_biaya` = `bongkar`.`id_biaya`)
+            OR (`biaya`.`id_biaya` = `jemurB`.`id_biaya`)
+            OR (`biaya`.`id_biaya` = `hull`.`id_biaya`))""".format(id_panen)
+    elif status == "gk_jemur":
+        query = """SELECT SUM(`biaya`.`berat_kg`) AS 'berat total', SUM(`biaya`.`biaya`) AS 'Total Biaya'
+            FROM `biaya`
+            JOIN `panen`
+            JOIN `cherry` ON (`cherry`.`id_panen` = `panen`.`id_panen`)
+            JOIN `wetmill` ON (`cherry`.`id_cherry` = `wetmill`.`id_cherry`) 
+            JOIN `gabah_basah` ON (`gabah_basah`.`id_cherry` = `cherry`.`id_cherry`)
+            JOIN `transport` ON (`transport`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+            JOIN `bongkar` ON (`bongkar`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+            JOIN `jemurB` ON (`jemurB`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+            JOIN `gabah_kering` ON (`gabah_kering`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+            JOIN `hull` ON (`hull`.`id_gabahK` = `gabah_kering`.`id_gabahK`)
+            JOIN `jemurK` ON (`jemurK`.`id_gabahK`= `gabah_kering`.`id_gabahK`)
+            WHERE (`panen`.`id_panen` = {}) 
+            AND ((`biaya`.`id_biaya` = `wetmill`.`id_biaya`)
+            OR (`biaya`.`id_biaya` = `transport`.`id_biaya`)
+            OR (`biaya`.`id_biaya` = `bongkar`.`id_biaya`)
+            OR (`biaya`.`id_biaya` = `jemurB`.`id_biaya`)
+            OR (`biaya`.`id_biaya` = `hull`.`id_biaya`)
+            OR (`biaya`.`id_biaya` = `jemurK`.`id_biaya`))""".format(id_panen)
+    elif status == "green_suton":
+        if tipe_proses != "Wet Hull" or tipe_proses != "Natural Wet Hull" or tipe_proses != "Honey Wet Hull":
+                query = """SELECT SUM(`biaya`.`berat_kg`) AS 'berat total', SUM(`biaya`.`biaya`) AS 'Total Biaya'
+                FROM `biaya`
+                JOIN `panen`
+                JOIN `cherry` ON (`cherry`.`id_panen` = `panen`.`id_panen`)
+                JOIN `wetmill` ON (`cherry`.`id_cherry` = `wetmill`.`id_cherry`) 
+                JOIN `gabah_basah` ON (`gabah_basah`.`id_cherry` = `cherry`.`id_cherry`)
+                JOIN `transport` ON (`transport`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+                JOIN `bongkar` ON (`bongkar`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+                JOIN `jemurB` ON (`jemurB`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+                JOIN `gabah_kering` ON (`gabah_kering`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+                JOIN `hull` ON (`hull`.`id_gabahK` = `gabah_kering`.`id_gabahK`)
+                JOIN `green_bean` ON (`green_bean`.`id_gabahK` = `gabah_kering`.`id_gabahK`)
+                JOIN `suton` ON (`suton`.`id_bean` = `green_bean`.`id_bean`)
+                WHERE (`panen`.`id_panen` = {}) 
+                AND ((`biaya`.`id_biaya` = `wetmill`.`id_biaya`)
+                OR (`biaya`.`id_biaya` = `transport`.`id_biaya`)
+                OR (`biaya`.`id_biaya` = `bongkar`.`id_biaya`)
+                OR (`biaya`.`id_biaya` = `jemurB`.`id_biaya`)
+                OR (`biaya`.`id_biaya` = `hull`.`id_biaya`)
+                OR (`biaya`.`id_biaya` = `suton`.`id_biaya`))""".format(id_panen)
+        else:
+            query = """SELECT SUM(`biaya`.`berat_kg`) AS 'berat total', SUM(`biaya`.`biaya`) AS 'Total Biaya'
+                FROM `biaya`
+                JOIN `panen`
+                JOIN `cherry` ON (`cherry`.`id_panen` = `panen`.`id_panen`)
+                JOIN `wetmill` ON (`cherry`.`id_cherry` = `wetmill`.`id_cherry`) 
+                JOIN `gabah_basah` ON (`gabah_basah`.`id_cherry` = `cherry`.`id_cherry`)
+                JOIN `transport` ON (`transport`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+                JOIN `bongkar` ON (`bongkar`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+                JOIN `jemurB` ON (`jemurB`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+                JOIN `gabah_kering` ON (`gabah_kering`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+                JOIN `hull` ON (`hull`.`id_gabahK` = `gabah_kering`.`id_gabahK`)
+                JOIN `jemurK` ON (`jemurK`.`id_gabahK`= `gabah_kering`.`id_gabahK`)
+                JOIN `green_bean` ON (`green_bean`.`id_gabahK` = `gabah_kering`.`id_gabahK`)
+                JOIN `suton` ON (`suton`.`id_bean` = `green_bean`.`id_bean`)
+                WHERE (`panen`.`id_panen` = {}) 
+                AND ((`biaya`.`id_biaya` = `wetmill`.`id_biaya`)
+                OR (`biaya`.`id_biaya` = `transport`.`id_biaya`)
+                OR (`biaya`.`id_biaya` = `bongkar`.`id_biaya`)
+                OR (`biaya`.`id_biaya` = `jemurB`.`id_biaya`)
+                OR (`biaya`.`id_biaya` = `hull`.`id_biaya`)
+                OR (`biaya`.`id_biaya` = `jemurK`.`id_biaya`)
+                OR (`biaya`.`id_biaya` = `suton`.`id_biaya`))""".format(id_panen)
+    elif status == "green_grading":
+        if tipe_proses != "Wet Hull" or tipe_proses != "Natural Wet Hull" or tipe_proses != "Honey Wet Hull":
+            query = """SELECT SUM(`biaya`.`berat_kg`) AS 'berat total', SUM(`biaya`.`biaya`) AS 'Total Biaya'
+                FROM `biaya`
+                JOIN `panen`
+                JOIN `cherry` ON (`cherry`.`id_panen` = `panen`.`id_panen`)
+                JOIN `wetmill` ON (`cherry`.`id_cherry` = `wetmill`.`id_cherry`) 
+                JOIN `gabah_basah` ON (`gabah_basah`.`id_cherry` = `cherry`.`id_cherry`)
+                JOIN `transport` ON (`transport`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+                JOIN `bongkar` ON (`bongkar`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+                JOIN `jemurB` ON (`jemurB`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+                JOIN `gabah_kering` ON (`gabah_kering`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+                JOIN `hull` ON (`hull`.`id_gabahK` = `gabah_kering`.`id_gabahK`)
+                JOIN `green_bean` ON (`green_bean`.`id_gabahK` = `gabah_kering`.`id_gabahK`)
+                JOIN `suton` ON (`suton`.`id_bean` = `green_bean`.`id_bean`)
+                JOIN `grading` ON (`grading`.`id_bean` = `green_bean`.`id_bean`)
+                WHERE (`panen`.`id_panen` = {}) 
+                AND ((`biaya`.`id_biaya` = `wetmill`.`id_biaya`)
+                OR (`biaya`.`id_biaya` = `transport`.`id_biaya`)
+                OR (`biaya`.`id_biaya` = `bongkar`.`id_biaya`)
+                OR (`biaya`.`id_biaya` = `jemurB`.`id_biaya`)
+                OR (`biaya`.`id_biaya` = `hull`.`id_biaya`)
+                OR (`biaya`.`id_biaya` = `suton`.`id_biaya`)
+                OR (`biaya`.`id_biaya` = `grading`.`id_biaya`)) """.format(id_panen)
+        else:
+            query = """SELECT SUM(`biaya`.`berat_kg`) AS 'berat total', SUM(`biaya`.`biaya`) AS 'Total Biaya'
+                FROM `biaya`
+                JOIN `panen`
+                JOIN `cherry` ON (`cherry`.`id_panen` = `panen`.`id_panen`)
+                JOIN `wetmill` ON (`cherry`.`id_cherry` = `wetmill`.`id_cherry`) 
+                JOIN `gabah_basah` ON (`gabah_basah`.`id_cherry` = `cherry`.`id_cherry`)
+                JOIN `transport` ON (`transport`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+                JOIN `bongkar` ON (`bongkar`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+                JOIN `jemurB` ON (`jemurB`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+                JOIN `gabah_kering` ON (`gabah_kering`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+                JOIN `hull` ON (`hull`.`id_gabahK` = `gabah_kering`.`id_gabahK`)
+                JOIN `jemurK` ON (`jemurK`.`id_gabahK`= `gabah_kering`.`id_gabahK`)
+                JOIN `green_bean` ON (`green_bean`.`id_gabahK` = `gabah_kering`.`id_gabahK`)
+                JOIN `suton` ON (`suton`.`id_bean` = `green_bean`.`id_bean`)
+                JOIN `grading` ON (`grading`.`id_bean` = `green_bean`.`id_bean`)
+                WHERE (`panen`.`id_panen` = {}) 
+                AND ((`biaya`.`id_biaya` = `wetmill`.`id_biaya`)
+                OR (`biaya`.`id_biaya` = `transport`.`id_biaya`)
+                OR (`biaya`.`id_biaya` = `bongkar`.`id_biaya`)
+                OR (`biaya`.`id_biaya` = `jemurB`.`id_biaya`)
+                OR (`biaya`.`id_biaya` = `hull`.`id_biaya`)
+                OR (`biaya`.`id_biaya` = `jemurK`.`id_biaya`)
+                OR (`biaya`.`id_biaya` = `suton`.`id_biaya`)
+                OR (`biaya`.`id_biaya` = `grading`.`id_biaya`)) """.format(id_panen)
+    elif status == "green_color":
+        if tipe_proses != "Wet Hull" or tipe_proses != "Natural Wet Hull" or tipe_proses != "Honey Wet Hull":
+            query = """SELECT SUM(`biaya`.`berat_kg`) AS 'berat total', SUM(`biaya`.`biaya`) AS 'Total Biaya'
+            FROM `biaya`
+            JOIN `panen`
+            JOIN `cherry` ON (`cherry`.`id_panen` = `panen`.`id_panen`)
+            JOIN `wetmill` ON (`cherry`.`id_cherry` = `wetmill`.`id_cherry`) 
+            JOIN `gabah_basah` ON (`gabah_basah`.`id_cherry` = `cherry`.`id_cherry`)
+            JOIN `transport` ON (`transport`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+            JOIN `bongkar` ON (`bongkar`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+            JOIN `jemurB` ON (`jemurB`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+            JOIN `gabah_kering` ON (`gabah_kering`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+            JOIN `hull` ON (`hull`.`id_gabahK` = `gabah_kering`.`id_gabahK`)
+            JOIN `green_bean` ON (`green_bean`.`id_gabahK` = `gabah_kering`.`id_gabahK`)
+            JOIN `suton` ON (`suton`.`id_bean` = `green_bean`.`id_bean`)
+            JOIN `grading` ON (`grading`.`id_bean` = `green_bean`.`id_bean`)
+            JOIN `sorter` ON (`sorter`.`id_bean` = `green_bean`.`id_bean`)
+            WHERE (`panen`.`id_panen` = {}) 
+            AND ((`biaya`.`id_biaya` = `wetmill`.`id_biaya`)
+            OR (`biaya`.`id_biaya` = `transport`.`id_biaya`)
+            OR (`biaya`.`id_biaya` = `bongkar`.`id_biaya`)
+            OR (`biaya`.`id_biaya` = `jemurB`.`id_biaya`)
+            OR (`biaya`.`id_biaya` = `hull`.`id_biaya`)
+            OR (`biaya`.`id_biaya` = `jemurK`.`id_biaya`)
+            OR (`biaya`.`id_biaya` = `suton`.`id_biaya`)
+            OR (`biaya`.`id_biaya` = `grading`.`id_biaya`)
+            OR (`biaya`.`id_biaya` = `sorter`.`id_biaya`)) """.format(id_panen)
+        else:
+            query = """SELECT SUM(`biaya`.`berat_kg`) AS 'berat total', SUM(`biaya`.`biaya`) AS 'Total Biaya'
+                FROM `biaya`
+                JOIN `panen`
+                JOIN `cherry` ON (`cherry`.`id_panen` = `panen`.`id_panen`)
+                JOIN `wetmill` ON (`cherry`.`id_cherry` = `wetmill`.`id_cherry`) 
+                JOIN `gabah_basah` ON (`gabah_basah`.`id_cherry` = `cherry`.`id_cherry`)
+                JOIN `transport` ON (`transport`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+                JOIN `bongkar` ON (`bongkar`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+                JOIN `jemurB` ON (`jemurB`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+                JOIN `gabah_kering` ON (`gabah_kering`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+                JOIN `hull` ON (`hull`.`id_gabahK` = `gabah_kering`.`id_gabahK`)
+                JOIN `green_bean` ON (`green_bean`.`id_gabahK` = `gabah_kering`.`id_gabahK`)
+                JOIN `suton` ON (`suton`.`id_bean` = `green_bean`.`id_bean`)
+                JOIN `grading` ON (`grading`.`id_bean` = `green_bean`.`id_bean`)
+                JOIN `sorter` ON (`sorter`.`id_bean` = `green_bean`.`id_bean`)
+                WHERE (`panen`.`id_panen` = {}) 
+                AND ((`biaya`.`id_biaya` = `wetmill`.`id_biaya`)
+                OR (`biaya`.`id_biaya` = `transport`.`id_biaya`)
+                OR (`biaya`.`id_biaya` = `bongkar`.`id_biaya`)
+                OR (`biaya`.`id_biaya` = `jemurB`.`id_biaya`)
+                OR (`biaya`.`id_biaya` = `hull`.`id_biaya`)
+                OR (`biaya`.`id_biaya` = `jemurK`.`id_biaya`)
+                OR (`biaya`.`id_biaya` = `suton`.`id_biaya`)
+                OR (`biaya`.`id_biaya` = `grading`.`id_biaya`)
+                OR (`biaya`.`id_biaya` = `sorter`.`id_biaya`)) """.format(id_panen)
+    elif status == "green_hand_pick":
+        if tipe_proses != "Wet Hull" or tipe_proses != "Natural Wet Hull" or tipe_proses != "Honey Wet Hull":
+            query = """SELECT SUM(`biaya`.`berat_kg`) AS 'berat total', SUM(`biaya`.`biaya`) AS 'Total Biaya'
+            FROM `biaya`
+            JOIN `panen`
+            JOIN `cherry` ON (`cherry`.`id_panen` = `panen`.`id_panen`)
+            JOIN `wetmill` ON (`cherry`.`id_cherry` = `wetmill`.`id_cherry`) 
+            JOIN `gabah_basah` ON (`gabah_basah`.`id_cherry` = `cherry`.`id_cherry`)
+            JOIN `transport` ON (`transport`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+            JOIN `bongkar` ON (`bongkar`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+            JOIN `jemurB` ON (`jemurB`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+            JOIN `gabah_kering` ON (`gabah_kering`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+            JOIN `hull` ON (`hull`.`id_gabahK` = `gabah_kering`.`id_gabahK`)
+            JOIN `jemurK` ON (`jemurK`.`id_gabahK`= `gabah_kering`.`id_gabahK`)
+            JOIN `green_bean` ON (`green_bean`.`id_gabahK` = `gabah_kering`.`id_gabahK`)
+            JOIN `suton` ON (`suton`.`id_bean` = `green_bean`.`id_bean`)
+            JOIN `grading` ON (`grading`.`id_bean` = `green_bean`.`id_bean`)
+            JOIN `sorter` ON (`sorter`.`id_bean` = `green_bean`.`id_bean`)
+            JOIN `hand_pick` ON (`hand_pick`.`id_bean` = `green_bean`.`id_bean`)
+            WHERE (`panen`.`id_panen` = {}) 
+            AND ((`biaya`.`id_biaya` = `wetmill`.`id_biaya`)
+            OR (`biaya`.`id_biaya` = `transport`.`id_biaya`)
+            OR (`biaya`.`id_biaya` = `bongkar`.`id_biaya`)
+            OR (`biaya`.`id_biaya` = `jemurB`.`id_biaya`)
+            OR (`biaya`.`id_biaya` = `hull`.`id_biaya`)
+            OR (`biaya`.`id_biaya` = `jemurK`.`id_biaya`)
+            OR (`biaya`.`id_biaya` = `suton`.`id_biaya`)
+            OR (`biaya`.`id_biaya` = `grading`.`id_biaya`)
+            OR (`biaya`.`id_biaya` = `sorter`.`id_biaya`)
+            OR (`biaya`.`id_biaya` = `hand_pick`.`id_biaya`)) """.format(id_panen)
+        else:
+            query = """SELECT SUM(`biaya`.`berat_kg`) AS 'berat total', SUM(`biaya`.`biaya`) AS 'Total Biaya'
+                FROM `biaya`
+                JOIN `panen`
+                JOIN `cherry` ON (`cherry`.`id_panen` = `panen`.`id_panen`)
+                JOIN `wetmill` ON (`cherry`.`id_cherry` = `wetmill`.`id_cherry`) 
+                JOIN `gabah_basah` ON (`gabah_basah`.`id_cherry` = `cherry`.`id_cherry`)
+                JOIN `transport` ON (`transport`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+                JOIN `bongkar` ON (`bongkar`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+                JOIN `jemurB` ON (`jemurB`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+                JOIN `gabah_kering` ON (`gabah_kering`.`id_gabahB` = `gabah_basah`.`id_gabahB`)
+                JOIN `hull` ON (`hull`.`id_gabahK` = `gabah_kering`.`id_gabahK`)
+                JOIN `jemurK` ON (`jemurK`.`id_gabahK`= `gabah_kering`.`id_gabahK`)
+                JOIN `green_bean` ON (`green_bean`.`id_gabahK` = `gabah_kering`.`id_gabahK`)
+                JOIN `suton` ON (`suton`.`id_bean` = `green_bean`.`id_bean`)
+                JOIN `grading` ON (`grading`.`id_bean` = `green_bean`.`id_bean`)
+                JOIN `sorter` ON (`sorter`.`id_bean` = `green_bean`.`id_bean`)
+                JOIN `hand_pick` ON (`hand_pick`.`id_bean` = `green_bean`.`id_bean`)
+                WHERE (`panen`.`id_panen` = {}) 
+                AND ((`biaya`.`id_biaya` = `wetmill`.`id_biaya`)
+                OR (`biaya`.`id_biaya` = `transport`.`id_biaya`)
+                OR (`biaya`.`id_biaya` = `bongkar`.`id_biaya`)
+                OR (`biaya`.`id_biaya` = `jemurB`.`id_biaya`)
+                OR (`biaya`.`id_biaya` = `hull`.`id_biaya`)
+                OR (`biaya`.`id_biaya` = `jemurK`.`id_biaya`)
+                OR (`biaya`.`id_biaya` = `suton`.`id_biaya`)
+                OR (`biaya`.`id_biaya` = `grading`.`id_biaya`)
+                OR (`biaya`.`id_biaya` = `sorter`.`id_biaya`)
+                OR (`biaya`.`id_biaya` = `hand_pick`.`id_biaya`)) """.format(id_panen)
+    conn = connection.koneksi()
+    mycursor = conn.cursor()
+    mycursor.execute(query)
+    try:
+        result = mycursor.fetchall()
+        return result
+    except:
+        return 0
