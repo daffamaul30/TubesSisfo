@@ -355,9 +355,13 @@ class Main(MDApp):
                 self.root.ids.toolbar.title = "Green Bean Suton"
             elif status == "green_suton":
                 ##panggil GreenGrading
-                print("GRADING")
+                #print("GRADING")
                 self.root.ids.screen_manager.current = "green_grading"
                 self.root.ids.toolbar.title = "Green Bean Grading"
+            elif status == "green_grading":
+                ##panggil Green Color
+                self.root.ids.screen_manager.current = "green_color"
+                self.root.ids.toolbar.title = "Green Bean Color Sorter"
                     
         except:
             print("ERROR :",self.tanggal,self.blok,self.varietas,self.tipe_proses)
@@ -457,9 +461,21 @@ class Main(MDApp):
         berat = self.root.ids.screen_manager.get_screen("green_grading").ids.berat_green_grading.text
         harga = self.root.ids.screen_manager.get_screen("green_grading").ids.biaya_green_grading.text
         tanggal = self.root.ids.screen_manager.get_screen("green_grading").ids.date_picker_label.text
-        print(berat,harga,tanggal)
+        #print(berat,harga,tanggal)
         result = m_produksi.getGabahKering(id_cherry)
         
         m_produksi.inputGrading(result[0],berat,harga,tanggal,id_panen)
+    def color(self):
+        data_cherry = m_panen.getPanen(self.tanggal,self.blok,self.varietas,self.tipe_proses)
+        id_cherry = data_cherry[0]
+        id_panen = data_cherry[1]
+        #status = data_cherry[2]
+        berat = self.root.ids.screen_manager.get_screen("green_color").ids.berat_green_color.text
+        harga = self.root.ids.screen_manager.get_screen("green_color").ids.biaya_green_color.text
+        tanggal = self.root.ids.screen_manager.get_screen("green_color").ids.date_picker_label.text
+        #print(berat,harga,tanggal)
+        result = m_produksi.getGabahKering(id_cherry)
+        
+        m_produksi.inputColor(result[0],berat,harga,tanggal,id_panen)
 if __name__ == "__main__":
     Main().run()
