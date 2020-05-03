@@ -205,7 +205,7 @@ class Main(MDApp):
             result = m_produksi.getDataSubProcess(i[4],i[3],i[8],False)
             
             try :
-                hpp = result[1]//result[0]
+                hpp = result[1]
             except:
                 hpp = "Error Data"
             #x.insert(len(x),hpp)
@@ -246,7 +246,7 @@ class Main(MDApp):
         self.root.ids.screen_manager.get_screen("hasilakhir").ids.hasilakhir_blok.text = blok
         self.root.ids.screen_manager.get_screen("hasilakhir").ids.hasilakhir_varietas.text = varietas 
         self.root.ids.screen_manager.get_screen("hasilakhir").ids.hasilakhir_proses.text = proses
-        self.root.ids.screen_manager.get_screen("hasilakhir").ids.hasilakhir_biaya.text = biaya   
+        self.root.ids.screen_manager.get_screen("hasilakhir").ids.hasilakhir_biaya.text =  "Rp. "+biaya   
         ###
         if proses == "Wet Hull" or proses == "Natural Wet Hull" or proses == "Honey Wet Hull":
             subprocess = ["Panen","Cherry Wet Mill","Gabah Basah Transport","Gabah Basah Bongkar","Gabah Basah Jemur","Gabah Kering Hull","Gabah Kering Jemur","Green Bean Suton","Green Bean Grading","Green Bean Sorter","Green Bean Hand Pick"]
