@@ -25,11 +25,11 @@
                     text: "Tanggal (yyyy-mm-dd)"
                 # GridLayout:
                 MDTextField:
-                    id: date_picker_label_green_grading
+                    id: date_picker_label
                     # required: True
                     helper_text: "Double tap to open calender"
                     helper_text_mode: "persistent"
-                    on_double_tap: app.show_date_picker()
+                    on_double_tap: app.show_date_mdm("green_grading")
             BoxLayout:
                 orientation: "vertical"
                 # padding: 40,0,40,0
@@ -55,6 +55,7 @@
             halign: "center"
             specific_text_color: 1, 1, 1, 1
             on_release:
-                app.root.ids.screen_manager.current = "hasilinput"
-                root.manager.transition.direction = "left"
+                app.grading()
+                app.root.ids.screen_manager.current = "dashboard"
+                root.manager.transition.direction = "right"
                 app.root.ids.toolbar.title = "Dashboard"
