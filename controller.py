@@ -200,7 +200,7 @@ class Main(MDApp):
         for i in result:
             update = "On Progress"
             print(i)
-            result = m_produksi.getDataSubProcess(i[4],i[3],i[8])
+            result = m_produksi.getDataSubProcess(i[4],i[3],i[8],False)
             
             try :
                 hpp = result[1]//result[0]

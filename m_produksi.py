@@ -363,9 +363,9 @@ def getDataGreenBeanHandPick(id_gabahK):
     
 def getDataSubProcess(status,tipe_proses,id_panen,focus):
     if focus:
-        query = "SELECT `biaya`.`berat_kg` AS 'berat total', `biaya`.`biaya` AS 'Total Biaya'"
+        query = """SELECT `biaya`.`berat_kg`, `biaya`.`biaya`"""
     else :
-        query = "SELECT SUM(`biaya`.`berat_kg`) AS 'berat total', SUM(`biaya`.`biaya`) AS 'Total Biaya'"
+        query = """SELECT SUM(`biaya`.`berat_kg`) AS 'berat total', SUM(`biaya`.`biaya`) AS 'Total Biaya' """
     if status == "cherry":
         query += """
             FROM `biaya`
@@ -373,7 +373,7 @@ def getDataSubProcess(status,tipe_proses,id_panen,focus):
             JOIN `cherry` ON (`cherry`.`id_panen` = `panen`.`id_panen`)
             WHERE (`panen`.`id_panen` = {})""".format(id_panen)
     elif status == "wetmill":
-        query += """'
+        query += """
             FROM `biaya`
             JOIN `panen`
             JOIN `cherry` ON (`cherry`.`id_panen` = `panen`.`id_panen`)
@@ -660,7 +660,7 @@ def getDataSubProcess(status,tipe_proses,id_panen,focus):
                 OR (`biaya`.`id_biaya` = `grading`.`id_biaya`)
                 OR (`biaya`.`id_biaya` = `sorter`.`id_biaya`)
                 OR (`biaya`.`id_biaya` = `hand_pick`.`id_biaya`)) """.format(id_panen)
-    #print(query)
+    print(query)
     conn = connection.koneksi()
     mycursor = conn.cursor()
     mycursor.execute(query)
