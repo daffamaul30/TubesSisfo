@@ -207,7 +207,8 @@ class Main(MDApp):
         return Builder.load_file("kv/Main.kv")
     
     def on_start(self):
-        for i in range(10):
+        result = m_panen.getAllPanen()
+        for i in range(len(result)):
             self.root.ids.screen_manager.get_screen("dashboard").ids.box.add_widget(
                 MDExpansionPanel(
                     icon=f"kv/assets/frinsa.png",
@@ -215,7 +216,7 @@ class Main(MDApp):
                                     secondary_text="Tanggal Panen : {}".format("01/01/2001"),
                                     tertiary_text='Tanggal produksi Terakhir : {}'.format("10/01/2001")),
                     panel_cls=MDExpansionPanelThreeLine(
-                        text="Proses : {}".format("HAHA"),
+                        text="Proses : {}".format(result[i]),
                         secondary_text="Blok : {}".format("Blok A"),
                         tertiary_text="Varietas : {}".format("A"),
                     )
