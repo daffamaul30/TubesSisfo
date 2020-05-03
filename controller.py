@@ -207,6 +207,13 @@ class Main(MDApp):
                     )
                 )
             )
+    def afterInput(self):
+        self.root.ids.screen_manager.get_screen("hasilpanen").ids.hsl_tgl_panen.text = self.tanggal
+        self.root.ids.screen_manager.get_screen("hasilpanen").ids.hsl_varietas.text = self.varietas
+        self.root.ids.screen_manager.get_screen("hasilpanen").ids.hsl_blok = self.blok
+        self.root.ids.screen_manager.get_screen("hasilpanen").ids.hsl_berat = self.berat
+        self.root.ids.screen_manager.get_screen("hasilpanen").ids.hsl_biaya = self.biaya
+        self.root.ids.screen_manager.get_screen("hasilpanen").ids.hsl_proses = self.tipe_proses
     def finalReport(self):   
         # TAROH DI FUNCTION SEBELUM PINDAH KE PAGE HASILTERAKHIR
         print("FINAL")
@@ -347,6 +354,9 @@ class Main(MDApp):
         berat = self.root.ids.screen_manager.get_screen("cheri").ids.berat_cherry_wet_mill.text
         harga = self.root.ids.screen_manager.get_screen("cheri").ids.biaya_cherry_wet_mill.text
         tanggal = self.root.ids.screen_manager.get_screen("cheri").ids.date_picker_label.text  
+        self.berat = berat
+        self.harga = harga
+        self.tanggal = tanggal
         m_produksi.inputWetMill(id_cherry,berat,harga,tanggal,id_panen)
     
     def transport(self):
@@ -356,6 +366,9 @@ class Main(MDApp):
         berat = self.root.ids.screen_manager.get_screen("gb_transport").ids.berat_gb_transport.text
         harga = self.root.ids.screen_manager.get_screen("gb_transport").ids.biaya_gb_transport.text
         tanggal = self.root.ids.screen_manager.get_screen("gb_transport").ids.date_picker_label.text
+        self.berat = berat
+        self.harga = harga
+        self.tanggal = tanggal
         m_produksi.inputTransport(id_cherry,berat,harga,tanggal,id_panen)
     
     def bongkar(self):
@@ -366,6 +379,9 @@ class Main(MDApp):
         harga = self.root.ids.screen_manager.get_screen("gb_bongkar").ids.biaya_gb_bongkar.text
         tanggal = self.root.ids.screen_manager.get_screen("gb_bongkar").ids.date_picker_label.text
         result = m_produksi.getGabahBasah(id_cherry)
+        self.berat = berat
+        self.harga = harga
+        self.tanggal = tanggal
         m_produksi.inputBongkar(result[0],berat,harga,tanggal,id_panen)
         
     def gbJemur(self):
@@ -376,6 +392,9 @@ class Main(MDApp):
         harga = self.root.ids.screen_manager.get_screen("gb_jemur").ids.biaya_gb_jemur.text
         tanggal = self.root.ids.screen_manager.get_screen("gb_jemur").ids.date_picker_label.text
         result = m_produksi.getGabahBasah(id_cherry)
+        self.berat = berat
+        self.harga = harga
+        self.tanggal = tanggal
         m_produksi.inputGabahBasahJemur(result[0],berat,harga,tanggal,id_panen)
     
     def gkHull(self):
@@ -386,6 +405,9 @@ class Main(MDApp):
         harga = self.root.ids.screen_manager.get_screen("gk_hull").ids.biaya_gk_hull.text
         tanggal = self.root.ids.screen_manager.get_screen("gk_hull").ids.date_picker_label.text
         result = m_produksi.getGabahBasah(id_cherry)
+        self.berat = berat
+        self.harga = harga
+        self.tanggal = tanggal
         m_produksi.inputGabahKeringHull(result[0],berat,harga,tanggal,id_panen)
     
     def gkJemur(self):
@@ -396,6 +418,9 @@ class Main(MDApp):
         harga = self.root.ids.screen_manager.get_screen("gk_jemur").ids.biaya_gk_jemur.text
         tanggal = self.root.ids.screen_manager.get_screen("gk_jemur").ids.date_picker_label.text
         result = m_produksi.getGabahKering(id_cherry)
+        self.berat = berat
+        self.harga = harga
+        self.tanggal = tanggal
         m_produksi.inputGabahKeringJemur(result[0],berat,harga,tanggal,id_panen)
         
     def suton(self):
@@ -406,6 +431,9 @@ class Main(MDApp):
         harga = self.root.ids.screen_manager.get_screen("green_suton").ids.biaya_green_suton.text
         tanggal = self.root.ids.screen_manager.get_screen("green_suton").ids.date_picker_label.text
         result = m_produksi.getGabahKering(id_cherry)
+        self.berat = berat
+        self.harga = harga
+        self.tanggal = tanggal
         m_produksi.inputSuton(result[0],berat,harga,tanggal,id_panen)
         
     def grading(self):
@@ -416,6 +444,9 @@ class Main(MDApp):
         harga = self.root.ids.screen_manager.get_screen("green_grading").ids.biaya_green_grading.text
         tanggal = self.root.ids.screen_manager.get_screen("green_grading").ids.date_picker_label.text
         result = m_produksi.getGabahKering(id_cherry)
+        self.berat = berat
+        self.harga = harga
+        self.tanggal = tanggal
         m_produksi.inputGrading(result[0],berat,harga,tanggal,id_panen)
         
     def color(self):
@@ -426,6 +457,9 @@ class Main(MDApp):
         harga = self.root.ids.screen_manager.get_screen("green_color").ids.biaya_green_color.text
         tanggal = self.root.ids.screen_manager.get_screen("green_color").ids.date_picker_label.text
         result = m_produksi.getGabahKering(id_cherry)
+        self.berat = berat
+        self.harga = harga
+        self.tanggal = tanggal
         m_produksi.inputColor(result[0],berat,harga,tanggal,id_panen)
         
     def handPick(self):
