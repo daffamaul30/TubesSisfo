@@ -406,9 +406,9 @@ class Main(MDApp):
         data_cherry = m_panen.getPanen(self.tanggal,self.blok,self.varietas,self.tipe_proses)
         id_cherry = data_cherry[0]
         id_panen = data_cherry[1]
-        berat = self.root.ids.screen_manager.get_screen("gk_hull").ids.berat_gk_hull.text
-        harga = self.root.ids.screen_manager.get_screen("gk_hull").ids.biaya_gk_hull.text
-        tanggal = self.root.ids.screen_manager.get_screen("gk_hull").ids.date_picker_label.text
+        berat = self.root.ids.screen_manager.get_screen("gk_jemur").ids.berat_gk_jemur.text
+        harga = self.root.ids.screen_manager.get_screen("gk_jemur").ids.biaya_gk_jemur.text
+        tanggal = self.root.ids.screen_manager.get_screen("gk_jemur").ids.date_picker_label.text
         result = m_produksi.getGabahKering(id_cherry)
         m_produksi.inputGabahKeringJemur(result[0],berat,harga,tanggal,id_panen)
         
