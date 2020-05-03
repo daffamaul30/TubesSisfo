@@ -155,9 +155,6 @@ class Main(MDApp):
             "text": "Honey Lactic","callback": self.callback_for_proses_items_search,},
         ]
         
-    def delete(self, *args):
-        print("MASOK", args[0])
-        m_panen.deletePanen(self.arrayPanen[int(args[0])][8])
         
     def callback_for_proses_items(self, *args):
         toast(args[0])
@@ -188,6 +185,13 @@ class Main(MDApp):
         
     def build(self):
         return Builder.load_file("kv/Main.kv")
+    
+    def delete(self, *args):
+        print("MASOK", args[0])
+        m_panen.deletePanen(self.arrayPanen[int(args[0])][8])
+        self.root.ids.screen_manager.get_screen("dashboard").ids.box.clear_widgets()
+        self.on_start()
+        
     
     def on_start(self):
         result = m_panen.getAllPanen()
