@@ -280,7 +280,7 @@ class Main(MDApp):
         print(subprocess)
         print("FINAL")
         self.root.ids.screen_manager.current = "hasilakhir"
-        plt.plot((subprocess),(beratSubProcess)) # ((Subproses),(Berat)) 
+        plt.plot((subprocess),(beratSubProcess),'k-o') # ((Subproses),(Berat)) 
         plt.title("Berat Per Subproses", fontsize=10)
         plt.yticks(fontsize=7)
         plt.xticks(fontsize=6)
