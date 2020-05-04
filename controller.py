@@ -576,14 +576,18 @@ class Main(MDApp):
         harga = self.root.ids.screen_manager.get_screen("green_hand_pick").ids.biaya_green_hand_pick.text
         tanggal = self.root.ids.screen_manager.get_screen("green_hand_pick").ids.date_picker_label.text
         
-        # id_gabahK = m_produksi.getGabahKering(id_cherry)[0]
-        # m_produksi.inputHandPick(id_gabahK,berat,harga,tanggal,id_panen)
+        id_gabahK = m_produksi.getGabahKering(id_cherry)[0]
+        m_produksi.inputHandPick(id_gabahK,berat,harga,tanggal,id_panen)
         # id_gabahB = m_produksi.getGabahBasah(id_cherry)[0]
         #id_bean = m_produksi.getGreenBean(id_cherry)[0]
         self.root.ids.screen_manager.get_screen("green_hand_pick").ids.berat_green_hand_pick.text = ""
         self.root.ids.screen_manager.get_screen("green_hand_pick").ids.biaya_green_hand_pick.text = ""
         self.root.ids.screen_manager.get_screen("green_hand_pick").ids.date_picker_label.text = ""
         ################
+        data_cherry = m_panen.getPanen(self.tanggal,self.blok,self.varietas,self.tipe_proses)
+        id_panen = data_cherry[1]
+        status = data_cherry[2]
+        proses = data_cherry[3]
         if proses == "Wet Hull" or proses == "Natural Wet Hull" or proses == "Honey Wet Hull":
             subprocess = ["Panen","Cherry Wet Mill","Gabah Basah Transport","Gabah Basah Bongkar","Gabah Basah Jemur","Gabah Kering Hull","Gabah Kering Jemur","Green Bean Suton","Green Bean Grading","Green Bean Sorter","Green Bean Hand Pick"]
         else:
