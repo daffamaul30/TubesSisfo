@@ -229,12 +229,14 @@ class Main(MDApp):
                 )
             )
             j+=1
+            
     def cleargraph(self):
         #self.root.ids.screen_manager.get_screen("hasilakhir").ids.box.add_widget(FigureCanvasKivyAgg(plt.gcf()))
         self.root.ids.screen_manager.get_screen("hasilakhir").ids.box.clear_widgets()
         plt.clf()
+        
     def test_toast(self,*args):
-        toast(args[0])
+        # toast(args[0])
         print(args[0])    
         print(self.arrayPanen[int(args[0])][0])
         tanggal = self.arrayPanen[int(args[0])][0]
@@ -408,7 +410,7 @@ class Main(MDApp):
                     ##panggil gk_jemur
                     print("GK JEMUR")
                     self.root.ids.screen_manager.current = "gk_jemur"
-                    self.root.ids.toolbar.title = "GK-Jemur"
+                    self.root.ids.toolbar.title = "GK-Jemur Wet Hull"
                 else:
                     ##panggil GreenSuton
                     print("GREEN SUTON")
@@ -435,6 +437,11 @@ class Main(MDApp):
                 self.root.ids.toolbar.title = "Green Bean-Hand Pick"      
         except:
             print("ERROR :",self.tanggal,self.blok,self.varietas,self.tipe_proses)
+            toast("Data tidak ditemukan")
+            self.root.ids.screen_manager.get_screen("search").ids.date_picker_label.text = ''
+            self.root.ids.screen_manager.get_screen("search").ids.search_blok.text = ''
+            self.root.ids.screen_manager.get_screen("search").ids.search_varietas.text = ''
+            self.root.ids.screen_manager.get_screen("search").ids.search_proses.text = ''
             
     def test(self):
         print(self.root.ids.toolbar.title)
@@ -594,7 +601,7 @@ class Main(MDApp):
         plt.title("Berat Per Subproses", fontsize=10)
         plt.yticks(fontsize=7)
         plt.xticks(fontsize=6)
-        # plt.xticks(rotation=90, fontsize=6)
+        plt.xticks(rotation=45, fontsize=6)
         # plt.tight_layout()
         # box.add_widget(FigureCanvasKivyAgg(plt.gcf()))
         self.root.ids.screen_manager.get_screen("hasilakhir").ids.box.add_widget(FigureCanvasKivyAgg(plt.gcf()))

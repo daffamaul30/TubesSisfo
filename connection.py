@@ -3,10 +3,10 @@ from mysql.connector import Error
 def koneksi():
     conn = None
     try:
-        conn = mysql.connector.connect(host='52.149.60.155',
+        conn = mysql.connector.connect(host='localhost',
                                        database='kopi',
-                                       user='kopi2',
-                                       password='kopi2')
+                                       user='root',
+                                       password='')
         if conn.is_connected():
             print('Connected to MySQL database')
         conn.cursor()
