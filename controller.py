@@ -284,7 +284,7 @@ class Main(MDApp):
         plt.title("Berat Per Subproses", fontsize=10)
         plt.yticks(fontsize=7)
         plt.xticks(fontsize=6)
-        # plt.xticks(rotation=90, fontsize=6)
+        plt.xticks(rotation=15, fontsize=5)
         # plt.tight_layout()
         # box.add_widget(FigureCanvasKivyAgg(plt.gcf()))
         self.root.ids.screen_manager.get_screen("hasilakhir").ids.box.add_widget(FigureCanvasKivyAgg(plt.gcf()))
@@ -383,6 +383,10 @@ class Main(MDApp):
         self.tipe_proses = self.root.ids.screen_manager.get_screen("search").ids.search_proses.text
         try :
             data_cherry = m_panen.getPanen(self.tanggal,self.blok,self.varietas,self.tipe_proses)
+            self.root.ids.screen_manager.get_screen("search").ids.date_picker_label.text = ''
+            self.root.ids.screen_manager.get_screen("search").ids.search_blok.text = ''
+            self.root.ids.screen_manager.get_screen("search").ids.search_varietas.text = ''
+            self.root.ids.screen_manager.get_screen("search").ids.search_proses.text = ''
             status = data_cherry[2]
             print(data_cherry)
             if status == "cherry":
