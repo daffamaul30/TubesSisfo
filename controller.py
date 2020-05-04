@@ -571,46 +571,83 @@ class Main(MDApp):
         id_cherry = data_cherry[0]
         id_panen = data_cherry[1]
         status = data_cherry[2]
+        proses = data_cherry[3]
         berat = self.root.ids.screen_manager.get_screen("green_hand_pick").ids.berat_green_hand_pick.text
         harga = self.root.ids.screen_manager.get_screen("green_hand_pick").ids.biaya_green_hand_pick.text
         tanggal = self.root.ids.screen_manager.get_screen("green_hand_pick").ids.date_picker_label.text
         
-        id_gabahK = m_produksi.getGabahKering(id_cherry)[0]
-        m_produksi.inputHandPick(id_gabahK,berat,harga,tanggal,id_panen)
-        id_gabahB = m_produksi.getGabahBasah(id_cherry)[0]
+        # id_gabahK = m_produksi.getGabahKering(id_cherry)[0]
+        # m_produksi.inputHandPick(id_gabahK,berat,harga,tanggal,id_panen)
+        # id_gabahB = m_produksi.getGabahBasah(id_cherry)[0]
         #id_bean = m_produksi.getGreenBean(id_cherry)[0]
         self.root.ids.screen_manager.get_screen("green_hand_pick").ids.berat_green_hand_pick.text = ""
         self.root.ids.screen_manager.get_screen("green_hand_pick").ids.biaya_green_hand_pick.text = ""
         self.root.ids.screen_manager.get_screen("green_hand_pick").ids.date_picker_label.text = ""
-        
-        subprocess = ["Panen","Cherry Wet Mill","Gabah Basah Transport","Gabah Basah Bongkar","Gabah Basah Jemur","Gabah Kering Hull","Gabah Kering Jemur","Green Bean Suton","Green Bean Grading","Green Bean Sorter","Green Bean Hand Pick"]
-        beratSubProcess = []
-        beratSubProcess.append(data_cherry[3])
-        beratSubProcess.append(m_produksi.getDataWetMill(id_cherry)[0])
-        beratSubProcess.append(m_produksi.getDataTransport(id_cherry)[0])
-        beratSubProcess.append(m_produksi.getDataBongkar(id_cherry)[0])
-        beratSubProcess.append(m_produksi.getDataGabahBasahJemur(id_cherry)[0])
-        beratSubProcess.append(m_produksi.getDataGabahKeringHull(id_gabahB)[0])
-        if self.tipe_proses != "Wet Hull" or self.tipe_proses != "Natural Wet Hull" or self.tipe_proses != "Honey Wet Hull":
-            beratSubProcess.append(m_produksi.getDataGabahKeringJemur(id_gabahB)[0])
+        ################
+        if proses == "Wet Hull" or proses == "Natural Wet Hull" or proses == "Honey Wet Hull":
+            subprocess = ["Panen","Cherry Wet Mill","Gabah Basah Transport","Gabah Basah Bongkar","Gabah Basah Jemur","Gabah Kering Hull","Gabah Kering Jemur","Green Bean Suton","Green Bean Grading","Green Bean Sorter","Green Bean Hand Pick"]
         else:
-            del subprocess[6]
-        beratSubProcess.append(m_produksi.getDataGreenBeanSuton(id_gabahK)[0])
-        beratSubProcess.append(m_produksi.getDataGreenBeanGrading(id_gabahK)[0])
-        beratSubProcess.append(m_produksi.getDataGreenBeanSorter(id_gabahK)[0])
-        beratSubProcess.append(m_produksi.getDataGreenBeanHandPick(id_gabahK)[0])
+            subprocess = ["Panen","Cherry Wet Mill","Gabah Basah Transport","Gabah Basah Bongkar","Gabah Basah Jemur","Gabah Kering Hull","Green Bean Suton","Green Bean Grading","Green Bean Sorter","Green Bean Hand Pick"]
+        data = m_produksi.getDataSubProcess(status,proses,id_panen,True)
+        result =  []
+        result.append(berat)
+        j = 0
         
+        if status != "wetmill":
+            for i in data:
+                print(i ,j)
+                j+=1
+                result.append(i[0])
+        elif status == "wetmill":
+            result.append(data[0][0])
+        beratSubProcess = []
+        for i in result:
+            print(i)
+            beratSubProcess.append(i)
         
+        subprocess = subprocess[0:len(beratSubProcess)]
+        print(beratSubProcess)
+        print(subprocess)
         print("FINAL")
         self.root.ids.screen_manager.current = "hasilakhir"
         plt.plot((subprocess),(beratSubProcess)) # ((Subproses),(Berat)) 
         plt.title("Berat Per Subproses", fontsize=10)
         plt.yticks(fontsize=7)
         plt.xticks(fontsize=6)
-        plt.xticks(rotation=45, fontsize=6)
+        plt.xticks(rotation=15, fontsize=5)
         # plt.tight_layout()
         # box.add_widget(FigureCanvasKivyAgg(plt.gcf()))
         self.root.ids.screen_manager.get_screen("hasilakhir").ids.box.add_widget(FigureCanvasKivyAgg(plt.gcf()))
+        self.root.ids.screen_manager.transition.direction = "left"
+        ################
+        # subprocess = ["Panen","Cherry Wet Mill","Gabah Basah Transport","Gabah Basah Bongkar","Gabah Basah Jemur","Gabah Kering Hull","Gabah Kering Jemur","Green Bean Suton","Green Bean Grading","Green Bean Sorter","Green Bean Hand Pick"]
+        # beratSubProcess = []
+        # beratSubProcess.append(data_cherry[3])
+        # beratSubProcess.append(m_produksi.getDataWetMill(id_cherry)[0])
+        # beratSubProcess.append(m_produksi.getDataTransport(id_cherry)[0])
+        # beratSubProcess.append(m_produksi.getDataBongkar(id_cherry)[0])
+        # beratSubProcess.append(m_produksi.getDataGabahBasahJemur(id_cherry)[0])
+        # beratSubProcess.append(m_produksi.getDataGabahKeringHull(id_gabahB)[0])
+        # if self.tipe_proses != "Wet Hull" or self.tipe_proses != "Natural Wet Hull" or self.tipe_proses != "Honey Wet Hull":
+        #     beratSubProcess.append(m_produksi.getDataGabahKeringJemur(id_gabahB)[0])
+        # else:
+        #     del subprocess[6]
+        # beratSubProcess.append(m_produksi.getDataGreenBeanSuton(id_gabahK)[0])
+        # beratSubProcess.append(m_produksi.getDataGreenBeanGrading(id_gabahK)[0])
+        # beratSubProcess.append(m_produksi.getDataGreenBeanSorter(id_gabahK)[0])
+        # beratSubProcess.append(m_produksi.getDataGreenBeanHandPick(id_gabahK)[0])
+        
+        
+        # print("FINAL")
+        # self.root.ids.screen_manager.current = "hasilakhir"
+        # plt.plot((subprocess),(beratSubProcess)) # ((Subproses),(Berat)) 
+        # plt.title("Berat Per Subproses", fontsize=10)
+        # plt.yticks(fontsize=7)
+        # plt.xticks(fontsize=6)
+        # plt.xticks(rotation=45, fontsize=6)
+        # # plt.tight_layout()
+        # # box.add_widget(FigureCanvasKivyAgg(plt.gcf()))
+        # self.root.ids.screen_manager.get_screen("hasilakhir").ids.box.add_widget(FigureCanvasKivyAgg(plt.gcf()))
     def getAllSubProcess(self):
         data_cherry = m_panen.getPanen(self.tanggal,self.blok,self.varietas,self.tipe_proses)
         id_cherry = data_cherry[0]
