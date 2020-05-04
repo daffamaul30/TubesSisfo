@@ -594,7 +594,7 @@ class Main(MDApp):
             subprocess = ["Panen","Cherry Wet Mill","Gabah Basah Transport","Gabah Basah Bongkar","Gabah Basah Jemur","Gabah Kering Hull","Green Bean Suton","Green Bean Grading","Green Bean Sorter","Green Bean Hand Pick"]
         data = m_produksi.getDataSubProcess(status,proses,id_panen,True)
         result =  []
-        result.append(berat)
+        result.append(int(berat))
         j = 0
         
         if status != "wetmill":
